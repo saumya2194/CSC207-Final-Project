@@ -1,5 +1,5 @@
-import Entities.ResearchStudy;
-import Entities.Researcher;
+import entity.ResearchStudy;
+import entity.Researcher;
 
 public class Main {
     public static void main(String[] args) {

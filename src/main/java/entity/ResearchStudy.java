@@ -1,4 +1,4 @@
-package Entities;
+package entity;
 
 /**
  Class representation of the ResearchStudy.
