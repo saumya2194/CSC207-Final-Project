@@ -1,4 +1,4 @@
-package main.java;// info about package, import
+package interface_adapter.homepage;// info about package, import
 
 
 import use_case.homepage.LoadHomepageInputBoundry;

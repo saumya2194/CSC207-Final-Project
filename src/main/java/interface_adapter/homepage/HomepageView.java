@@ -1,4 +1,4 @@
-package java;
+package interface_adapter.homepage;
 
 import javax.swing.*;
 
@@ -6,7 +6,7 @@ public class HomepageView {
 
     private final String viewName = "homepage";
     private final LoadHompageViewModel loadHomepageViewModel;
-    private final main.java.LoadHomepageController loadHomepageController;
+    private final LoadHomepageController loadHomepageController;
 
     private final JButton newExperiment;
     private final JButton profile;

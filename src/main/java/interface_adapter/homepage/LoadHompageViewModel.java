@@ -1,4 +1,4 @@
-package java;
+package interface_adapter.homepage;
 
 public class LoadHompageViewModel {
 }

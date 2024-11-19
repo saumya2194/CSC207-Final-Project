@@ -1,4 +1,4 @@
-package interface_adapter.Profile;
+package interface_adapter.view_profile;
 import interface_adapter.signup.ViewModel;
 
 /**

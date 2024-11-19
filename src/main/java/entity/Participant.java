@@ -3,13 +3,11 @@ package entity;
 public class Participant implements User {
 
     private final String name;
-    private final String email;
     private final String password;
     private final String type;
 
-    public Participant(String name, String email, String password) {
+    public Participant(String name, String password) {
         this.name = name;
-        this.email = email;
         this.password = password;
         this.type = "Participant";
     }
@@ -23,9 +21,6 @@ public class Participant implements User {
     public String getPassword() {
         return password;
     }
-
-    @Override
-    public String getEmail() { return email; }
 
     @Override
     public String getType() { return type; }

@@ -1,7 +1,7 @@
-package interface_adapter.Profile;
+package interface_adapter.view_profile;
 
-import use_case.change_password.ChangePasswordOutputBoundary;
-import use_case.change_password.ChangePasswordOutputData;
+import use_case.view_profile.ChangePasswordOutputBoundary;
+import use_case.view_profile.ViewProfileOutputData;
 
 /**
  * The Presenter for the Change Password Use Case.
@@ -15,7 +15,7 @@ public class ChangePasswordPresenter implements ChangePasswordOutputBoundary {
     }
 
     @Override
-    public void prepareSuccessView(ChangePasswordOutputData outputData) {
+    public void prepareSuccessView(ViewProfileOutputData outputData) {
         // currently there isn't anything to change based on the output data,
         // since the output data only contains the username, which remains the same.
         // We still fire the property changed event, but just to let the view know that

@@ -1,4 +1,4 @@
-package interface_adapter.Profile;
+package interface_adapter.view_profile;
 
 /**
  * The State information representing the logged-in user.
