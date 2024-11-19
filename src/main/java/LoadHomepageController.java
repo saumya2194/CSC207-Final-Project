@@ -1,14 +1,17 @@
 package main.java;// info about package, import
 
 
-public class LoadHomepageController {
-    private final main.java.LoadHomepageInputBoundry loadHomepageUseCaseInteractor;
+import use_case.homepage.LoadHomepageInputBoundry;
+import use_case.homepage.LoadHomepageInputData;
 
-    public LoadHomepageController(main.java.LoadHomepageInputBoundry loadHomepageUseCaseInteractor) {
+public class LoadHomepageController {
+    private final LoadHomepageInputBoundry loadHomepageUseCaseInteractor;
+
+    public LoadHomepageController(LoadHomepageInputBoundry loadHomepageUseCaseInteractor) {
         this.loadHomepageUseCaseInteractor = loadHomepageUseCaseInteractor;
     }
 
     public void execute(String email, String password) {
-        final main.java.LoadHomepageInputData loadHomepageInputData = new main.java.LoadHomepageInputData(username)
+        final LoadHomepageInputData loadHomepageInputData = new LoadHomepageInputData(username)
     }
 }

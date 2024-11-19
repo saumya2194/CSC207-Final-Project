@@ -1,4 +1,4 @@
-package java;
+package use_case.homepage;
 
 public interface LoadHomepageOutputBoundry {
 

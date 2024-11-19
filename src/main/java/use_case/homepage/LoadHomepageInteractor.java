@@ -1,4 +1,4 @@
-package java;
+package use_case.homepage;
 
 public class LoadHomepageInteractor implements LoadHomepageInputBoundry{
     // TODO: ADD DAO

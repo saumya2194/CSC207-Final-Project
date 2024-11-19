@@ -8,11 +8,11 @@ import java.util.UUID;
  */
 public class ResearchStudy {
     private final int id;
-    private CommonUser user;
+    private Researcher user;
     private String title;
     private String details;
 
-    public ResearchStudy(CommonUser user, String title, String details) {
+    public ResearchStudy(Researcher user, String title, String details) {
         this.id = UUID.randomUUID().hashCode();
         this.user = user;
         this.title = title;

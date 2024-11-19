@@ -26,7 +26,9 @@ public class DBUserDataAccessObject implements
     private static final String CONTENT_TYPE_JSON = "application/json";
     private static final String STATUS_CODE_LABEL = "status_code";
     private static final String USERNAME = "username";
+    public static final String EMAIL = "email";
     private static final String PASSWORD = "password";
+    public static final String TYPE = "type";
     private static final String MESSAGE = "message";
     private final UserFactory userFactory;
 
@@ -51,9 +53,11 @@ public class DBUserDataAccessObject implements
             if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) {
                 final JSONObject userJSONObject = responseBody.getJSONObject("user");
                 final String name = userJSONObject.getString(USERNAME);
+                final String email = userJSONObject.getString(EMAIL);
                 final String password = userJSONObject.getString(PASSWORD);
+                final String type = userJSONObject.getString(TYPE);
 
-                return userFactory.create(name, password);
+                return userFactory.create(name, email, password, type);
             }
             else {
                 throw new RuntimeException(responseBody.getString(MESSAGE));
@@ -104,7 +108,9 @@ public class DBUserDataAccessObject implements
         final MediaType mediaType = MediaType.parse(CONTENT_TYPE_JSON);
         final JSONObject requestBody = new JSONObject();
         requestBody.put(USERNAME, user.getName());
+        requestBody.put(EMAIL, user.getEmail());
         requestBody.put(PASSWORD, user.getPassword());
+        requestBody.put(TYPE, user.getType());
         final RequestBody body = RequestBody.create(requestBody.toString(), mediaType);
         final Request request = new Request.Builder()
                 .url("http://vm003.teach.cs.toronto.edu:20112/user")
@@ -137,7 +143,9 @@ public class DBUserDataAccessObject implements
         final MediaType mediaType = MediaType.parse(CONTENT_TYPE_JSON);
         final JSONObject requestBody = new JSONObject();
         requestBody.put(USERNAME, user.getName());
+        requestBody.put(EMAIL, user.getEmail());
         requestBody.put(PASSWORD, user.getPassword());
+        requestBody.put(TYPE, user.getType());
         final RequestBody body = RequestBody.create(requestBody.toString(), mediaType);
         final Request request = new Request.Builder()
                 .url("http://vm003.teach.cs.toronto.edu:20112/user")
