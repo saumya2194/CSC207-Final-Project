@@ -25,7 +25,7 @@ public interface LoginUserDataAccessInterface {
      * @param username the username to look up
      * @return the user with the given username
      */
-    User get(String username);
+    User get(String email);
 
     /**
      * Sets current user.
@@ -38,4 +38,6 @@ public interface LoginUserDataAccessInterface {
      * @return current user
      */
     String getCurrentUser();
+
+    void setCurrentEmail(String name);
 }

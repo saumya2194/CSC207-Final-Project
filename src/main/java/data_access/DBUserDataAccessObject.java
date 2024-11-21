@@ -39,11 +39,11 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface, Lo
     }
 
     @Override
-    public User get(String username) {
+    public User get(String email) {
         // Make an API call to get the user object.
         final OkHttpClient client = new OkHttpClient().newBuilder().build();
         final Request request = new Request.Builder()
-                .url(String.format("http://vm003.teach.cs.toronto.edu:20112/user?username=%s", username))
+                .url(String.format("http://vm003.teach.cs.toronto.edu:20112/user?username=%s", email))
                 .addHeader("Content-Type", CONTENT_TYPE_JSON)
                 .build();
         try {
@@ -164,5 +164,10 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface, Lo
         catch (IOException | JSONException ex) {
             throw new RuntimeException(ex);
         }
+    }
+
+
+    public void setCurrentEmail(String name) {
+        // this isn't implemented for the lab
     }
 }
