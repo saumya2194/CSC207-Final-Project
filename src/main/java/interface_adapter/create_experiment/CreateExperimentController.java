@@ -21,7 +21,8 @@ public class CreateExperimentController {
      */
     public void execute(String title, String details) {
         final CreateExperimentInputData createExperimentInputData = new CreateExperimentInputData(
-                title, details);
+                title, details, );
+        //TODO add current user method
 
         createExperimentUseCaseInteractor.execute(createExperimentInputData);
     }
