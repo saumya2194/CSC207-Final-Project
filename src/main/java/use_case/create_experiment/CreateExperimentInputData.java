@@ -10,11 +10,11 @@ import entity.User;
 public class CreateExperimentInputData {
 
     private final int id;
-    private User user;
+    private String user;
     private String title;
     private String details;
 
-    public CreateExperimentInputData(String title, String details, User user) {
+    public CreateExperimentInputData(String title, String details, String user) {
         this.title = title;
         this.details = details;
         this.user = user;
@@ -28,5 +28,13 @@ public class CreateExperimentInputData {
 
     String getDetails() {
         return details;
+    }
+
+    String getUser() {
+        return user;
+    }
+
+    int getID() {
+        return id;
     }
 }
