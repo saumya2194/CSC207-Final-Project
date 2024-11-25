@@ -78,7 +78,7 @@ import interface_adapter.create_experiment.CreateExperimentViewModel;
                                 final LoginState currentState = loginViewModel.getState();
 
                                 loginController.execute(
-                                        currentState.getUsername(),
+                                        currentState.getEmail(),
                                         currentState.getPassword()
                                 );
                             }
