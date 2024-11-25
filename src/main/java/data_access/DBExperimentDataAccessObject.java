@@ -8,4 +8,9 @@ public class DBExperimentDataAccessObject implements ViewExperimentDataAccessInt
     public ResearchStudy getResearchStudy(int id) {
         return null;
     }
+
+
+    Boolean saveStudy(ResearchStudy study) {
+        return false;
+    }
 }
