@@ -1,20 +1,18 @@
-package use_case.create_experiment;
+package use_case.createstudy;
 
 import java.util.UUID;
-
-import entity.User;
 
 /**
  * The Input Data for the Create Experiment  Use Case.
  */
-public class CreateExperimentInputData {
+public class CreateStudyInputData {
 
     private final int id;
     private String user;
     private String title;
     private String details;
 
-    public CreateExperimentInputData(String title, String details, String user) {
+    public CreateStudyInputData(String title, String details, String user) {
         this.title = title;
         this.details = details;
         this.user = user;

@@ -1,18 +1,18 @@
 package use_case.view_experiment;
 
-import entity.ResearchStudy;
+import entity.CommonResearchStudy;
 import entity.User;
 
 public class ViewExperimentInputData {
 
-    private ResearchStudy researchStudy;
+    private CommonResearchStudy commonResearchStudy;
     private User user;
 
-    public ViewExperimentInputData(ResearchStudy researchStudy, User user) {
-        this.researchStudy = researchStudy;
+    public ViewExperimentInputData(CommonResearchStudy commonResearchStudy, User user) {
+        this.commonResearchStudy = commonResearchStudy;
         this.user= user;
     }
 
-    public ResearchStudy getResearchStudy() {return researchStudy;}
+    public CommonResearchStudy getResearchStudy() {return commonResearchStudy;}
     public User getUser() { return user; }
 }

@@ -6,13 +6,14 @@ import java.util.UUID;
  ResearchStudy is created by Researcher only and maps onto the Participants that are enrolled. Unique
  study ID is created along with the ResearchStudy object upon its initialization.
  */
-public class ResearchStudy {
+
+public class CommonResearchStudy {
     private final int id;
     private User user;
     private String title;
     private String details;
 
-    public ResearchStudy(User user, String title, String details) {
+    public CommonResearchStudy(User user, String title, String details) {
         this.id = UUID.randomUUID().hashCode();
         this.user = user;
         this.title = title;

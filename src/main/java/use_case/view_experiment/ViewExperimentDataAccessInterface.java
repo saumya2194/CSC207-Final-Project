@@ -1,7 +1,7 @@
 package use_case.view_experiment;
 
-import entity.ResearchStudy;
+import entity.CommonResearchStudy;
 
 public interface ViewExperimentDataAccessInterface {
-    ResearchStudy getResearchStudy(int id);
+    CommonResearchStudy getResearchStudy(int id);
 }

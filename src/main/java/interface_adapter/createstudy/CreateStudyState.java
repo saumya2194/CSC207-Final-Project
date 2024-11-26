@@ -1,9 +1,9 @@
-package interface_adapter.create_experiment;
+package interface_adapter.createstudy;
 
 /**
- * The state for the Login View Model.
+ * The state for the Create Study View Model.
  */
-public class CreateExperimentState {
+public class CreateStudyState {
     private String title = "";
     private String details = "";
 

@@ -1,5 +1,8 @@
 package view;
 
+import interface_adapter.createstudy.CreateStudyController;
+import interface_adapter.createstudy.CreateStudyState;
+import interface_adapter.createstudy.CreateStudyViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
@@ -30,9 +33,9 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import interface_adapter.create_experiment.CreateExperimentController;
-import interface_adapter.create_experiment.CreateExperimentState;
-import interface_adapter.create_experiment.CreateExperimentViewModel;
+import CreateStudyController;
+import CreateStudyState;
+import CreateStudyViewModel;
 
     /**
      * The View for when the user is logging into the program.
