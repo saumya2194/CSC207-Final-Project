@@ -16,6 +16,9 @@ import use_case.logout.LogoutUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 import use_case.view_profile.ViewProfileUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  * The DAO for user data.
@@ -41,8 +44,9 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface, Lo
     public User get(String username) {
         // Make an API call to get the user object.
         final OkHttpClient client = new OkHttpClient().newBuilder().build();
+        String email = new String(username + ' ');
         final Request request = new Request.Builder()
-                .url(String.format("http://vm003.teach.cs.toronto.edu:20112/user?username=%s", username))
+                .url(String.format("http://vm003.teach.cs.toronto.edu:20112/user?username=%s", email))
                 .addHeader("Content-Type", CONTENT_TYPE_JSON)
                 .build();
         try {
@@ -52,7 +56,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface, Lo
 
             if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) {
                 final JSONObject userJSONObject = responseBody.getJSONObject("user");
-                final String name = userJSONObject.getString(EMAIL);
+                final String name = userJSONObject.getString(EMAIL).strip();
                 final String password = userJSONObject.getString(PASSWORD);
 
                 return userFactory.create(name, password);
@@ -80,8 +84,9 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface, Lo
     public boolean existsByName(String username) {
         final OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
+        String email = new String(username + ' ');
         final Request request = new Request.Builder()
-                .url(String.format("http://vm003.teach.cs.toronto.edu:20112/checkIfUserExists?username=%s", username))
+                .url(String.format("http://vm003.teach.cs.toronto.edu:20112/checkIfUserExists?username=%s", email))
                 .addHeader(CONTENT_TYPE_LABEL, CONTENT_TYPE_JSON)
                 .build();
         try {
@@ -105,7 +110,8 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface, Lo
         // POST METHOD
         final MediaType mediaType = MediaType.parse(CONTENT_TYPE_JSON);
         final JSONObject requestBody = new JSONObject();
-        requestBody.put(EMAIL, user.getName());
+        String email = new String (user.getName() + ' ');
+        requestBody.put(EMAIL, email);
         requestBody.put(PASSWORD, user.getPassword());
         final RequestBody body = RequestBody.create(requestBody.toString(), mediaType);
         final Request request = new Request.Builder()
@@ -138,7 +144,8 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface, Lo
         // POST METHOD
         final MediaType mediaType = MediaType.parse(CONTENT_TYPE_JSON);
         final JSONObject requestBody = new JSONObject();
-        requestBody.put(EMAIL, user.getName());
+        String email = new String (user.getName() + ' ');
+        requestBody.put(EMAIL, email);
         requestBody.put(PASSWORD, user.getPassword());
         final RequestBody body = RequestBody.create(requestBody.toString(), mediaType);
         final Request request = new Request.Builder()

@@ -7,20 +7,20 @@ import java.util.UUID;
  study ID is created along with the ResearchStudy object upon its initialization.
  */
 public class ResearchStudy {
-    private final int id;
-    private User user;
+    private final String id;
+    private String user;
     private String title;
     private String details;
 
-    public ResearchStudy(User user, String title, String details) {
-        this.id = UUID.randomUUID().hashCode();
+    public ResearchStudy(String user, String title, String details) {
+        this.id = String.valueOf(UUID.randomUUID().hashCode());
         this.user = user;
         this.title = title;
         this.details = details;
     }
 
-    public int getId() {return this.id;}
-    public String getResearcherName() {return user.getName();}
+    public String getId() {return this.id;}
+    public String getResearcherName() {return user;}
     public String getTitle() {
         return this.title;
     }
