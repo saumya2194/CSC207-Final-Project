@@ -1,4 +1,4 @@
-package main.java;
+package java.use_case.load_homepage;
 
 public class LoadHomepageInputData {
     // do we need username and password? or user

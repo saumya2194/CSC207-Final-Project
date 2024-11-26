@@ -1,4 +1,4 @@
-package java;
+package java.use_case.load_homepage;
 
 public interface LoadHomepageExperimentsDataAccessInterface {
 

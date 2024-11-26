@@ -1,9 +1,11 @@
-package java;
+package java.view;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.interface_adapter.load_homepage.LoadHomepageController;
+import java.interface_adapter.load_homepage.LoadHomepageViewModel;
 
 public class HomepageView {
 

@@ -1,4 +1,4 @@
-package java;
+package java.use_case.load_homepage;
 
 public class LoadHomepageOutputData {
     // collection for all experiments

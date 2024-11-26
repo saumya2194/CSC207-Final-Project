@@ -1,5 +1,5 @@
-package java;
-import main.java.LoadHomepageInputBoundry;
+package java.use_case.load_homepage;
+
 public class LoadHomepageInteractor implements LoadHomepageInputBoundry{
     // TODO: ADD DAO
     private final LoadHomepageOutputBoundry loadHomepagePresenter;

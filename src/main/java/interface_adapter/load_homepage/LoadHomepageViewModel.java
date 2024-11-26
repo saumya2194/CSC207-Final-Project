@@ -1,4 +1,4 @@
-package java;
+package java.interface_adapter.load_homepage;
 
 public class LoadHomepageViewModel extends ViewModel<LoadHomepageState> {
     public static final String TITLE_LABEL = "Homepage" ;

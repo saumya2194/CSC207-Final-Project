@@ -1,4 +1,7 @@
-package java;
+package java.interface_adapter.load_homepage;
+
+import java.use_case.load_homepage.LoadHomepageOutputBoundry;
+import java.use_case.load_homepage.LoadHomepageOutputData;
 
 public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
 
@@ -26,8 +29,12 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
 
     }
 
-    void switchToViewProfileView();
+    public void switchToViewProfileView(){
+        viewManagerModel.setState(viewProfileViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
+    }
 
+    // fill in the other switch things
     void switchToCreateExperimentView();
 
     void switchToLogoutView();

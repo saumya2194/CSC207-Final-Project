@@ -1,8 +1,8 @@
-package main.java;
+package java.use_case.load_homepage;
 
 public interface LoadHomepageInputBoundry {
 
-    void execute(main.java.LoadHomepageInputData loadHomepageInputData);
+    void execute(LoadHomepageInputData loadHomepageInputData);
 
     void switchToViewProfileView();
 

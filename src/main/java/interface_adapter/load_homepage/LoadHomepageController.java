@@ -1,10 +1,10 @@
-package java;// info about package, import
-import main.java.LoadHomepageInputBoundry;
+package java.interface_adapter.load_homepage;// info about package, import
+import java.use_case.load_homepage.LoadHomepageInputBoundry;
 
 public class LoadHomepageController {
     private final LoadHomepageInputBoundry loadHomepageUseCaseInteractor;
 
-    public LoadHomepageController(main.java.LoadHomepageInputBoundry loadHomepageUseCaseInteractor) {
+    public LoadHomepageController(LoadHomepageInputBoundry loadHomepageUseCaseInteractor) {
         this.loadHomepageUseCaseInteractor = loadHomepageUseCaseInteractor;
     }
 
