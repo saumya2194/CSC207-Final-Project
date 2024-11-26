@@ -1,5 +1,7 @@
 package use_case.createstudy;
 
+import data_access.DBExperimentDataAccessObject;
+import entity.StudyFactory;
 import entity.User;
 import entity.UserFactory;
 
@@ -9,17 +11,21 @@ import entity.UserFactory;
  */
 public class CreateStudyInteractor {
 
-    private final SignupUserDataAccessInterface userDataAccessObject;
-    private final SignupOutputBoundary userPresenter;
-    private final UserFactory userFactory;
+    private final CreateStudyDataAccessInterface studyDataAcessObject;
+    private final CreateStudyOutputBoundary  studyPresenter;
+    private final StudyFactory studyFactory;
 
-    public SignupInteractor(SignupUserDataAccessInterface signupDataAccessInterface,
-                            SignupOutputBoundary signupOutputBoundary,
-                            UserFactory userFactory) {
-        this.userDataAccessObject = signupDataAccessInterface;
-        this.userPresenter = signupOutputBoundary;
-        this.userFactory = userFactory;
-    }
+    public CreateStudyInteractor(CreateStudyDataAccessInterface createStudyDataAccessInterface,
+                                 CreateStudyOutputBoundary createStudyOutputBoundary,
+                                 StudyFactory studyFactory) {
+        this.studyDataAcessObject = createStudyDataAccessInterface;
+        this.studyPresenter = createStudyOutputBoundary;
+        this.studyFactory = studyFactory;
+
+    @Override
+    public void execute(CreateStudyInputData createStudyInputData) {
+        if (createStudyInputDada.getDetails)
+        }
 
     @Override
     public void execute(SignupInputData signupInputData) {
