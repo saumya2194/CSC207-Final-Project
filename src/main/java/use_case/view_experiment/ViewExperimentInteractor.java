@@ -1,6 +1,6 @@
 package use_case.view_experiment;
 
-import entity.CommonResearchStudy;
+import entity.CommonStudy;
 
 public class ViewExperimentInteractor implements ViewExperimentInputBoundary{
 
@@ -15,13 +15,13 @@ public class ViewExperimentInteractor implements ViewExperimentInputBoundary{
 
     @Override
     public void execute(ViewExperimentInputData viewExperimentInputData) {
-        CommonResearchStudy commonResearchStudy = viewExperimentDataAccessInterface.getResearchStudy(viewExperimentInputData
+        CommonStudy commonStudy = viewExperimentDataAccessInterface.getResearchStudy(viewExperimentInputData
                 .getResearchStudy().getId());
-        if (commonResearchStudy == null) {
+        if (commonStudy == null) {
             throw new IllegalArgumentException("Research Experiment not found.");
         }
-        ViewExperimentOutputData viewExperimentOutputData = new ViewExperimentOutputData(commonResearchStudy.getTitle(),
-                commonResearchStudy.getDetails(), commonResearchStudy.getResearcherName());
+        ViewExperimentOutputData viewExperimentOutputData = new ViewExperimentOutputData(commonStudy.getTitle(),
+                commonStudy.getDetails(), commonStudy.getResearcherName());
         viewExperimentOutputBoundary.present(viewExperimentOutputData);
     }
 
