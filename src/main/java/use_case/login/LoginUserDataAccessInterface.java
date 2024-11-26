@@ -8,11 +8,11 @@ import entity.User;
 public interface LoginUserDataAccessInterface {
 
     /**
-     * Checks if the given username exists.
-     * @param username the username to look for
-     * @return true if a user with the given username exists; false otherwise
+     * Checks if the given email exists.
+     * @param email the email to look for
+     * @return true if a user with the given email exists; false otherwise
      */
-    boolean existsByName(String username);
+    boolean existsByName(String email);
 
     /**
      * Saves the user.
@@ -21,11 +21,11 @@ public interface LoginUserDataAccessInterface {
     void save(User user);
 
     /**
-     * Returns the user with the given username.
-     * @param username the username to look up
+     * Returns the user with the given email.
+     * @param email the email to look up
      * @return the user with the given username
      */
-    User get(String username);
+    User get(String email);
 
     /**
      * Sets current user.
@@ -38,4 +38,6 @@ public interface LoginUserDataAccessInterface {
      * @return current user
      */
     String getCurrentUser();
+
+    void setCurrentEmail(String name);
 }

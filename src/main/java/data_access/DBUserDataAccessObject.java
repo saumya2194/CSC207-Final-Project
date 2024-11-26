@@ -41,7 +41,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface, Lo
     }
 
     @Override
-    public User get(String username) {
+    public User get(String email) {
         // Make an API call to get the user object.
         final OkHttpClient client = new OkHttpClient().newBuilder().build();
         String email = new String(username + ' ');
@@ -168,5 +168,10 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface, Lo
         catch (IOException | JSONException ex) {
             throw new RuntimeException(ex);
         }
+    }
+
+
+    public void setCurrentEmail(String name) {
+        // this isn't implemented for the lab
     }
 }
