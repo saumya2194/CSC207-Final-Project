@@ -19,6 +19,18 @@ import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginState;
 import interface_adapter.login.LoginViewModel;
 
+import interface_adapter.view_profile.ChangePasswordController;
+import interface_adapter.signup.ViewModel;
+import interface_adapter.view_profile.ProfileState;
+import interface_adapter.view_profile.ProfileViewModel;
+import interface_adapter.logout.LogoutController;
+import javax.swing.JOptionPane;
+import interface_adapter.view_profile.ChangePasswordController;
+import interface_adapter.view_profile.ProfileState;
+import interface_adapter.view_profile.ProfileViewModel;
+import interface_adapter.logout.LogoutController;
+
+
 /**
  * The View for when the user is logging into the program.
  */
