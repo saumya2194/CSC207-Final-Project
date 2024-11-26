@@ -3,5 +3,5 @@ package use_case.view_experiment;
 import entity.CommonStudy;
 
 public interface ViewExperimentDataAccessInterface {
-    CommonStudy getResearchStudy(int id);
+    CommonStudy getResearchStudy(String id);
 }
