@@ -15,8 +15,13 @@ public class ViewExperimentInteractor implements ViewExperimentInputBoundary{
 
     @Override
     public void execute(ViewExperimentInputData viewExperimentInputData) {
-        CommonStudy commonStudy = viewExperimentDataAccessInterface.getResearchStudy(viewExperimentInputData
-                .getResearchStudy().getId());
+        CommonStudy commonStudy = null;
+        try {
+            commonStudy = viewExperimentDataAccessInterface.getResearchStudy(viewExperimentInputData
+                    .getResearchStudy().getId());
+        } catch (data_access.DataAccessException e) {
+            throw new RuntimeException(e);
+        }
         if (commonStudy == null) {
             throw new IllegalArgumentException("Research Experiment not found.");
         }

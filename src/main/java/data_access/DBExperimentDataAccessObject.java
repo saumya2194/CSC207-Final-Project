@@ -1,7 +1,6 @@
 package data_access;
 
 import entity.CommonStudy;
-import entity.User;
 import okhttp3.*;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,7 +20,7 @@ public class DBExperimentDataAccessObject implements ViewExperimentDataAccessInt
     private static final String PASSWORD = "password";
     private static final String MESSAGE = "message";
 
-    public boolean saveResearchStudy(CommonStudy researchStudy) {
+    public boolean saveResearchStudy(CommonStudy researchStudy) throws DataAccessException {
         final OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
 
@@ -65,7 +64,7 @@ public class DBExperimentDataAccessObject implements ViewExperimentDataAccessInt
     }
 
     @Override
-    public CommonStudy getResearchStudy(String id) {
+    public CommonStudy getResearchStudy(String id) throws DataAccessException {
         final String username = "NullPointers";
         final OkHttpClient client = new OkHttpClient().newBuilder().build();
         final Request request = new Request.Builder()
@@ -81,7 +80,7 @@ public class DBExperimentDataAccessObject implements ViewExperimentDataAccessInt
                 final JSONObject userJSONObject = responseBody.getJSONObject("user");
                 final JSONObject data = userJSONObject.getJSONObject("info");
                 final JSONObject study = data.getJSONObject(id);
-                return new ResearchStudy((String)study.get("user"), (String)study.get("title"), (String)study.get("details"));
+                return new CommonStudy((String)study.get("user"), (String)study.get("title"), (String)study.get("details"));
             }
             else {
                 throw new DataAccessException(responseBody.getString(MESSAGE));
@@ -92,7 +91,7 @@ public class DBExperimentDataAccessObject implements ViewExperimentDataAccessInt
         }
     }
 
-    public List<CommonStudy> getResearchStudies() {
+    public List<CommonStudy> getResearchStudies() throws DataAccessException{
         final String username = "NullPointers";
         final OkHttpClient client = new OkHttpClient().newBuilder().build();
         final Request request = new Request.Builder()
@@ -125,7 +124,7 @@ public class DBExperimentDataAccessObject implements ViewExperimentDataAccessInt
         }
     }
 
-    public boolean editResearchStudy(CommonStudy researchStudy, String title, String details) {
+    public boolean editResearchStudy(CommonStudy researchStudy, String title, String details) throws DataAccessException {
         final OkHttpClient client = new OkHttpClient().newBuilder().build();
 
         // Define the media type as JSON
@@ -167,7 +166,7 @@ public class DBExperimentDataAccessObject implements ViewExperimentDataAccessInt
                 throw new DataAccessException("Database error: " + responseBody.getString(MESSAGE));
             }
         } catch (IOException | JSONException ex) {
-            throw new DataAccessException("Error while editing research study: " + ex.getMessage(), ex);
+            throw new DataAccessException("Error while editing research study: " + ex.getMessage());
         }
     }
 
