@@ -24,7 +24,9 @@ public class HomepageView {
     public HomepageView(LoadHomepageController controller, LoadHomepageViewModel loadHomepageViewModel){
         this.loadHomepageController = controller;
         this.loadHomepageViewModel = loadHomepageViewModel;
-        // add line about adding property change listener to viewmodel
+        // add line about adding property change listener to viewmodel, not 100% sure what its for
+        loadHomepageViewModel.addPropertyChangeListener(this);
+
         final JLabel title = new JLabel(loadHomepageViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         // add some set alignment thing
@@ -36,6 +38,8 @@ public class HomepageView {
         // add title(might be included in columns)
         // create experiment button
         createExperiment = new JButton(LoadHomepageViewModel.CREATE_EXPERIMENT_BUTTON_LABEL);
+        profile = new JButton(LoadHomepageViewModel.PROFILE_BUTTON_LABEL);
+        logOut = new JButton(LoadHomepageViewModel.LOGOUT_BUTTON_LABEL);
         myExperimentsPanel.add(createExperiment);
         // add table
         myExperiments = new JTable(loadHomepageViewModel.myExperimentsData, loadHomepageViewModel.myExperimentsColumns);
@@ -59,9 +63,16 @@ public class HomepageView {
         );
         // do action listener stuff for logout button
 
+
         logOut.addActionListener(
-                new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {loadHomepageController.switchToLogoutView();}
+                // This creates an anonymous subclass of ActionListener and instantiates it.
+                evt -> {
+                    if (evt.getSource().equals(logOut)) {
+                        // 1. get the state out of the loggedInViewModel. It contains the username.
+                        // 2. Execute the logout Controller.
+                        final LoggedInState currentState = loggedInViewModel.getState();
+                        this.logoutController.execute(currentState.getUsername());
+                    }
                 }
         );
 
