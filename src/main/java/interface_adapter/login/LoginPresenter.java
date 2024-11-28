@@ -4,6 +4,8 @@ import interface_adapter.signup.ViewManagerModel;
 import interface_adapter.view_profile.ProfileViewModel;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginOutputData;
+//TODO: Change all loggedinviewmodel to homepage viewmodel
+// and profile viewmodel to the LoadHomepageViewModel
 
 /**
  * The Presenter for the Login Use Case.

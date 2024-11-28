@@ -1,5 +1,6 @@
 package use_case.createstudy;
 
+import entity.User;
 import java.util.UUID;
 
 /**
@@ -16,7 +17,7 @@ public class CreateStudyInputData {
         this.title = title;
         this.details = details;
         this.user = user;
-        this.iD = getStringvalue(UUID.randomUUID().hashCode();)
+        this.iD = String.valueOf(UUID.randomUUID().hashCode());
 
     }
 
@@ -32,7 +33,7 @@ public class CreateStudyInputData {
         return user;
     }
 
-    int getID() {
-        return id;
+    String getID() {
+        return iD;
     }
 }
