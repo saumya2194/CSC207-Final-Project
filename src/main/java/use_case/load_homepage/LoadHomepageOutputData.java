@@ -11,7 +11,7 @@ public class LoadHomepageOutputData {
 
     //is this one really necessary
     private final boolean useCaseFailed;
-    public LoadHomepageOutputData(Object[] experiments, Object[] myExperiments, User user, boolean useCaseFailed) {
+    public LoadHomepageOutputData(Object[] experiments, Object[] myExperiments, CommonUser user, boolean useCaseFailed) {
         this.experiments = experiments;
         this.myExperiments = myExperiments;
         this.user = user;

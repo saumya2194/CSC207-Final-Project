@@ -11,5 +11,5 @@ public interface LoadHomepageOutputBoundry {
 
     void switchToCreateExperimentView();
 
-    void switchToLogoutView();
+
 }

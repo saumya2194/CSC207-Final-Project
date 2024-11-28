@@ -1,6 +1,6 @@
 package interface_adapter.load_homepage;
 
-public class LoadHomepageState {
+public class HomepageState {
 
     private Object[][] experiments = new Object[];
     private Object[][] myExperiments = new Object[];
@@ -29,4 +29,8 @@ public class LoadHomepageState {
     public void setUser(CommonUser user) {
         this.user = user;
     }
+
+    // TODO: ADD GET USERNAME AND SET USERNAME STUFF
+
+
 }

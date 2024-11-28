@@ -18,7 +18,5 @@ class LoadHomepageInteractorTest {
     void switchToCreateExperimentView() {
     }
 
-    @Test
-    void switchToLogoutView() {
-    }
+
 }

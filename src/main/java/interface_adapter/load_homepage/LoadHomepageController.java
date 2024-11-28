@@ -18,5 +18,4 @@ public class LoadHomepageController {
 
     public void switchToCreateExperimentView(){loadHomepageUseCaseInteractor.switchToCreateExperimentView();}
 
-    public void switchToLogoutView() {loadHomepageUseCaseInteractor.switchToLogoutView();}
 }

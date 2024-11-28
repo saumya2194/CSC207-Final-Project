@@ -41,7 +41,6 @@ public class LoadHomepageInteractor implements LoadHomepageInputBoundry{
 
     public void switchToCreateExperimentView(){loadHomepagePresenter.switchToCreateExperimentView();}
 
-    public void switchToLogoutView(){loadHomepagePresenter.switchToLogoutView();}
 
 
 }

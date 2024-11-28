@@ -1,7 +1,6 @@
 package java.view;
 
 import javax.swing.*;
-import java.awt.*;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,39 +9,32 @@ import java.awt.event.MouseEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 
 import java.interface_adapter.load_homepage.LoadHomepageController;
-import java.interface_adapter.load_homepage.LoadHomepageState;
-import java.interface_adapter.load_homepage.LoadHomepageViewModel;
+import java.interface_adapter.load_homepage.HomepageState;
 
 public class HomepageView extends JPanel implements ActionListener, PropertyChangeListener {
 
     private final String viewName = "homepage";
-    private final LoadHomepageViewModel loadHomepageViewModel;
+    private final java.interface_adapter.load_homepage.HomepageViewModel homepageViewModel;
     private LoadHomepageController loadHomepageController;
 
     private final JButton createExperiment;
     private final JButton profile;
-    private final JButton logOut;
 
     // do the tables belong here?
-    private JTable experiments = new JTable(new Object[][], loadHomepageViewModel.experimentsColumns);;
-    private JTable myExperiments = new JTable(new Object[][], loadHomepageViewModel.myExperimentsColumns);;
+    private JTable experiments = new JTable(new Object[][], homepageViewModel.experimentsColumns);;
+    private JTable myExperiments = new JTable(new Object[][], homepageViewModel.myExperimentsColumns);;
 
-    public HomepageView(LoadHomepageController controller, LoadHomepageViewModel loadHomepageViewModel){
-        this.loadHomepageViewModel = loadHomepageViewModel;
+    public HomepageView(LoadHomepageController controller, java.interface_adapter.load_homepage.HomepageViewModel homepageViewModel){
+        this.homepageViewModel = homepageViewModel;
         // add line about adding property change listener to viewmodel, not 100% sure what its for
-        this.loadHomepageViewModel.addPropertyChangeListener(this);
+        this.homepageViewModel.addPropertyChangeListener(this);
 
-        final JLabel title = new JLabel(loadHomepageViewModel.TITLE_LABEL);
+        final JLabel title = new JLabel(homepageViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         // add some set alignment thing
 
@@ -52,11 +44,10 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
         final JPanel myExperimentsPanel = new JPanel();
         // add title(might be included in columns)
         // create experiment button
-        final JLabel myExperimentsTitle = new JLabel(loadHomepageViewModel.MY_EXPERIMENTS_TITLE_LABEL);
+        final JLabel myExperimentsTitle = new JLabel(homepageViewModel.MY_EXPERIMENTS_TITLE_LABEL);
         myExperimentsTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
-        createExperiment = new JButton(LoadHomepageViewModel.CREATE_EXPERIMENT_BUTTON_LABEL);
-        profile = new JButton(LoadHomepageViewModel.PROFILE_BUTTON_LABEL);
-        logOut = new JButton(LoadHomepageViewModel.LOGOUT_BUTTON_LABEL);
+        createExperiment = new JButton(java.interface_adapter.load_homepage.HomepageViewModel.CREATE_EXPERIMENT_BUTTON_LABEL);
+        profile = new JButton(java.interface_adapter.load_homepage.HomepageViewModel.PROFILE_BUTTON_LABEL);
         myExperimentsPanel.add(myExperimentsTitle);
         myExperimentsPanel.add(createExperiment);
         // add table
@@ -66,7 +57,7 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
         final JPanel experimentsPanel = new JPanel();
         // add title(might be included in column)
         // add table
-        final JLabel experimentsTitle = new JLabel(loadHomepageViewModel.EXPERIMENTS_TITLE_LABEL);
+        final JLabel experimentsTitle = new JLabel(homepageViewModel.EXPERIMENTS_TITLE_LABEL);
         experimentsTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         experimentsPanel.add(experimentsTitle);
         experimentsPanel.add(experiments);
@@ -82,20 +73,7 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
                     public void actionPerformed(ActionEvent evt) {loadHomepageController.switchToViewProfileView();}
                 }
         );
-        // do action listener stuff for logout button
 
-        // TODO: FIX UP LOGOUT
-        logOut.addActionListener(
-                // This creates an anonymous subclass of ActionListener and instantiates it.
-                evt -> {
-                    if (evt.getSource().equals(logOut)) {
-                        // 1. get the state out of the loggedInViewModel. It contains the username.
-                        // 2. Execute the logout Controller.
-                        final LoggedInState currentState = loggedInViewModel.getState();
-                        this.logoutController.execute(currentState.getUsername());
-                    }
-                }
-        );
 
         // TODO: WHERE TO TAKE?
         myExperiments.addMouseListener(new MouseAdapter() {
@@ -122,7 +100,6 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
 
         this.add(title);
         this.add(profile);
-        this.add(logOut);
         this.add(experimentsPanel);
         this.add(myExperimentsPanel);
 
@@ -132,14 +109,14 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        final LoadHomepageState state = (LoadHomepageState) evt.getNewValue();
+        final HomepageState state = (HomepageState) evt.getNewValue();
         setTables(state);
 
     }
 
-    private void setTables(LoadHomepageState state) {
-        myExperiments = new JTable(state.getMyExperiments(), loadHomepageViewModel.myExperimentsColumns);
-        experiments = new JTable(state.getExperiments(), loadHomepageViewModel.experimentsColumns);
+    private void setTables(HomepageState state) {
+        myExperiments = new JTable(state.getMyExperiments(), homepageViewModel.myExperimentsColumns);
+        experiments = new JTable(state.getExperiments(), homepageViewModel.experimentsColumns);
     }
 
     public String getViewName() {

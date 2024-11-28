@@ -1,14 +1,14 @@
 package java.interface_adapter.load_homepage;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.load_homepage.LoadHomepageState;
-import interface_adapter.load_homepage.LoadHomepageViewModel;
+import interface_adapter.load_homepage.HomepageState;
+import interface_adapter.load_homepage.HomepageViewModel;
 
 import java.use_case.load_homepage.LoadHomepageOutputBoundry;
 import java.use_case.load_homepage.LoadHomepageOutputData;
 
 public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
 
-    private final LoadHomepageViewModel loadHomepageViewModel;
+    private final HomepageViewModel homepageViewModel;
     private final ViewProfileViewModel viewProfileViewModel;
     private final CreateExperimentViewModel createExperimentViewModel;
     private final EditExperimentViewModel editExperimentViewModel;
@@ -21,13 +21,13 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
                                  CreateExperimentViewModel createExperimentViewModel,
                                  EditExperimentViewModel editExperimentViewModel,
                                  LoginViewModel loginViewModel
-                                 LoadHomepageViewModel loadHomepageViewModel) {
+                                 HomepageViewModel homepageViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.viewProfileViewModel = viewProfileViewModel;
         this.createExperimentViewModel = createExperimentViewModel;
         this.editExperimentViewModel = editExperimentViewModel;
         this.loginViewModel = loginViewModel;
-        this.loadHomepageViewModel = loadHomepageViewModel;
+        this.homepageViewModel = homepageViewModel;
 
 
     }
@@ -53,16 +53,16 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
             myExperimentsStrings += studyInfo;
         }
 
-        final LoadHomepageState loadhomepageState = loadHomepageViewModel.getState();
+        final HomepageState homepageState = homepageViewModel.getState();
         //set stuff including aspects of the state
-        loadhomepageState.setExperiments(experimentsStrings);
-        loadhomepageState.setMyExperiments(myExperimentsStrings);
-        loadhomepageState.setUser(response.getUser());
+        homepageState.setExperiments(experimentsStrings);
+        homepageState.setMyExperiments(myExperimentsStrings);
+        homepageState.setUser(response.getUser());
         // do we need this?
-        this.loadHomepageViewModel.setState(loadhomepageState);
-        this.loadHomepageViewModel.firePropertyChanged();
+        this.homepageViewModel.setState(homepageState);
+        this.homepageViewModel.firePropertyChanged();
 
-        this.viewManagerModel.setState(loadHomepageViewModel.getViewName());
+        this.viewManagerModel.setState(homepageViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
 
 
@@ -85,11 +85,7 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
         viewManagerModel.firePropertyChanged();
     }
 
-    // wait actually TODO what is going to go on with logout
-    public void switchToLogoutView(){
-        viewManagerModel.setState(loginViewModel.getViewName());
-        viewManagerModel.firePropertyChanged();
-    }
+
 
 
 }
