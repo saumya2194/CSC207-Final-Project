@@ -1,5 +1,5 @@
 package interface_adapter.view_profile;
-import interface_adapter.signup.ViewModel;
+import interface_adapter.ViewModel;
 
 /**
  * The View Model for the Logged In View.
@@ -7,7 +7,7 @@ import interface_adapter.signup.ViewModel;
 public class ProfileViewModel extends ViewModel<ProfileState> {
 
     public ProfileViewModel() {
-        super("logged in");
+        super("profile view");
         setState(new ProfileState());
     }
 

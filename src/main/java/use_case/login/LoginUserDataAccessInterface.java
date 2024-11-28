@@ -31,13 +31,12 @@ public interface LoginUserDataAccessInterface {
      * Sets current user.
      * @param name user's name.
      */
-    void setCurrentUser(String name);
+    void setCurrentUsername(String name);
 
     /**
      * Returns current user.
      * @return current user
      */
-    String getCurrentUser();
+    String getCurrentUsername();
 
-    void setCurrentEmail(String name);
 }

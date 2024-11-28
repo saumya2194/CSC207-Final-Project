@@ -20,6 +20,8 @@ import okhttp3.Response;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
+import use_case.view_profile.ViewProfileUserDataAccessInterface;
+
 
 /**
  * The DAO for user data.
@@ -130,7 +132,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
     public void setCurrentUsername(String name) {
         this.currentUsername = name;
     }
-
+          
     @Override
     public String getCurrentUsername() {
         return this.currentUsername;

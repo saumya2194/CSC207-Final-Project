@@ -39,7 +39,7 @@ import interface_adapter.logout.LogoutController;
  */
 public class LoggedInView extends JPanel implements PropertyChangeListener {
 
-    private final String viewName = "logged in";
+    private final String viewName = "profile view";
     private final ProfileViewModel profileViewModel;
     private final JLabel passwordErrorField = new JLabel();
     private ChangePasswordController changePasswordController;
