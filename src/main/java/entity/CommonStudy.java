@@ -9,7 +9,7 @@ import java.util.UUID;
 
 public class CommonStudy {
     private final int id;
-    private User user;
+    private String user;
     private String title;
     private String details;
     //TODO: figure whther user is string/user
@@ -20,8 +20,11 @@ public class CommonStudy {
         this.details = details;
     }
 
-    public int getId() {return this.id;}
-    public String getResearcherName() {return user.getName();}
+    public String getId() {
+        String id = Integer.toString(this.id);
+        return id;
+    }
+    public String getResearcherName() {return this.user;}
     public String getTitle() {
         return this.title;
     }
