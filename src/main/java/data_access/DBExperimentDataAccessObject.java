@@ -7,11 +7,14 @@ import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import entity.CommonStudy;
+
 import entity.CommonStudyFactory;
 import entity.CommonUserFactory;
 import entity.StudyFactory;
 import entity.UserFactory;
 import org.json.JSONArray;
+import okhttp3.*;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -105,7 +108,7 @@ public class DBExperimentDataAccessObject implements ViewExperimentDataAccessInt
      * @return True if the study is added successfully onto current studies list. Otherwise return False.
      */
 
-    public boolean saveResearchStudy(CommonStudy researchStudy) {
+    public boolean saveResearchStudy(CommonStudy researchStudy) throws DataAccessException {
         final OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
 
@@ -176,7 +179,6 @@ public class DBExperimentDataAccessObject implements ViewExperimentDataAccessInt
         return studies;
     }
 
-
     /**
      * Delete a specified ResearchStudy from the database. Deletion will be based on the unique ID that is associated with
      * the study.
@@ -207,7 +209,9 @@ public class DBExperimentDataAccessObject implements ViewExperimentDataAccessInt
             } else { throw new RuntimeException("database error: " + responseBody.getString(MESSAGE));
             }
         } catch (IOException | JSONException ex) {
+
             throw new RuntimeException(ex.getMessage());
+
         }
 
     }
