@@ -26,16 +26,34 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
         this.loginViewModel = loginViewModel;
         this.loadHomepageViewModel = loadHomepageViewModel;
 
-        ...
+
     }
 
     @Override
     public void prepareSuccessView(LoadHomepageOutputData response){
         // On success, load homepage
+        Object[] experiments = response.getExperiments();
+        Object[] myExperiments = response.getMyExperiments();
+
+        Object[][] experimentsStrings = new Object[];
+        for (ResearchStudy study : experiments){
+            Object[] studyInfo = new Object[];
+            studyInfo[0] = study.getID();
+            studyInfo[1] = study.getName();
+            experimentsStrings += studyInfo;
+        }
+        Object[][] myExperimentsStrings = new Object[];
+        for (ResearchStudy study : myExperiments){
+            Object[] studyInfo = new Object[];
+            studyInfo[0] = study.getID();
+            studyInfo[1] = study.getName();
+            myExperimentsStrings += studyInfo;
+        }
+
         final LoadHomepageState loadhomepageState = loadHomepageViewModel.getState();
         //set stuff including aspects of the state
-        loadhomepageState.setExperiments(response.getExperiments());
-        loadhomepageState.setMyExperiments(response.getMyExperiments());
+        loadhomepageState.setExperiments(experimentsStrings);
+        loadhomepageState.setMyExperiments(myExperimentsStrings);
         loadhomepageState.setUser(response.getUser());
         // do we need this?
         this.loadHomepageViewModel.setState(loadhomepageState);
@@ -50,7 +68,7 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
 
     @Override
     public void prepareFailView(String error){
-
+        // TODO: what do I put here?
     }
 
     public void switchToViewProfileView(){

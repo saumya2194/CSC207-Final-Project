@@ -5,7 +5,9 @@ public class LoadHomepageViewModel extends ViewModel<LoadHomepageState> {
     public static final String CREATE_EXPERIMENT_BUTTON_LABEL = "Create Experiment";
     public static final String PROFILE_BUTTON_LABEL = "Profile";
     public static final String LOGOUT_BUTTON_LABEL = "Logout";
-    public int myExperimentsData;
+    public static final Object[] myExperimentsColumns = {"ID", "Name"};
+    public static final Object[] experimentsColumns = {"ID", "Name"};
+
 
     public LoadHomepageViewModel(){
         super("load homepage");
