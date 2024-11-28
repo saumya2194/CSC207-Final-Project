@@ -6,13 +6,11 @@ import entity.User;
 public class ViewExperimentInputData {
 
     private CommonStudy commonStudy;
-    private User user;
 
-    public ViewExperimentInputData(CommonStudy commonStudy, User user) {
+    public ViewExperimentInputData(CommonStudy commonStudy) {
         this.commonStudy = commonStudy;
-        this.user= user;
     }
 
     public CommonStudy getResearchStudy() {return commonStudy;}
-    public User getUser() { return user; }
+    public String getUser() { return commonStudy.getResearcherName(); }
 }

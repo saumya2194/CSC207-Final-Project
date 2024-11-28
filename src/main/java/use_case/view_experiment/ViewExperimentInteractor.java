@@ -27,7 +27,7 @@ public class ViewExperimentInteractor implements ViewExperimentInputBoundary{
         }
         ViewExperimentOutputData viewExperimentOutputData = new ViewExperimentOutputData(commonStudy.getTitle(),
                 commonStudy.getDetails(), commonStudy.getResearcherName());
-        viewExperimentOutputBoundary.present(viewExperimentOutputData);
+        viewExperimentOutputBoundary.prepareSuccessView(viewExperimentOutputData);
     }
 
 }
