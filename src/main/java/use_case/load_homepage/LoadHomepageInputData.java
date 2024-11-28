@@ -4,15 +4,15 @@ public class LoadHomepageInputData {
     // do we need username and password? or user
 
 
-    private final User user;
+    private final CommonUser user;
 
     // collection for your experiments
 
-    public LoadHomepageInputData(User user){
+    public LoadHomepageInputData(CommonUser user){
         this.user = user;
     }
 
-    public User getUser() {
+    public CommonUser getUser() {
         return user;
     }
 

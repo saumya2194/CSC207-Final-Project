@@ -1,10 +1,10 @@
-package java.interface_adapter.load_homepage;
+package interface_adapter.load_homepage;
 
 public class LoadHomepageState {
 
     private Object[][] experiments = new Object[];
     private Object[][] myExperiments = new Object[];
-    private User user;
+    private CommonUser user;
 
     public Object[][] getExperiments() {
         return experiments;
@@ -22,11 +22,11 @@ public class LoadHomepageState {
         this.myExperiments = myExperiments;
     }
 
-    public User getUser() {
+    public CommonUser getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(CommonUser user) {
         this.user = user;
     }
 }

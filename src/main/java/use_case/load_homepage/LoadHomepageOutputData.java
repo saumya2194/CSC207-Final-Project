@@ -4,7 +4,7 @@ public class LoadHomepageOutputData {
     // collection for all experiments
     private Object[] experiments;
     private Object[] myExperiments;
-    private User user;
+    private CommonUser user;
     // do we need username and password?
 
     // collection for your experiments
@@ -26,7 +26,7 @@ public class LoadHomepageOutputData {
         return myExperiments;
     }
 
-    public User getUser() {
+    public CommonUser getUser() {
         return user;
     }
 }

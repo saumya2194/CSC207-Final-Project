@@ -1,4 +1,4 @@
-package java.use_case.load_homepage;
+package use_case.load_homepage;
 
 public class LoadHomepageInteractor implements LoadHomepageInputBoundry{
     // TODO: ADD DAO
@@ -12,6 +12,7 @@ public class LoadHomepageInteractor implements LoadHomepageInputBoundry{
         this.experimentsDataAccessObject = loadHomepageExperimentsDataAccessInterface;
     }
 
+    @Override
     public void execute(LoadHomepageInputData loadHomepageInputData){
         // add some stuff
         // gather the total collection of experiments
@@ -24,9 +25,9 @@ public class LoadHomepageInteractor implements LoadHomepageInputBoundry{
 
         // load my studies into my_exps
         for (ResearchStudy study : experimentsDataAccessObject.getResearchStudies()) {
-            u = study.getUser();
+            CommonUser u = study.getUser();
             if (u == loadHomepageInputData.getUser()){
-                myExps += i;
+                myExps += study;
             }
         }
 

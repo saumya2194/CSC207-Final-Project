@@ -23,7 +23,7 @@ import java.interface_adapter.load_homepage.LoadHomepageController;
 import java.interface_adapter.load_homepage.LoadHomepageState;
 import java.interface_adapter.load_homepage.LoadHomepageViewModel;
 
-public class HomepageView {
+public class HomepageView extends JPanel implements ActionListener, PropertyChangeListener {
 
     private final String viewName = "homepage";
     private final LoadHomepageViewModel loadHomepageViewModel;
@@ -52,9 +52,12 @@ public class HomepageView {
         final JPanel myExperimentsPanel = new JPanel();
         // add title(might be included in columns)
         // create experiment button
+        final JLabel myExperimentsTitle = new JLabel(loadHomepageViewModel.MY_EXPERIMENTS_TITLE_LABEL);
+        myExperimentsTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         createExperiment = new JButton(LoadHomepageViewModel.CREATE_EXPERIMENT_BUTTON_LABEL);
         profile = new JButton(LoadHomepageViewModel.PROFILE_BUTTON_LABEL);
         logOut = new JButton(LoadHomepageViewModel.LOGOUT_BUTTON_LABEL);
+        myExperimentsPanel.add(myExperimentsTitle);
         myExperimentsPanel.add(createExperiment);
         // add table
 
@@ -63,6 +66,9 @@ public class HomepageView {
         final JPanel experimentsPanel = new JPanel();
         // add title(might be included in column)
         // add table
+        final JLabel experimentsTitle = new JLabel(loadHomepageViewModel.EXPERIMENTS_TITLE_LABEL);
+        experimentsTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
+        experimentsPanel.add(experimentsTitle);
         experimentsPanel.add(experiments);
 
         createExperiment.addActionListener(
@@ -78,7 +84,7 @@ public class HomepageView {
         );
         // do action listener stuff for logout button
 
-
+        // TODO: FIX UP LOGOUT
         logOut.addActionListener(
                 // This creates an anonymous subclass of ActionListener and instantiates it.
                 evt -> {
@@ -91,12 +97,14 @@ public class HomepageView {
                 }
         );
 
+        // TODO: WHERE TO TAKE?
         myExperiments.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt){
                 if (evt.getClickCount == 2){
                     // what to do when double click occurs
                     String data = myExperiments.getValueAt(myExperiments.getSelectedRow(), 0).toString();
                     // I could input the experiment id into the controller of the experiments thing
+                    loadHomepageController.switchTo....
 
                 }
             }
@@ -120,13 +128,12 @@ public class HomepageView {
 
     }
 
+    // TODO: ADD ACTION PERFORMED THING
+
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        if (evt.getPropertyName().equals("load homepage")) {
-            final LoadHomepageState state = (LoadHomepageState) evt.getNewValue();
-            setTables(state);
-
-        }
+        final LoadHomepageState state = (LoadHomepageState) evt.getNewValue();
+        setTables(state);
 
     }
 
