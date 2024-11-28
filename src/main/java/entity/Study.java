@@ -1,13 +1,14 @@
 package entity;
 
 /**
- * The respresentation of a study in our program.
+ * The representation of a study in our program.
  */
 public interface Study {
     /**
      * Returns the title of the study.
      * @return the title of the study.
      */
+
     String getTitle();
 
     /**
@@ -17,11 +18,8 @@ public interface Study {
     String getDetails();
 
     /**
-     * Returns the user that created the study.
-     * @return the user that created the study.
+     * Returns the username that created the study.
+     * @return the username that created the study.
      */
-    User getUser();
-
-    //Todo: stirng user or user user
-
+    String getUser();
 }

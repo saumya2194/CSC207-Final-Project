@@ -16,29 +16,9 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-public class CreateExperimentView {package view;
-
-import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-
-import CreateStudyController;
-import CreateStudyState;
-import CreateStudyViewModel;
 
     /**
-     * The View for when the user is logging into the program.
+     * The View for when the user is creating an experiment.
      */
     public class CreateExperimentView extends JPanel implements ActionListener, PropertyChangeListener {
 
@@ -55,7 +35,7 @@ import CreateStudyViewModel;
         private final JButton cancel;
         private LoginController loginController;
 
-        public LoginView(LoginViewModel loginViewModel) {
+        public CreateExperimentView(LoginViewModel loginViewModel) {
 
             this.loginViewModel = loginViewModel;
             this.loginViewModel.addPropertyChangeListener(this);
