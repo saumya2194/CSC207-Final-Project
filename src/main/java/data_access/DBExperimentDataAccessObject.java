@@ -81,7 +81,7 @@ public class DBExperimentDataAccessObject implements ViewExperimentDataAccessInt
                 final JSONObject userJSONObject = responseBody.getJSONObject("user");
                 final JSONObject data = userJSONObject.getJSONObject("info");
                 final JSONObject study = data.getJSONObject(id);
-                return new ResearchStudy((String)study.get("user"), (String)study.get("title"), (String)study.get("details"));
+                return new CommonStudy((String)study.get("user"), (String)study.get("title"), (String)study.get("details"));
             }
             else {
                 throw new DataAccessException(responseBody.getString(MESSAGE));

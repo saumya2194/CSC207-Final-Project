@@ -16,9 +16,6 @@ import use_case.logout.LogoutUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
 import use_case.view_profile.ViewProfileUserDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 
 /**
  * The DAO for user data.
@@ -76,7 +73,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface, Lo
     }
 
     @Override
-    public String getCurrentUser() {
+    public String getCurrentUsername() {
         return null;
     }
 
@@ -171,7 +168,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface, Lo
     }
 
 
-    public void setCurrentEmail(String name) {
+    public void setCurrentUsername(String name) {
         // this isn't implemented for the lab
     }
 }

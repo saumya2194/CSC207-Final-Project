@@ -81,7 +81,7 @@ import CreateStudyViewModel;
                                 final LoginState currentState = loginViewModel.getState();
 
                                 loginController.execute(
-                                        currentState.getEmail(),
+                                        currentState.getUsername(),
                                         currentState.getPassword()
                                 );
                             }
