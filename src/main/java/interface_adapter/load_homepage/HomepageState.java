@@ -5,6 +5,7 @@ public class HomepageState {
     private Object[][] experiments = new Object[];
     private Object[][] myExperiments = new Object[];
     private CommonUser user;
+    private String username;
 
     public Object[][] getExperiments() {
         return experiments;
@@ -30,7 +31,10 @@ public class HomepageState {
         this.user = user;
     }
 
-    // TODO: ADD GET USERNAME AND SET USERNAME STUFF
+    public String getUsername() {return this.username;}
+
+    public void setUsername(String username) {this.username = username;}
+
 
 
 }

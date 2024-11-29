@@ -58,6 +58,7 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
         homepageState.setExperiments(experimentsStrings);
         homepageState.setMyExperiments(myExperimentsStrings);
         homepageState.setUser(response.getUser());
+        homepageState.setUsername(response.getUser().getUsername());
         // do we need this?
         this.homepageViewModel.setState(homepageState);
         this.homepageViewModel.firePropertyChanged();
