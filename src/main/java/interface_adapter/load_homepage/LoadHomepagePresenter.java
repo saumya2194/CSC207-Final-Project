@@ -38,15 +38,15 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
         Object[] experiments = response.getExperiments();
         Object[] myExperiments = response.getMyExperiments();
 
-        Object[][] experimentsStrings = new Object[];
-        for (ResearchStudy study : experiments){
+        Object[][] experimentsStrings = new Object[experiments.length][2];
+        for (CommonStudy study : experiments){
             Object[] studyInfo = new Object[];
             studyInfo[0] = study.getID();
             studyInfo[1] = study.getName();
             experimentsStrings += studyInfo;
         }
-        Object[][] myExperimentsStrings = new Object[];
-        for (ResearchStudy study : myExperiments){
+        Object[][] myExperimentsStrings = new Object[myExperiments.length][2];
+        for (CommonStudy study : myExperiments){
             Object[] studyInfo = new Object[];
             studyInfo[0] = study.getID();
             studyInfo[1] = study.getName();

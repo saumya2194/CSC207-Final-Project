@@ -73,7 +73,7 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
                     public void actionPerformed(ActionEvent evt) {loadHomepageController.switchToViewProfileView();}
                 }
         );
-
+        
 
         // TODO: WHERE TO TAKE?
         myExperiments.addMouseListener(new MouseAdapter() {

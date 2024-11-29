@@ -2,8 +2,8 @@ package java.use_case.load_homepage;
 
 public interface LoadHomepageExperimentsDataAccessInterface {
 
-    ResearchStudy getResearchStudy(int id);
+    CommonStudy getResearchStudy(int id);
 
-    Object[] getResearchStudies();
+    List<CommonStudy> getStudyObjects();
 
 }

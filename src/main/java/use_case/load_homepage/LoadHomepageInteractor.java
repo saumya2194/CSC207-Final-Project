@@ -1,5 +1,7 @@
 package use_case.load_homepage;
 
+import java.util.List;
+
 public class LoadHomepageInteractor implements LoadHomepageInputBoundry{
     // TODO: ADD DAO
     private final LoadHomepageOutputBoundry loadHomepagePresenter;
@@ -20,18 +22,12 @@ public class LoadHomepageInteractor implements LoadHomepageInputBoundry{
         // gathering these collections may or may not need for loops
 
         // create lists to store studies and my studies
-        Object[] exps = experimentsDataAccessObject.getResearchStudies();
-        Object[] myExps = new Object[];
+        Object[] exps = experimentsDataAccessObject.getStudyObjects().toArray();
 
         // load my studies into my_exps
-        for (ResearchStudy study : experimentsDataAccessObject.getResearchStudies()) {
-            CommonUser u = study.getUser();
-            if (u == loadHomepageInputData.getUser()){
-                myExps += study;
-            }
-        }
+        Object[] myExps = experimentsDataAccessObject.retrieveUserStudies(loadHomepageInputData.getUser().getUsername()).toArray();
 
-        final LoadHomepageOutputData loadHomepageOutputData(exps, myExps, loadHomepageInputData.getUser(), false)
+        final java.use_case.load_homepage.LoadHomepageOutputData loadHomepageOutputData(exps, myExps.toArray(), loadHomepageInputData.getUser(), false)
         loadHomepagePresenter.prepareSuccessView(loadHomepageOutputData);
     }
 
