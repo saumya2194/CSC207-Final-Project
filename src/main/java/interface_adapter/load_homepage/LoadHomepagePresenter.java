@@ -1,15 +1,19 @@
-package java.interface_adapter.load_homepage;
+package interface_adapter.load_homepage;
+import entity.CommonStudy;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.load_homepage.HomepageState;
 import interface_adapter.load_homepage.HomepageViewModel;
+import interface_adapter.login.LoginViewModel;
+import interface_adapter.view_experiment.ViewExperimentViewModel;
+import interface_adapter.view_profile.ProfileViewModel;
 
-import java.use_case.load_homepage.LoadHomepageOutputBoundry;
-import java.use_case.load_homepage.LoadHomepageOutputData;
+import use_case.load_homepage.LoadHomepageOutputBoundry;
+import use_case.load_homepage.LoadHomepageOutputData;
 
 public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
 
     private final HomepageViewModel homepageViewModel;
-    private final ViewProfileViewModel viewProfileViewModel;
+    private final ProfileViewModel profileViewModel;
     private final CreateExperimentViewModel createExperimentViewModel;
     private final EditExperimentViewModel editExperimentViewModel;
     private final ViewExperimentViewModel viewExperimentViewModel;
@@ -17,13 +21,13 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
     private ViewManagerModel viewManagerModel;
 
     public LoadHomepagePresenter(ViewManagerModel viewManagerModel,
-                                 ViewProfileViewModel viewProfileViewModel,
+                                 ProfileViewModel profileViewModel,
                                  CreateExperimentViewModel createExperimentViewModel,
                                  EditExperimentViewModel editExperimentViewModel,
-                                 LoginViewModel loginViewModel
+                                 LoginViewModel loginViewModel,
                                  HomepageViewModel homepageViewModel) {
         this.viewManagerModel = viewManagerModel;
-        this.viewProfileViewModel = viewProfileViewModel;
+        this.profileViewModel = profileViewModel;
         this.createExperimentViewModel = createExperimentViewModel;
         this.editExperimentViewModel = editExperimentViewModel;
         this.loginViewModel = loginViewModel;
@@ -41,15 +45,15 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
         Object[][] experimentsStrings = new Object[experiments.length][2];
         for (CommonStudy study : experiments){
             Object[] studyInfo = new Object[];
-            studyInfo[0] = study.getID();
-            studyInfo[1] = study.getName();
+            studyInfo[0] = study.getId();
+            studyInfo[1] = study.getTitle();
             experimentsStrings += studyInfo;
         }
         Object[][] myExperimentsStrings = new Object[myExperiments.length][2];
         for (CommonStudy study : myExperiments){
             Object[] studyInfo = new Object[];
-            studyInfo[0] = study.getID();
-            studyInfo[1] = study.getName();
+            studyInfo[0] = study.getId();
+            studyInfo[1] = study.getTitle();
             myExperimentsStrings += studyInfo;
         }
 
@@ -58,7 +62,7 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
         homepageState.setExperiments(experimentsStrings);
         homepageState.setMyExperiments(myExperimentsStrings);
         homepageState.setUser(response.getUser());
-        homepageState.setUsername(response.getUser().getUsername());
+        homepageState.setUsername(response.getUser().getName());
         // do we need this?
         this.homepageViewModel.setState(homepageState);
         this.homepageViewModel.firePropertyChanged();
@@ -75,8 +79,8 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
         // TODO: what do I put here?
     }
 
-    public void switchToViewProfileView(){
-        viewManagerModel.setState(viewProfileViewModel.getViewName());
+    public void switchToProfileView(){
+        viewManagerModel.setState(profileViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 

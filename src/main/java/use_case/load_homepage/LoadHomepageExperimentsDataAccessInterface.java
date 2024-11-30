@@ -1,4 +1,8 @@
-package java.use_case.load_homepage;
+package use_case.load_homepage;
+
+import entity.CommonStudy;
+
+import java.util.List;
 
 public interface LoadHomepageExperimentsDataAccessInterface {
 

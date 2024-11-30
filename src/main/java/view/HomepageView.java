@@ -12,9 +12,11 @@ import java.beans.PropertyChangeListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 import java.interface_adapter.load_homepage.LoadHomepageController;
 import java.interface_adapter.load_homepage.HomepageState;
+import java.interface_adapter.load_homepage.HomepageViewModel;
 
 public class HomepageView extends JPanel implements ActionListener, PropertyChangeListener {
 
@@ -26,10 +28,11 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
     private final JButton profile;
 
     // do the tables belong here?
-    private JTable experiments = new JTable(new Object[][], homepageViewModel.experimentsColumns);;
-    private JTable myExperiments = new JTable(new Object[][], homepageViewModel.myExperimentsColumns);;
+    private String[] columns = {"ID", "Name"};
+    private JTable experiments = new JTable(new DefaultTableModel(null, columns ));
+    private JTable myExperiments = new JTable(new DefaultTableModel(null, columns ));
 
-    public HomepageView(LoadHomepageController controller, java.interface_adapter.load_homepage.HomepageViewModel homepageViewModel){
+    public HomepageView(LoadHomepageController controller, HomepageViewModel homepageViewModel){
         this.homepageViewModel = homepageViewModel;
         // add line about adding property change listener to viewmodel, not 100% sure what its for
         this.homepageViewModel.addPropertyChangeListener(this);

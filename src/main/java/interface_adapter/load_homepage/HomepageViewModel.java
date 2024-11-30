@@ -1,5 +1,6 @@
-package java.interface_adapter.load_homepage;
+package interface_adapter.load_homepage;
 
+import interface_adapter.ViewModel;
 import interface_adapter.load_homepage.HomepageState;
 
 public class HomepageViewModel extends ViewModel<HomepageState> {

@@ -1,4 +1,5 @@
 package use_case.load_homepage;
+import use_case.load_homepage.LoadHomepageInputData;
 
 public interface LoadHomepageInputBoundry {
 

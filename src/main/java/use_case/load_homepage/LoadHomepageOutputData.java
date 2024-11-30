@@ -1,4 +1,6 @@
-package java.use_case.load_homepage;
+package use_case.load_homepage;
+
+import entity.CommonUser;
 
 public class LoadHomepageOutputData {
     // collection for all experiments

@@ -1,4 +1,5 @@
-package java.interface_adapter.load_homepage;// info about package, import
+package interface_adapter.load_homepage;// info about package, import
+import entity.CommonUser;
 import use_case.load_homepage.LoadHomepageInputBoundry;
 import use_case.load_homepage.LoadHomepageInputData;
 
