@@ -1,6 +1,7 @@
 package interface_adapter.load_homepage;
 import entity.CommonStudy;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.createstudy.CreateStudyViewModel;
 import interface_adapter.load_homepage.HomepageState;
 import interface_adapter.load_homepage.HomepageViewModel;
 import interface_adapter.login.LoginViewModel;
@@ -14,7 +15,7 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
 
     private final HomepageViewModel homepageViewModel;
     private final ProfileViewModel profileViewModel;
-    private final CreateExperimentViewModel createExperimentViewModel;
+    private final CreateStudyViewModel createStudyViewModel;
     private final EditExperimentViewModel editExperimentViewModel;
     private final ViewExperimentViewModel viewExperimentViewModel;
     private final LoginViewModel loginViewModel;
@@ -22,13 +23,13 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
 
     public LoadHomepagePresenter(ViewManagerModel viewManagerModel,
                                  ProfileViewModel profileViewModel,
-                                 CreateExperimentViewModel createExperimentViewModel,
+                                 CreateStudyViewModel createStudyViewModel,
                                  EditExperimentViewModel editExperimentViewModel,
                                  LoginViewModel loginViewModel,
                                  HomepageViewModel homepageViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.profileViewModel = profileViewModel;
-        this.createExperimentViewModel = createExperimentViewModel;
+        this.createStudyViewModel = createStudyViewModel;
         this.editExperimentViewModel = editExperimentViewModel;
         this.loginViewModel = loginViewModel;
         this.homepageViewModel = homepageViewModel;
@@ -85,8 +86,8 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
     }
 
     // fill in the other switch things
-    public void switchToCreateExperimentView(){
-        viewManagerModel.setState(createExperimentViewModel.getViewName());
+    public void switchToCreateStudyView(){
+        viewManagerModel.setState(createStudyViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 

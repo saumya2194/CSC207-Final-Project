@@ -1,4 +1,4 @@
-package java.view;
+package view;
 
 import javax.swing.*;
 import java.awt.Component;
@@ -14,14 +14,14 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
-import java.interface_adapter.load_homepage.LoadHomepageController;
-import java.interface_adapter.load_homepage.HomepageState;
-import java.interface_adapter.load_homepage.HomepageViewModel;
+import interface_adapter.load_homepage.LoadHomepageController;
+import interface_adapter.load_homepage.HomepageState;
+import interface_adapter.load_homepage.HomepageViewModel;
 
 public class HomepageView extends JPanel implements ActionListener, PropertyChangeListener {
 
     private final String viewName = "homepage";
-    private final java.interface_adapter.load_homepage.HomepageViewModel homepageViewModel;
+    private final HomepageViewModel homepageViewModel;
     private LoadHomepageController loadHomepageController;
 
     private final JButton createExperiment;
@@ -49,8 +49,8 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
         // create experiment button
         final JLabel myExperimentsTitle = new JLabel(homepageViewModel.MY_EXPERIMENTS_TITLE_LABEL);
         myExperimentsTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
-        createExperiment = new JButton(java.interface_adapter.load_homepage.HomepageViewModel.CREATE_EXPERIMENT_BUTTON_LABEL);
-        profile = new JButton(java.interface_adapter.load_homepage.HomepageViewModel.PROFILE_BUTTON_LABEL);
+        createExperiment = new JButton(HomepageViewModel.CREATE_EXPERIMENT_BUTTON_LABEL);
+        profile = new JButton(HomepageViewModel.PROFILE_BUTTON_LABEL);
         myExperimentsPanel.add(myExperimentsTitle);
         myExperimentsPanel.add(createExperiment);
         // add table
@@ -67,7 +67,7 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
 
         createExperiment.addActionListener(
                 new ActionListener() {
-                    public void actionPerformed(ActionEvent evt) {loadHomepageController.switchToCreateExperimentView();}
+                    public void actionPerformed(ActionEvent evt) {loadHomepageController.switchToCreateStudyView();}
                 }
         );
 

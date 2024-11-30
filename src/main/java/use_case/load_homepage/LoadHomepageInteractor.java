@@ -3,6 +3,7 @@ package use_case.load_homepage;
 import use_case.load_homepage.LoadHomepageInputData;
 import use_case.load_homepage.LoadHomepageOutputBoundry;
 import use_case.load_homepage.LoadHomepageExperimentsDataAccessInterface;
+import use_case.load_homepage.LoadHomepageOutputData;
 import java.util.ArrayList;
 import entity.CommonUser;
 import java.util.List;
@@ -30,9 +31,9 @@ public class LoadHomepageInteractor implements LoadHomepageInputBoundry{
         Object[] exps = experimentsDataAccessObject.getStudyObjects().toArray();
 
         // load my studies into my_exps
-        Object[] myExps = experimentsDataAccessObject.retrieveUserStudies(loadHomepageInputData.getUser().getUsername()).toArray();
+        Object[] myExps = experimentsDataAccessObject.retrieveUserStudies(loadHomepageInputData.getUser().getName()).toArray();
 
-        final java.use_case.load_homepage.LoadHomepageOutputData loadHomepageOutputData(exps, myExps, loadHomepageInputData.getUser(), false)
+        final LoadHomepageOutputData loadHomepageOutputData(exps, myExps, loadHomepageInputData.getUser(), false);
         loadHomepagePresenter.prepareSuccessView(loadHomepageOutputData);
     }
 
@@ -40,7 +41,7 @@ public class LoadHomepageInteractor implements LoadHomepageInputBoundry{
 
     public void switchToProfileView(){loadHomepagePresenter.switchToProfileView();};
 
-    public void switchToCreateExperimentView(){loadHomepagePresenter.switchToCreateExperimentView();}
+    public void switchToCreateStudyView(){loadHomepagePresenter.switchToCreateStudyView();}
 
 
 

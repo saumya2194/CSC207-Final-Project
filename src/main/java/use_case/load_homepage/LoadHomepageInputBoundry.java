@@ -9,8 +9,8 @@ public interface LoadHomepageInputBoundry {
      */
     void execute(LoadHomepageInputData loadHomepageInputData);
 
-    void switchToViewProfileView();
+    void switchToProfileView();
 
-    void switchToCreateExperimentView();
+    void switchToCreateStudyView();
 
 }

@@ -15,8 +15,8 @@ public class LoadHomepageController {
         loadHomepageUseCaseInteractor.execute(loadHomepageInputData);
     }
 
-    public void switchToViewProfileView(){loadHomepageUseCaseInteractor.switchToViewProfileView();}
+    public void switchToViewProfileView(){loadHomepageUseCaseInteractor.switchToProfileView();}
 
-    public void switchToCreateExperimentView(){loadHomepageUseCaseInteractor.switchToCreateExperimentView();}
+    public void switchToCreateStudyView(){loadHomepageUseCaseInteractor.switchToCreateStudyView();}
 
 }

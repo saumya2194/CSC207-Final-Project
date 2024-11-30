@@ -10,4 +10,6 @@ public interface LoadHomepageExperimentsDataAccessInterface {
 
     List<CommonStudy> getStudyObjects();
 
+    List<CommonStudy> retrieveUserStudies(String username);
+
 }

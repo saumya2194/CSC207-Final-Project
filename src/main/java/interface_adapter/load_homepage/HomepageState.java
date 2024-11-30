@@ -1,5 +1,7 @@
 package interface_adapter.load_homepage;
 
+import entity.CommonUser;
+
 public class HomepageState {
 
     private Object[][] experiments = new Object[];

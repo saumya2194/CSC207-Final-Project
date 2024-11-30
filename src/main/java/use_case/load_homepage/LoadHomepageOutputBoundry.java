@@ -9,7 +9,7 @@ public interface LoadHomepageOutputBoundry {
 
     void switchToProfileView();
 
-    void switchToCreateExperimentView();
+    void switchToCreateStudyView();
 
 
 }
