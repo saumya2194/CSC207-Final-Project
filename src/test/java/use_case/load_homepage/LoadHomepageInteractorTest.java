@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class LoadHomepageInteractorTest {
 
     @Test
-    void execute() {
+    void test() {
     }
 
     @Test

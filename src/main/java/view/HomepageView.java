@@ -81,7 +81,7 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
         // TODO: WHERE TO TAKE?
         myExperiments.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt){
-                if (evt.getClickCount == 2){
+                if (evt.getClickCount() == 2){
                     // what to do when double click occurs
                     String data = myExperiments.getValueAt(myExperiments.getSelectedRow(), 0).toString();
                     // I could input the experiment id into the controller of the experiments thing
@@ -93,7 +93,7 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
 
         experiments.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt){
-                if (evt.getClickCount == 2){
+                if (evt.getClickCount() == 2){
                     // what to do when double click occurs
                     String data = experiments.getValueAt(experiments.getSelectedRow(), 0).toString();
                     // I could input the experiment id into the controller of the experiments thing
