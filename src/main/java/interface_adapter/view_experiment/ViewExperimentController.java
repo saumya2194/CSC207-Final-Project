@@ -15,4 +15,8 @@ public class ViewExperimentController {
         ViewExperimentInputData inputData = new ViewExperimentInputData(study);
         view.execute(inputData);
     }
+
+    public void emailExperimentDetails(String titleText, String detailsText) {
+        //insert implementation for mailgun api
+    }
 }
