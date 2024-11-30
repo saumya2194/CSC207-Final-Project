@@ -4,9 +4,8 @@ import entity.CommonUser;
 
 public class HomepageState {
 
-    private Object[][] experiments = new Object[];
-    private Object[][] myExperiments = new Object[];
-    private CommonUser user;
+    private Object[][] experiments;
+    private Object[][] myExperiments;
     private String username;
 
     public Object[][] getExperiments() {
@@ -23,14 +22,6 @@ public class HomepageState {
 
     public void setMyExperiments(Object[][] myExperiments) {
         this.myExperiments = myExperiments;
-    }
-
-    public CommonUser getUser() {
-        return user;
-    }
-
-    public void setUser(CommonUser user) {
-        this.user = user;
     }
 
     public String getUsername() {return this.username;}

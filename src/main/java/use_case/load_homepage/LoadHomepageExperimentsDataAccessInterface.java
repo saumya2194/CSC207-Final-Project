@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface LoadHomepageExperimentsDataAccessInterface {
 
-    CommonStudy getResearchStudy(int id);
+    CommonStudy getResearchStudy(String id);
 
     List<CommonStudy> getStudyObjects();
 

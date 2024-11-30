@@ -28,7 +28,7 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
     private final JButton profile;
 
     // do the tables belong here?
-    private String[] columns = {"ID", "Name"};
+    private final String[] columns = {"ID", "Name"};
     private JTable experiments = new JTable(new DefaultTableModel(null, columns ));
     private JTable myExperiments = new JTable(new DefaultTableModel(null, columns ));
 

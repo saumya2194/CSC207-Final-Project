@@ -10,7 +10,7 @@ public class LoadHomepageController {
         this.loadHomepageUseCaseInteractor = loadHomepageUseCaseInteractor;
     }
 
-    public void execute(CommonUser user) {
+    public void execute(String user) {
         final LoadHomepageInputData loadHomepageInputData = new LoadHomepageInputData(user);
         loadHomepageUseCaseInteractor.execute(loadHomepageInputData);
     }

@@ -31,9 +31,9 @@ public class LoadHomepageInteractor implements LoadHomepageInputBoundry{
         Object[] exps = experimentsDataAccessObject.getStudyObjects().toArray();
 
         // load my studies into my_exps
-        Object[] myExps = experimentsDataAccessObject.retrieveUserStudies(loadHomepageInputData.getUser().getName()).toArray();
+        Object[] myExps = experimentsDataAccessObject.retrieveUserStudies(loadHomepageInputData.getUser()).toArray();
 
-        final LoadHomepageOutputData loadHomepageOutputData(exps, myExps, loadHomepageInputData.getUser(), false);
+        final LoadHomepageOutputData loadHomepageOutputData = new LoadHomepageOutputData(exps, myExps, loadHomepageInputData.getUser(), false);
         loadHomepagePresenter.prepareSuccessView(loadHomepageOutputData);
     }
 

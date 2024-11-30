@@ -6,15 +6,15 @@ public class LoadHomepageInputData {
     // do we need username and password? or user
 
 
-    private final CommonUser user;
+    private final String user;
 
     // collection for your experiments
 
-    public LoadHomepageInputData(CommonUser user){
+    public LoadHomepageInputData(String user){
         this.user = user;
     }
 
-    public CommonUser getUser() {
+    public String getUser() {
         return user;
     }
 

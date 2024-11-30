@@ -6,14 +6,14 @@ public class LoadHomepageOutputData {
     // collection for all experiments
     private Object[] experiments;
     private Object[] myExperiments;
-    private CommonUser user;
+    private String user;
     // do we need username and password?
 
     // collection for your experiments
 
     //is this one really necessary
     private final boolean useCaseFailed;
-    public LoadHomepageOutputData(Object[] experiments, Object[] myExperiments, CommonUser user, boolean useCaseFailed) {
+    public LoadHomepageOutputData(Object[] experiments, Object[] myExperiments, String user, boolean useCaseFailed) {
         this.experiments = experiments;
         this.myExperiments = myExperiments;
         this.user = user;
@@ -28,7 +28,7 @@ public class LoadHomepageOutputData {
         return myExperiments;
     }
 
-    public CommonUser getUser() {
+    public String getUser() {
         return user;
     }
 }
