@@ -5,8 +5,8 @@ package entity;
  */
 public class CommonUser implements User{
 
-    private String userName;
-    private String password;
+    private final String userName;
+    private final String password;
 
     public CommonUser(String userName, String password) {
         this.userName = userName;
