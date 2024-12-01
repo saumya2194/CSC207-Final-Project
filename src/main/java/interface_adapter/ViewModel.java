@@ -22,11 +22,11 @@ public class ViewModel<T> {
         this.viewName = viewName;
     }
 
-    public String getViewName() {
+    public static String getViewName() {
         return this.viewName;
     }
 
-    public T getState() {
+    public static T getState() {
         return this.state;
     }
 
