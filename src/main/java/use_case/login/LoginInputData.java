@@ -9,7 +9,7 @@ public class LoginInputData {
         this.password = password;
     }
 
-    String getEmail() {
+    String getUsername() {
         return email;
     }
 

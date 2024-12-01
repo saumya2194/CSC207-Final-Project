@@ -10,7 +10,7 @@ public class LoginOutputData {
         this.useCaseFailed = useCaseFailed;
     }
 
-    public String getEmail() {
+    public String getUsername() {
         return email;
     }
 }

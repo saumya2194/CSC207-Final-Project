@@ -15,21 +15,21 @@ public class LoginInteractor {
 
 
     public void execute(LoginInputData loginInputData) {
-        final String email = loginInputData.getEmail();
+        final String username = loginInputData.getUsername();
         final String password = loginInputData.getPassword();
-        if (!userDataAccessObject.existsByName(email)) {
-            loginPresenter.prepareFailView(email + ": Account does not exist.");
+        if (!userDataAccessObject.existsByName(username)) {
+            loginPresenter.prepareFailView(username + ": Account does not exist.");
         }
         else {
-            final String pwd = userDataAccessObject.get(email).getPassword();
+            final String pwd = userDataAccessObject.get(username).getPassword();
             if (!password.equals(pwd)) {
-                loginPresenter.prepareFailView("Incorrect password for \"" + email + "\".");
+                loginPresenter.prepareFailView("Incorrect password for \"" + username + "\".");
             }
             else {
 
-                final User user = userDataAccessObject.get(loginInputData.getEmail());
+                final User user = userDataAccessObject.get(loginInputData.getUsername());
 
-                userDataAccessObject.setCurrentEmail(user.getName());
+                userDataAccessObject.setCurrentUsername(user.getName());
                 final LoginOutputData loginOutputData = new LoginOutputData(user.getName(), false);
                 loginPresenter.prepareSuccessView(loginOutputData);
             }
