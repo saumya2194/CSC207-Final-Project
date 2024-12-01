@@ -1,8 +1,8 @@
 package interface_adapter.view_profile;
 
 
-import use_case.view_profile.EditProfileInputBoundary;
-import use_case.view_profile.EditProfileInputData;
+import use_case.edit_profile.EditProfileInputBoundary;
+import use_case.edit_profile.EditProfileInputData;
 
 /**
  * Controller for the Change Password Use Case.
