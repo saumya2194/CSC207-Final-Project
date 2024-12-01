@@ -3,6 +3,9 @@
 # Principle 1: Equitable Use
 The design is useful and marketable to people with diverse abilities.
 
+This program is pretty simplistic and has a design that is not based on the preferences of any sector of users.
+The program could be improved for those with disabilities by providing text to audio reading options, and other features to assist the visually impaared.
+
 
 
 Principle 1 Guidelines
@@ -15,7 +18,8 @@ The following guidelines underpin Principle 1:
 # Principle 2: Flexibility in Use
 The design accommodates a wide range of individual preferences and abilities.
 
-
+- This app is quite simple to use and accomodates both right handed and left handed use. 
+- We could improve this 
 
 Principle 2 Guidelines
 The following guidelines underpin Principle 2:
@@ -56,6 +60,9 @@ The following guidelines underpin Principle 4:
 # Principle 5: Tolerance for Error
 The design minimizes hazards and the adverse consequences of accidental or unintended actions.
 - We have certain features in place to ensure slight errors do not cause major program problems
+- We could improve this via more complex features including :
+  - an email verification to ensure email entered is correct
+  - disabling the adding of experiments with the same name
 
 Principle 5 Guidelines
 The following guidelines underpin Principle 5:
