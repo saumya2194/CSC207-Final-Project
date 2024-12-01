@@ -1,9 +1,15 @@
 package interface_adapter.login;
 
-import interface_adapter.signup.ViewManagerModel;
+import interface_adapter.ViewManagerModel;
+import interface_adapter.homepage.HompageViewModel;
+import interface_adapter.load_homepage.HomepageState;
+import interface_adapter.load_homepage.HomepageViewModel;
+import interface_adapter.view_profile.ProfileState;
 import interface_adapter.view_profile.ProfileViewModel;
 import use_case.login.LoginOutputBoundary;
 import use_case.login.LoginOutputData;
+import interface_adapter.login.LoginState;
+
 
 /**
  * The Presenter for the Login Use Case.
@@ -11,14 +17,13 @@ import use_case.login.LoginOutputData;
 public class LoginPresenter implements LoginOutputBoundary {
 
     private final LoginViewModel loginViewModel;
-    private final ProfileViewModel loggedInViewModel;
+    private final HomepageViewModel homepageViewModel;
     private final ViewManagerModel viewManagerModel;
 
     public LoginPresenter(ViewManagerModel viewManagerModel,
-                          LoggedInViewModel loggedInViewModel,
-                          LoginViewModel loginViewModel) {
+                          LoginViewModel loginViewModel, HomepageViewModel homepageViewModel) {
         this.viewManagerModel = viewManagerModel;
-        this.loggedInViewModel = loggedInViewModel;
+        this.homepageViewModel = homepageViewModel;
         this.loginViewModel = loginViewModel;
     }
 
@@ -26,12 +31,12 @@ public class LoginPresenter implements LoginOutputBoundary {
     public void prepareSuccessView(LoginOutputData response) {
         // On success, switch to the logged in view.
 
-        final LoggedInState loggedInState = loggedInViewModel.getState();
-        loggedInState.setEmail(response.getEmail());
-        this.loggedInViewModel.setState(loggedInState);
-        this.loggedInViewModel.firePropertyChanged();
+        final HomepageState homepageState = homepageViewModel.getState();
+        homepageState.setUsername(response.getUsername());
+        this.homepageViewModel.setState(homepageState);
+        this.homepageViewModel.firePropertyChanged();
 
-        this.viewManagerModel.setState(loggedInViewModel.getViewName());
+        this.viewManagerModel.setState(homepageViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
     }
 

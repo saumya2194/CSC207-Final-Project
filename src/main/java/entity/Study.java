@@ -12,5 +12,14 @@ public interface Study {
     String getTitle();
 
     /**
+     * Returns the details of the study.
+     * @return the details of the study.
+     */
+    String getDetails();
+
+    /**
+     * Returns the username that created the study.
+     * @return the username that created the study.
+     */
     String getUser();
 }
