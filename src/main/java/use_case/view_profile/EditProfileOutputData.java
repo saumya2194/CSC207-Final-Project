@@ -3,13 +3,13 @@ package use_case.view_profile;
 /**
  * Output Data for the Change Password Use Case.
  */
-public class ViewProfileOutputData {
+public class EditProfileOutputData {
 
     private final String username;
 
     private final boolean useCaseFailed;
 
-    public ViewProfileOutputData(String username, boolean useCaseFailed) {
+    public EditProfileOutputData(String username, boolean useCaseFailed) {
         this.username = username;
         this.useCaseFailed = useCaseFailed;
     }
