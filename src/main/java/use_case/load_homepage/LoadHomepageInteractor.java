@@ -1,5 +1,6 @@
 package use_case.load_homepage;
 
+import entity.CommonStudy;
 import use_case.load_homepage.LoadHomepageInputData;
 import use_case.load_homepage.LoadHomepageOutputBoundry;
 import use_case.load_homepage.LoadHomepageExperimentsDataAccessInterface;
@@ -15,7 +16,7 @@ public class LoadHomepageInteractor implements LoadHomepageInputBoundry{
 
     public LoadHomepageInteractor(LoadHomepageOutputBoundry loadHomepageOutputBoundry,
                                   LoadHomepageExperimentsDataAccessInterface loadHomepageExperimentsDataAccessInterface) {
-        //add dao
+        // add dao
         this.loadHomepagePresenter = loadHomepageOutputBoundry;
         this.experimentsDataAccessObject = loadHomepageExperimentsDataAccessInterface;
     }
@@ -28,10 +29,10 @@ public class LoadHomepageInteractor implements LoadHomepageInputBoundry{
         // gathering these collections may or may not need for loops
 
         // create lists to store studies and my studies
-        Object[] exps = experimentsDataAccessObject.getStudyObjects().toArray();
+        CommonStudy[] exps = experimentsDataAccessObject.getStudyObjects().toArray();
 
         // load my studies into my_exps
-        Object[] myExps = experimentsDataAccessObject.retrieveUserStudies(loadHomepageInputData.getUser()).toArray();
+        CommonStudy[] myExps = experimentsDataAccessObject.retrieveUserStudies(loadHomepageInputData.getUser()).toArray();
 
         final LoadHomepageOutputData loadHomepageOutputData = new LoadHomepageOutputData(exps, myExps, loadHomepageInputData.getUser(), false);
         loadHomepagePresenter.prepareSuccessView(loadHomepageOutputData);

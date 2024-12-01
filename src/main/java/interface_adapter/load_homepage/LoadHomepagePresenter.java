@@ -40,19 +40,34 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
     @Override
     public void prepareSuccessView(LoadHomepageOutputData response){
         // On success, load homepage
-        Object[] experiments = response.getExperiments();
-        Object[] myExperiments = response.getMyExperiments();
+        CommonStudy[] experiments = response.getExperiments();
+        CommonStudy[] myExperiments = response.getMyExperiments();
+
+        // TODO: TAKE CARE OF THIS DRAMA
+        Object[][] experimentsStrings = new Object[experiments.length][2];
+        for (int i = 0; i < experiments.length; i++) {
+            CommonStudy study = (CommonStudy) experiments[i];
+            experimentsStrings[i][0] = study.getId();
+            experimentsStrings[i][1] = study.getTitle();
+        }
+
+        Object[][] myExperimentsStrings = new Object[myExperiments.length][2];
+        for (int i = 0; i < myExperiments.length; i++) {
+            CommonStudy study = (CommonStudy) myExperiments[i];
+            myExperimentsStrings[i][0] = study.getId();
+            myExperimentsStrings[i][1] = study.getTitle();
+        }
 
         Object[][] experimentsStrings = new Object[experiments.length][2];
         for (CommonStudy study : experiments){
-            Object[] studyInfo = new Object[];
+            Object[] studyInfo = new Object[2];
             studyInfo[0] = study.getId();
             studyInfo[1] = study.getTitle();
             experimentsStrings += studyInfo;
         }
         Object[][] myExperimentsStrings = new Object[myExperiments.length][2];
         for (CommonStudy study : myExperiments){
-            Object[] studyInfo = new Object[];
+            Object[] studyInfo = new Object[2];
             studyInfo[0] = study.getId();
             studyInfo[1] = study.getTitle();
             myExperimentsStrings += studyInfo;
