@@ -8,10 +8,10 @@ import use_case.createstudy.CreateStudyInputData;
  */
 public class CreateStudyController {
 
-    private final CreateStudyInputBoundary createExperimentUseCaseInteractor;
+    private final CreateStudyInputBoundary createStudyUseCaseInteractor;
 
     public CreateStudyController(CreateStudyInputBoundary createStudyUseCaseInteractor) {
-        this.createExperimentUseCaseInteractor = createStudyUseCaseInteractor;
+        this.createStudyUseCaseInteractor = createStudyUseCaseInteractor;
     }
 
     /**
@@ -24,6 +24,13 @@ public class CreateStudyController {
         final CreateStudyInputData createStudyInputData = new CreateStudyInputData(
                 title, details, user);
 
-        createExperimentUseCaseInteractor.execute(createStudyInputData);
+        createStudyUseCaseInteractor.execute(createStudyInputData);
+    }
+
+    /**
+     * Executes the "switch to LoginView" Use Case.
+     */
+    public void switchToLoginView() {
+        createStudyUseCaseInteractor.switchToHomepageView();
     }
 }
