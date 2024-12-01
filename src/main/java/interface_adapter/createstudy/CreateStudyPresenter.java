@@ -29,9 +29,9 @@ public class CreateStudyPresenter implements CreateStudyOutputBoundary{
 
 
     @Override
-    public void prepareSuccessView(P response) {
+    public void prepareSuccessView(CreateStudyOutputData response) {
         // On success, switch to the homepage view.
-        final HomepageState hompageState = homepageViewModel.getState();
+        final HomepageState homepageState = homepageViewModel.getState();
         hompageState.setUsername(response.getUsername());
         this.loginViewModel.setState(loginState);
         loginViewModel.firePropertyChanged();
