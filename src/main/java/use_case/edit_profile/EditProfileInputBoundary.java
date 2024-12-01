@@ -1,4 +1,4 @@
-package use_case.view_profile;
+package use_case.edit_profile;
 
 /**
  * The Change Password Use Case.

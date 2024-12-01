@@ -1,27 +1,33 @@
 package interface_adapter.view_profile;
 
-import use_case.view_profile.EditProfileOutputBoundary;
-import use_case.view_profile.EditProfileOutputData;
+import interface_adapter.ViewManagerModel;
+import interface_adapter.load_homepage.HomepageState;
+import interface_adapter.load_homepage.HomepageViewModel;
+import use_case.edit_profile.EditProfileOutputBoundary;
+import use_case.edit_profile.EditProfileOutputData;
 
 /**
  * The Presenter for the Change Password Use Case.
  */
 public class EditProfilePresenter implements EditProfileOutputBoundary {
+    private final HomepageViewModel homepageViewModel;
+    private final ViewManagerModel viewManagerModel;
 
-    private final ProfileViewModel profileViewModel;
-
-    public EditProfilePresenter(ProfileViewModel profileViewModel) {
-        this.profileViewModel = profileViewModel;
+    public EditProfilePresenter(HomepageViewModel homepageViewModel, ViewManagerModel viewManagerModel) {
+        this.homepageViewModel = homepageViewModel;
+        this.viewManagerModel = viewManagerModel;
     }
 
     @Override
-    public void prepareSuccessView(EditProfileOutputData outputData) {
-        // currently there isn't anything to change based on the output data,
-        // since the output data only contains the username, which remains the same.
-        // We still fire the property changed event, but just to let the view know that
-        // it can alert the user that their password was changed successfully..
-        profileViewModel.firePropertyChanged("password");
+    public void prepareSuccessView(EditProfileOutputData response) {
+        // On success, switch to the logged in view.
 
+        final HomepageState homepageState = homepageViewModel.getState();
+        homepageState.setUsername(response.getUsername());
+        this.homepageViewModel.setState(homepageState);
+        this.homepageViewModel.firePropertyChanged();
+        this.viewManagerModel.setState(homepageViewModel.getViewName());
+        this.viewManagerModel.firePropertyChanged();
     }
 
     @Override

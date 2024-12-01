@@ -1,12 +1,7 @@
 package data_access;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
-import entity.CommonStudy;
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -20,7 +15,7 @@ import okhttp3.Response;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutUserDataAccessInterface;
 import use_case.signup.SignupUserDataAccessInterface;
-import use_case.view_profile.ViewProfileUserDataAccessInterface;
+import use_case.edit_profile.ViewProfileUserDataAccessInterface;
 
 
 /**
