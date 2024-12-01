@@ -10,4 +10,8 @@ public interface CreateStudyInputBoundary {
      */
     void execute(CreateStudyInputData createStudyInputData);
 
+    /**
+     * Executes the switch to login view use case.
+     */
+    void switchToHomepageView();
 }

@@ -1,12 +1,13 @@
 package data_access;
 
 import entity.CommonStudy;
+import entity.Study;
 import entity.User;
 import org.json.JSONArray;
 import use_case.load_homepage.LoadHomepageExperimentsDataAccessInterface;
 import use_case.login.LoginUserDataAccessInterface;
 import use_case.logout.LogoutUserDataAccessInterface;
-import use_case.signup.SignupUserDataAccessInterface;
+import use_case.createstudy.CreateStudyDataAccessInterface;
 import use_case.view_experiment.ViewExperimentDataAccessInterface;
 import use_case.view_profile.ViewProfileUserDataAccessInterface;
 
@@ -16,7 +17,8 @@ import java.util.List;
 import java.util.Map;
 
 public class InMemoryExperimentDataAccessObject implements LoadHomepageExperimentsDataAccessInterface,
-        ViewExperimentDataAccessInterface {
+        ViewExperimentDataAccessInterface,
+        CreateStudyDataAccessInterface {
 
     private Map<String, CommonStudy> studies = new HashMap<>();
 
@@ -46,5 +48,10 @@ public class InMemoryExperimentDataAccessObject implements LoadHomepageExperimen
     @Override
     public JSONArray getStudies() {
         return null;
+    }
+
+    @Override
+    public void save(Study study) {
+        studies.put(study.getTitle(), (CommonStudy) study);
     }
 }

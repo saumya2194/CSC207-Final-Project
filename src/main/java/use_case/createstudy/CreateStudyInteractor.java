@@ -1,16 +1,9 @@
 package use_case.createstudy;
 
-<<<<<<< HEAD
+import data_access.DBExperimentDataAccessObject;
 import entity.Study;
 import entity.StudyFactory;
-=======
-import entity.User;
-import entity.UserFactory;
-import use_case.signup.SignupInputData;
-import use_case.signup.SignupOutputBoundary;
-import use_case.signup.SignupOutputData;
-import use_case.signup.SignupUserDataAccessInterface;
->>>>>>> refs/remotes/origin/main
+
 
 
 /**
@@ -32,17 +25,19 @@ public class CreateStudyInteractor implements CreateStudyInputBoundary {
 
     @Override
     public void execute(CreateStudyInputData createStudyInputData) {
-        if (createStudyInputData.getDetails().length() > 250) {
+        final int maxCharLength = 250;
+        if (createStudyInputData.getDetails().length() > maxCharLength) {
             studyPresenter.prepareFailView("Length has exceeded the maximum allowed characters (250).");
         }
         else {
             final Study study = studyFactory.create(createStudyInputData.getTitle(), createStudyInputData.getDetails(),
                     createStudyInputData.getUser());
+            DBExperimentDataAccessObject.saveResearch
 
 
         }
     }
     public void switchToLoginView() {
-        studyPresenter.switchToLoginView();
+        studyPresenter.switchToHomepageView();
     }
 }

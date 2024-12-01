@@ -1,9 +1,8 @@
 package interface_adapter.createstudy;
 
 import interface_adapter.ViewManagerModel;
-import interface_adapter.homepage.HomepageState;
-import interface_adapter.homepage.HompageViewModel;
-import interface_adapter.signup.ViewManagerModel;
+import interface_adapter.load_homepage.HomepageState;
+import interface_adapter.load_homepage.HomepageViewModel;
 import use_case.createstudy.CreateStudyOutputBoundary;
 import use_case.createstudy.CreateStudyOutputData;
 
@@ -48,8 +47,8 @@ public class CreateStudyPresenter implements CreateStudyOutputBoundary{
     }
 
     @Override
-    public void switchToLoginView() {
-        viewManagerModel.setState(loginViewModel.getViewName());
+    public void switchToHomepageView() {
+        viewManagerModel.setState(HomepageViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 }
