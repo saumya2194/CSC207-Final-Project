@@ -3,8 +3,8 @@ package interface_adapter.view_profile;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.load_homepage.HomepageState;
 import interface_adapter.load_homepage.HomepageViewModel;
-import use_case.view_profile.EditProfileOutputBoundary;
-import use_case.view_profile.EditProfileOutputData;
+import use_case.edit_profile.EditProfileOutputBoundary;
+import use_case.edit_profile.EditProfileOutputData;
 
 /**
  * The Presenter for the Change Password Use Case.
