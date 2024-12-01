@@ -125,7 +125,7 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         });
 
         this.add(title);
-        this.add(emailInfo);
+        this.add(usernameInfo);
         this.add(emailErrorField);
         this.add(passwordInfo);
         this.add(buttons);
@@ -159,3 +159,4 @@ public class LoginView extends JPanel implements ActionListener, PropertyChangeL
         this.loginController = loginController;
     }
 }
+
