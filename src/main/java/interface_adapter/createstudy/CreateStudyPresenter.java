@@ -9,7 +9,7 @@ import use_case.createstudy.CreateStudyOutputData;
 /**
  * The Presenter for the Create Study Use Case.
  */
-public class CreateStudyPresenter implements CreateStudyOutputBoundary{
+public class CreateStudyPresenter implements CreateStudyOutputBoundary {
 
     private final CreateStudyViewModel createStudyViewModel;
 
@@ -24,20 +24,24 @@ public class CreateStudyPresenter implements CreateStudyOutputBoundary{
         this.homepageViewModel = homepageViewModel;
     }
 
-
-
-
     @Override
     public void prepareSuccessView(CreateStudyOutputData response) {
         // On success, switch to the homepage view.
         final HomepageState homepageState = homepageViewModel.getState();
         hompageState.setUsername(response.getUsername());
-        this.loginViewModel.setState(loginState);
-        loginViewModel.firePropertyChanged();
+        this.homepageViewModel.setState(homepageState);
+        this.homepageViewModel.firePropertyChanged();
+        this.viewManagerModel.setState(homepageViewModel.getViewName());
+        this.viewManagerModel.firePropertyChanged();
 
-        viewManagerModel.setState(loginViewModel.getViewName());
-        viewManagerModel.firePropertyChanged();
     }
+
+
+    @Override
+    public void prepareFailView(String error) {
+        // note: this use case currently can't fail
+    }
+}
 
     @Override
     public void prepareFailView(String error) {
