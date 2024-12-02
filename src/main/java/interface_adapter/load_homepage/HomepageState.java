@@ -1,26 +1,27 @@
 package interface_adapter.load_homepage;
 
+import entity.CommonStudy;
 import entity.CommonUser;
 
 public class HomepageState {
 
-    private Object[][] experiments;
-    private Object[][] myExperiments;
+    private CommonStudy[] experiments;
+    private CommonStudy[] myExperiments;
     private String username;
 
-    public Object[][] getExperiments() {
+    public CommonStudy[] getExperiments() {
         return experiments;
     }
 
-    public void setExperiments(Object[][] experiments) {
+    public void setExperiments(CommonStudy[] experiments) {
         this.experiments = experiments;
     }
 
-    public Object[][] getMyExperiments() {
+    public CommonStudy[] getMyExperiments() {
         return myExperiments;
     }
 
-    public void setMyExperiments(Object[][] myExperiments) {
+    public void setMyExperiments(CommonStudy[] myExperiments) {
         this.myExperiments = myExperiments;
     }
 

@@ -39,44 +39,10 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
 
     @Override
     public void prepareSuccessView(LoadHomepageOutputData response){
-        // On success, load homepage
-        CommonStudy[] experiments = response.getExperiments();
-        CommonStudy[] myExperiments = response.getMyExperiments();
-
-        // TODO: TAKE CARE OF THIS DRAMA
-        Object[][] experimentsStrings = new Object[experiments.length][2];
-        for (int i = 0; i < experiments.length; i++) {
-            CommonStudy study = (CommonStudy) experiments[i];
-            experimentsStrings[i][0] = study.getId();
-            experimentsStrings[i][1] = study.getTitle();
-        }
-
-        Object[][] myExperimentsStrings = new Object[myExperiments.length][2];
-        for (int i = 0; i < myExperiments.length; i++) {
-            CommonStudy study = (CommonStudy) myExperiments[i];
-            myExperimentsStrings[i][0] = study.getId();
-            myExperimentsStrings[i][1] = study.getTitle();
-        }
-
-        Object[][] experimentsStrings = new Object[experiments.length][2];
-        for (CommonStudy study : experiments){
-            Object[] studyInfo = new Object[2];
-            studyInfo[0] = study.getId();
-            studyInfo[1] = study.getTitle();
-            experimentsStrings += studyInfo;
-        }
-        Object[][] myExperimentsStrings = new Object[myExperiments.length][2];
-        for (CommonStudy study : myExperiments){
-            Object[] studyInfo = new Object[2];
-            studyInfo[0] = study.getId();
-            studyInfo[1] = study.getTitle();
-            myExperimentsStrings += studyInfo;
-        }
-
         final HomepageState homepageState = homepageViewModel.getState();
         //set stuff including aspects of the state
-        homepageState.setExperiments(experimentsStrings);
-        homepageState.setMyExperiments(myExperimentsStrings);
+        homepageState.setExperiments(response.getExperiments());
+        homepageState.setMyExperiments(response.getMyExperiments());
         homepageState.setUsername(response.getUser());
         // do we need this?
         this.homepageViewModel.setState(homepageState);
@@ -84,8 +50,6 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
 
         this.viewManagerModel.setState(homepageViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
-
-
 
     }
 
@@ -105,7 +69,15 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
         viewManagerModel.firePropertyChanged();
     }
 
+    @Override
+    public void switchToEditExperimentView(String data) {
 
+    }
+
+    @Override
+    public void switchToViewExperimentView(String data) {
+
+    }
 
 
 }

@@ -12,4 +12,7 @@ public interface LoadHomepageOutputBoundry {
     void switchToCreateStudyView();
 
 
+    void switchToEditExperimentView(String data);
+
+    void switchToViewExperimentView(String data);
 }
