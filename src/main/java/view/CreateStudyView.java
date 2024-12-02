@@ -19,8 +19,6 @@ import javax.swing.event.DocumentListener;
 import interface_adapter.createstudy.CreateStudyController;
 import interface_adapter.createstudy.CreateStudyState;
 import interface_adapter.createstudy.CreateStudyViewModel;
-import interface_adapter.signup.SignupController;
-import interface_adapter.signup.SignupState;
 
 /**
  * The View for the Create Study Use Case.
@@ -42,9 +40,9 @@ public class CreateStudyView extends JPanel implements ActionListener, PropertyC
 
         final JLabel title = new JLabel(CreateStudyViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
-        final LabelTextPanel usernameInfo = new LabelTextPanel(
+        final LabelTextPanel studyTitleInfo = new LabelTextPanel(
                 new JLabel(CreateStudyViewModel.STUDY_TITLE_LABEL), titleInputField);
-        final LabelTextPanel passwordInfo = new LabelTextPanel(
+        final LabelTextPanel detailsInfo = new LabelTextPanel(
                 new JLabel(CreateStudyViewModel.PASSWORD_LABEL), detailsInputField);
         final JPanel buttons = new JPanel();
         createStudy = new JButton(CreateStudyViewModel.CREATE_STUDY_BUTTON_LABEL);
@@ -69,34 +67,32 @@ public class CreateStudyView extends JPanel implements ActionListener, PropertyC
                 }
         );
 
-        toLogin.addActionListener(
+        cancel.addActionListener(
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
-                        signupController.switchToLoginView();
+                        createStudyController.switchToHomepageView();
                     }
                 }
         );
 
-        cancel.addActionListener(this);
-
-        addTitleListener();
+        addStudyTitleListener();
         addDetailsListener();
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
         this.add(title);
-        this.add(titleInfo);
+        this.add(studyTitleInfo);
         this.add(detailsInfo);
         this.add(buttons);
     }
 
-    private void addUsernameListener() {
-        usernameInputField.getDocument().addDocumentListener(new DocumentListener() {
+    private void addStudyTitleListener() {
+        titleInputField.getDocument().addDocumentListener(new DocumentListener() {
 
             private void documentListenerHelper() {
-                final SignupState currentState = signupViewModel.getState();
-                currentState.setUsername(usernameInputField.getText());
-                signupViewModel.setState(currentState);
+                final CreateStudyState currentState = createStudyViewModel.getState();
+                currentState.setTitle(titleInputField.getText());
+                createStudyViewModel.setState(currentState);
             }
 
             @Override
@@ -116,13 +112,13 @@ public class CreateStudyView extends JPanel implements ActionListener, PropertyC
         });
     }
 
-    private void addPasswordListener() {
-        passwordInputField.getDocument().addDocumentListener(new DocumentListener() {
+    private void addDetailsListener() {
+        detailsInputField.getDocument().addDocumentListener(new DocumentListener() {
 
             private void documentListenerHelper() {
-                final SignupState currentState = signupViewModel.getState();
-                currentState.setPassword(new String(passwordInputField.getPassword()));
-                signupViewModel.setState(currentState);
+                final CreateStudyState currentState = createStudyViewModel.getState();
+                currentState.setDetails(new String(detailsInputField.getPassword()));
+                createStudyViewModel.setState(currentState);
             }
 
             @Override
@@ -140,19 +136,13 @@ public class CreateStudyView extends JPanel implements ActionListener, PropertyC
                 documentListenerHelper();
             }
         });
-    }
-    }
-
-    @Override
-    public void actionPerformed(ActionEvent evt) {
-        JOptionPane.showMessageDialog(this, "Cancel not implemented yet.");
     }
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
-        final SignupState state = (SignupState) evt.getNewValue();
-        if (state.getUsernameError() != null) {
-            JOptionPane.showMessageDialog(this, state.getUsernameError());
+        final CreateStudyState state = (CreateStudyState) evt.getNewValue();
+        if (state.getDetailsError() != null) {
+            JOptionPane.showMessageDialog(this, state.getDetailsError());
         }
     }
 
@@ -160,8 +150,8 @@ public class CreateStudyView extends JPanel implements ActionListener, PropertyC
         return viewName;
     }
 
-    public void setSignupController(SignupController controller) {
-        this.signupController = controller;
+    public void setCreateStudyController(CreateStudyController controller) {
+        this.createStudyController = controller;
     }
 }
 
