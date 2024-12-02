@@ -1,6 +1,6 @@
 package use_case.load_homepage;
-import use_case.load_homepage.LoadHomepageOutputData;
-public interface LoadHomepageOutputBoundry {
+
+public interface LoadHomepageOutputBoundary {
 
     void prepareSuccessView(LoadHomepageOutputData outputData);
 
@@ -10,7 +10,6 @@ public interface LoadHomepageOutputBoundry {
     void switchToProfileView(String username);
 
     void switchToCreateStudyView();
-
 
     void switchToEditExperimentView(String data);
 

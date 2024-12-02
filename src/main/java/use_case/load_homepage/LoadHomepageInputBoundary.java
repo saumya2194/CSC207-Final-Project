@@ -1,6 +1,6 @@
 package use_case.load_homepage;
 
-public interface LoadHomepageInputBoundry {
+public interface LoadHomepageInputBoundary {
 
     /**
      * Execute the Load Homepage Use Case.

@@ -9,19 +9,32 @@ import org.json.JSONObject;
 
 import javax.swing.*;
 
-public static void main(String[] args) {
-    final AppBuilder appBuilder = new AppBuilder();
-    // TODO: add the Logout Use Case to the app using the appBuilder
-    final JFrame application = appBuilder
-            .addLoginView()
-            .addSignupView()
-            .addLoggedInView()
-            .addSignupUseCase()
-            .addLoginUseCase()
-            .addLogoutUseCase()
-            .add
-            .build();
+public class Main {
 
-    application.pack();
-    application.setVisible(true);
+    public static void main(String[] args) {
+        AppBuilder temp = new AppBuilder();
+        final JFrame application = temp.addSignupView()
+                .addHomepageView()
+                .addLoginView()
+                .addSignupUseCase()
+                .addLoginUseCase()
+                .build();
+        application.pack();
+        application.setVisible(true);
+
+    }
+//    public static void main(String[] args) {
+//        final AppBuilder appBuilder = new AppBuilder();
+//
+//        final JFrame application = appBuilder
+//                .addLoginView()
+//                .addSignupView()
+//                .addSignupUseCase()
+//                .addLoginUseCase()
+//                .build();
+//
+//        application.pack();
+//        application.setVisible(true);
+//    }
+
 }

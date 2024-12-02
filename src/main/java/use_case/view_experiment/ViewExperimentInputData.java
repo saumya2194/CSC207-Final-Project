@@ -12,5 +12,5 @@ public class ViewExperimentInputData {
     }
 
     public CommonStudy getResearchStudy() {return commonStudy;}
-    public String getUser() { return commonStudy.getResearcherName(); }
+    public String getUser() { return commonStudy.getUser(); }
 }

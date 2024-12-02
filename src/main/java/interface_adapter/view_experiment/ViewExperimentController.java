@@ -26,7 +26,7 @@ public class ViewExperimentController {
         // mailgun password: project@CSC207
         // mailgun API key: 8f8e0ac69af04e6b22def8c8c642e925-c02fd0ba-848071eb
         // resend API key: re_XYVE11ke_AgA3qMsCrfALPcfJV1ePc3LE
-        view.emailExperimentDetails(String titleText, String detailsText);
+        view.emailExperimentDetails(titleText, detailsText);
 
     }
 }

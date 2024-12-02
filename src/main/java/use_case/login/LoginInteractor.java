@@ -2,7 +2,7 @@ package use_case.login;
 
 import entity.User;
 
-public class LoginInteractor {
+public class LoginInteractor implements LoginInputBoundary {
 
     private final LoginUserDataAccessInterface userDataAccessObject;
     private final LoginOutputBoundary loginPresenter;
