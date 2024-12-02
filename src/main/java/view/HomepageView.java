@@ -85,7 +85,9 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
                     // what to do when double click occurs
                     String data = myExperiments.getValueAt(myExperiments.getSelectedRow(), 0).toString();
                     // I could input the experiment id into the controller of the experiments thing
-                    loadHomepageController.switchTo....
+                    loadHomepageController.switchToEditExperimentView(data);
+                    // do I have to add stuff after this?
+
 
                 }
             }
@@ -97,6 +99,8 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
                     // what to do when double click occurs
                     String data = experiments.getValueAt(experiments.getSelectedRow(), 0).toString();
                     // I could input the experiment id into the controller of the experiments thing
+                    loadHomepageController.switchToViewExperimentView(data);
+                    // do I have to add stuff after this?
                 }
             }
         });

@@ -13,4 +13,9 @@ public interface LoadHomepageInputBoundry {
 
     void switchToCreateStudyView();
 
+    void switchToEditExperimentView(String data);
+
+    void switchToViewExperimentView(String data);
+
+
 }
