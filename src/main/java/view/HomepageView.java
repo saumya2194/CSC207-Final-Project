@@ -32,12 +32,12 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
     private JTable experiments = new JTable(new DefaultTableModel(null, columns ));
     private JTable myExperiments = new JTable(new DefaultTableModel(null, columns ));
 
-    public HomepageView(LoadHomepageController controller, HomepageViewModel homepageViewModel){
+    public HomepageView(HomepageViewModel homepageViewModel){
         this.homepageViewModel = homepageViewModel;
         // add line about adding property change listener to viewmodel, not 100% sure what its for
         this.homepageViewModel.addPropertyChangeListener(this);
 
-        final JLabel title = new JLabel(homepageViewModel.TITLE_LABEL);
+        final JLabel title = new JLabel(HomepageViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
         // add some set alignment thing
 
@@ -47,7 +47,7 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
         final JPanel myExperimentsPanel = new JPanel();
         // add title(might be included in columns)
         // create experiment button
-        final JLabel myExperimentsTitle = new JLabel(homepageViewModel.MY_EXPERIMENTS_TITLE_LABEL);
+        final JLabel myExperimentsTitle = new JLabel(HomepageViewModel.MY_EXPERIMENTS_TITLE_LABEL);
         myExperimentsTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         createExperiment = new JButton(HomepageViewModel.CREATE_EXPERIMENT_BUTTON_LABEL);
         profile = new JButton(HomepageViewModel.PROFILE_BUTTON_LABEL);
@@ -60,7 +60,7 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
         final JPanel experimentsPanel = new JPanel();
         // add title(might be included in column)
         // add table
-        final JLabel experimentsTitle = new JLabel(homepageViewModel.EXPERIMENTS_TITLE_LABEL);
+        final JLabel experimentsTitle = new JLabel(HomepageViewModel.EXPERIMENTS_TITLE_LABEL);
         experimentsTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         experimentsPanel.add(experimentsTitle);
         experimentsPanel.add(experiments);
@@ -113,6 +113,14 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
     }
 
     // TODO: ADD ACTION PERFORMED THING
+    /**
+     * React to a button click that results in evt.
+     * @param evt the ActionEvent to react to
+     */
+    public void actionPerformed(ActionEvent evt) {
+        System.out.println("Click " + evt.getActionCommand());
+    }
+
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
@@ -122,8 +130,8 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
     }
 
     private void setTables(HomepageState state) {
-        myExperiments = new JTable(state.getMyExperiments(), homepageViewModel.myExperimentsColumns);
-        experiments = new JTable(state.getExperiments(), homepageViewModel.experimentsColumns);
+        myExperiments = new JTable(state.getMyExperiments(), HomepageViewModel.myExperimentsColumns);
+        experiments = new JTable(state.getExperiments(), HomepageViewModel.experimentsColumns);
     }
 
     public String getViewName() {
