@@ -4,26 +4,28 @@ import java.awt.CardLayout;
 
 import javax.swing.JPanel;
 
+import com.sun.management.HotSpotDiagnosticMXBean;
+import entity.CommonStudyFactory;
 import entity.CommonUserFactory;
+import entity.StudyFactory;
 import entity.UserFactory;
 import interface_adapter.ViewManagerModel;
-import interface_adapter.homepage.LoadHompageViewModel;
+import interface_adapter.load_homepage.HomepageViewModel;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupPresenter;
 import interface_adapter.signup.SignupViewModel;
+import interface_adapter.view_experiment.ViewExperimentViewModel;
+import interface_adapter.view_profile.ProfileViewModel;
 import use_case.login.LoginInputBoundary;
 import use_case.login.LoginInteractor;
 import use_case.login.LoginOutputBoundary;
 import use_case.signup.SignupInputBoundary;
 import use_case.signup.SignupInteractor;
 import use_case.signup.SignupOutputBoundary;
-import view.LoggedInView;
-import view.LoginView;
-import view.SignupView;
-import view.ViewManager;
+import view.*;
 
 /**
  * The AppBuilder class is responsible for putting together the pieces of
@@ -41,15 +43,20 @@ public class AppBuilder {
     private final CardLayout cardLayout = new CardLayout();
     // thought question: is the hard dependency below a problem?
     private final UserFactory userFactory = new CommonUserFactory();
+    private final StudyFactory studyFactory = new CommonStudyFactory();
     private final ViewManagerModel viewManagerModel = new ViewManagerModel();
     private final ViewManager viewManager = new ViewManager(cardPanel, cardLayout, viewManagerModel);
 
     private SignupView signupView;
     private SignupViewModel signupViewModel;
-    private LoginViewModel loginViewModel;
-    private LoadHompageViewModel loadHompageViewModel;
-    private LoggedInView loggedInView;
     private LoginView loginView;
+    private LoginViewModel loginViewModel;
+    private HomepageView homepageView;
+    private HomepageViewModel homepageViewModel;
+    private ProfileView profileView;
+    private ProfileViewModel profileViewModel;
+    private ViewExperimentView viewExperimentView;
+    private ViewExperimentViewModel viewExperimentViewModel;
 
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
@@ -78,13 +85,13 @@ public class AppBuilder {
     }
 
     /**
-     * Adds the LoggedIn View to the application.
+     * Adds the Homepage View to the application.
      * @return this builder
      */
-    public AppBuilder addLoggedInView() {
-        loadHompageViewModel = new LoadHompageViewModel();
-        loggedInView = new LoggedInView(loadHompageViewModel);
-        cardPanel.add(loggedInView, loggedInView.getViewName());
+    public AppBuilder addHomePageView() {
+        homepageViewModel = new HomepageViewModel();
+        homepageView = new HomepageView(homepageViewModel);
+        cardPanel.add(homepageView, homepageView.getViewName());
         return this;
     }
 

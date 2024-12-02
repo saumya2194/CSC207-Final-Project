@@ -23,7 +23,7 @@ import interface_adapter.createstudy.CreateStudyViewModel;
 /**
  * The View for the Create Study Use Case.
  */
-public class CreateStudyView extends JPanel implements ActionListener, PropertyChangeListener {
+public class CreateStudyView extends JPanel implements PropertyChangeListener {
     private final String viewName = "create study";
 
     private final CreateStudyViewModel createStudyViewModel;
