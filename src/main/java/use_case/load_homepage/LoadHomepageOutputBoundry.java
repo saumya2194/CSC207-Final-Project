@@ -7,7 +7,7 @@ public interface LoadHomepageOutputBoundry {
 
     void prepareFailView(String errorMessage);
 
-    void switchToProfileView();
+    void switchToProfileView(String username);
 
     void switchToCreateStudyView();
 
