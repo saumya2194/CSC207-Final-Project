@@ -6,6 +6,7 @@ import interface_adapter.load_homepage.HomepageState;
 import interface_adapter.load_homepage.HomepageViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.view_experiment.ViewExperimentViewModel;
+import interface_adapter.view_profile.ProfileState;
 import interface_adapter.view_profile.ProfileViewModel;
 
 import use_case.load_homepage.LoadHomepageOutputBoundry;
@@ -58,7 +59,18 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundry {
         // TODO: what do I put here?
     }
 
-    public void switchToProfileView(){
+    public void switchToProfileView(String username){
+        // Get the current state of the ProfileViewModel
+        final ProfileState profileState = profileViewModel.getState();
+
+        // Set the username in the profile state
+        profileState.setUsername(username);
+
+        // Update the ProfileViewModel with the new state
+        profileViewModel.setState(profileState);
+        profileViewModel.firePropertyChanged();
+
+        // Switch to the profile view
         viewManagerModel.setState(profileViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }

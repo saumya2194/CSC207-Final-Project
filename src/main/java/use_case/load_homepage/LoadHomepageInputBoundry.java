@@ -1,5 +1,4 @@
 package use_case.load_homepage;
-import use_case.load_homepage.LoadHomepageInputData;
 
 public interface LoadHomepageInputBoundry {
 
@@ -9,7 +8,7 @@ public interface LoadHomepageInputBoundry {
      */
     void execute(LoadHomepageInputData loadHomepageInputData);
 
-    void switchToProfileView();
+    void switchToProfileView(String username);
 
     void switchToCreateStudyView();
 
