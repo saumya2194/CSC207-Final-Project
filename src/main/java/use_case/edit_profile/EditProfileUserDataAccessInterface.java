@@ -1,11 +1,11 @@
-package use_case.view_profile;
+package use_case.edit_profile;
 
 import entity.User;
 
 /**
  * The interface of the DAO for the Change Password Use Case.
  */
-public interface ViewProfileUserDataAccessInterface {
+public interface EditProfileUserDataAccessInterface {
 
     /**
      * Updates the system to record this user's password.

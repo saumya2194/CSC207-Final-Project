@@ -6,12 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import entity.CommonStudy;
+import entity.*;
 
-import entity.CommonStudyFactory;
-import entity.CommonUserFactory;
-import entity.StudyFactory;
-import entity.UserFactory;
 import org.json.JSONArray;
 import okhttp3.*;
 
@@ -27,10 +23,10 @@ import okhttp3.Response;
 
 
 import use_case.view_experiment.ViewExperimentDataAccessInterface;
+import use_case.createstudy.CreateStudyDataAccessInterface;
 
 
-
-public class DBExperimentDataAccessObject implements ViewExperimentDataAccessInterface {
+public class DBExperimentDataAccessObject implements ViewExperimentDataAccessInterface, CreateStudyDataAccessInterface {
     private static final int SUCCESS_CODE = 200;
     private static final int CREDENTIAL_ERROR = 401;
     private static final String CONTENT_TYPE_LABEL = "Content-Type";
@@ -108,7 +104,7 @@ public class DBExperimentDataAccessObject implements ViewExperimentDataAccessInt
      * @return True if the study is added successfully onto current studies list. Otherwise return False.
      */
 
-    public boolean saveResearchStudy(CommonStudy researchStudy) throws DataAccessException {
+    public boolean save(CommonStudy researchStudy) throws DataAccessException {
         final OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
 
@@ -220,6 +216,11 @@ public class DBExperimentDataAccessObject implements ViewExperimentDataAccessInt
         if (!deleteResearchStudy(study.getId()))
             return false;
         saveResearchStudy(study); return true;
+    }
+
+    @Override
+    public void save(Study study) {
+
     }
 
 //    public void editRes

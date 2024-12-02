@@ -1,51 +1,43 @@
 package use_case.createstudy;
 
-import entity.User;
-import entity.UserFactory;
-import use_case.signup.SignupInputData;
-import use_case.signup.SignupOutputBoundary;
-import use_case.signup.SignupOutputData;
-import use_case.signup.SignupUserDataAccessInterface;
+import data_access.DBExperimentDataAccessObject;
+import entity.Study;
+import entity.StudyFactory;
+
 
 
 /**
 * The Create Study Interactor.
  */
-public class CreateStudyInteractor {
+public class CreateStudyInteractor implements CreateStudyInputBoundary {
 
-    private final SignupUserDataAccessInterface userDataAccessObject;
-    private final SignupOutputBoundary userPresenter;
-    private final UserFactory userFactory;
+    private final CreateStudyDataAccessInterface studyDataAccessObject;
+    private final CreateStudyOutputBoundary studyPresenter;
+    private final StudyFactory studyFactory;
 
-    public SignupInteractor(SignupUserDataAccessInterface signupDataAccessInterface,
-                            SignupOutputBoundary signupOutputBoundary,
-                            UserFactory userFactory) {
-        this.userDataAccessObject = signupDataAccessInterface;
-        this.userPresenter = signupOutputBoundary;
-        this.userFactory = userFactory;
+    public CreateStudyInteractor(CreateStudyDataAccessInterface createStudyDataAccessInterface,
+                                 CreateStudyOutputBoundary createStudyOutputBoundary,
+                                 StudyFactory studyFactory) {
+        this.studyDataAccessObject = createStudyDataAccessInterface;
+        this.studyPresenter = createStudyOutputBoundary;
+        this.studyFactory = studyFactory;
     }
 
     @Override
-    public void execute(SignupInputData signupInputData) {
-        if (userDataAccessObject.existsByName(signupInputData.getUsername())) {
-            userPresenter.prepareFailView("User already exists.");
-        }
-        else if (!signupInputData.getPassword().equals(signupInputData.getRepeatPassword())) {
-            userPresenter.prepareFailView("Passwords don't match.");
+    public void execute(CreateStudyInputData createStudyInputData) {
+        final int maxCharLength = 250;
+        if (createStudyInputData.getDetails().length() > maxCharLength) {
+            studyPresenter.prepareFailView("Length has exceeded the maximum allowed characters (250).");
         }
         else {
-            final User user = userFactory.create(signupInputData.getUsername(), signupInputData.getPassword());
-            userDataAccessObject.save(user);
+            final Study study = studyFactory.create(createStudyInputData.getTitle(), createStudyInputData.getDetails(),
+                    createStudyInputData.getUser());
+            DBExperimentDataAccessObject.saveResearch
 
-            final SignupOutputData signupOutputData = new SignupOutputData(user.getName(), false);
-            userPresenter.prepareSuccessView(signupOutputData);
+
         }
     }
-
-    @Override
     public void switchToLoginView() {
-        userPresenter.switchToLoginView();
+        studyPresenter.switchToHomepageView();
     }
-}
-
 }

@@ -15,4 +15,9 @@ public interface CreateStudyOutputBoundary {
      * @param errorMessage the explanation of the failure
      */
     void prepareFailView(String errorMessage);
+
+    /**
+     * Executes the switch to Homepage use case.
+     */
+    void switchToHomepageView();
 }
