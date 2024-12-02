@@ -13,36 +13,20 @@ import javax.swing.JTextField;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
-import interface_adapter.view_profile.ChangePasswordController;
+import interface_adapter.view_profile.EditProfileController;
 import interface_adapter.view_profile.ProfileState;
 import interface_adapter.view_profile.ProfileViewModel;
 import interface_adapter.logout.LogoutController;
-import java.awt.Component;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
-
-import interface_adapter.view_profile.ChangePasswordController;
-import interface_adapter.view_profile.ProfileState;
-import interface_adapter.view_profile.ProfileViewModel;
-import interface_adapter.logout.LogoutController;
 /**
  * The View for when the user is logged into the program.
  */
-public class LoggedInView extends JPanel implements PropertyChangeListener {
+public class ProfileView extends JPanel implements PropertyChangeListener {
 
     private final String viewName = "profile view";
     private final ProfileViewModel profileViewModel;
     private final JLabel passwordErrorField = new JLabel();
-    private ChangePasswordController changePasswordController;
+    private EditProfileController editProfileController;
     private LogoutController logoutController;
 
     private final JLabel username;
@@ -52,7 +36,7 @@ public class LoggedInView extends JPanel implements PropertyChangeListener {
     private final JTextField passwordInputField = new JTextField(15);
     private final JButton changePassword;
 
-    public LoggedInView(ProfileViewModel profileViewModel) {
+    public ProfileView(ProfileViewModel profileViewModel) {
         this.profileViewModel = profileViewModel;
         this.profileViewModel.addPropertyChangeListener(this);
 
@@ -104,7 +88,7 @@ public class LoggedInView extends JPanel implements PropertyChangeListener {
                     if (evt.getSource().equals(changePassword)) {
                         final ProfileState currentState = profileViewModel.getState();
 
-                        this.changePasswordController.execute(
+                        this.editProfileController.execute(
                                 currentState.getUsername(),
                                 currentState.getPassword()
                         );
@@ -150,8 +134,8 @@ public class LoggedInView extends JPanel implements PropertyChangeListener {
         return viewName;
     }
 
-    public void setChangePasswordController(ChangePasswordController changePasswordController) {
-        this.changePasswordController = changePasswordController;
+    public void setChangePasswordController(EditProfileController editProfileController) {
+        this.editProfileController = editProfileController;
     }
 
     public void setLogoutController(LogoutController logoutController) {
