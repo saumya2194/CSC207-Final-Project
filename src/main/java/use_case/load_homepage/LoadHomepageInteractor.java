@@ -2,12 +2,14 @@ package use_case.load_homepage;
 
 import entity.CommonStudy;
 
-public class LoadHomepageInteractor implements LoadHomepageInputBoundry{
+import java.util.List;
+
+public class LoadHomepageInteractor implements LoadHomepageInputBoundary {
     // TODO: ADD DAO
-    private final LoadHomepageOutputBoundry loadHomepagePresenter;
+    private final LoadHomepageOutputBoundary loadHomepagePresenter;
     private final LoadHomepageExperimentsDataAccessInterface experimentsDataAccessObject;
 
-    public LoadHomepageInteractor(LoadHomepageOutputBoundry loadHomepageOutputBoundry,
+    public LoadHomepageInteractor(LoadHomepageOutputBoundary loadHomepageOutputBoundry,
                                   LoadHomepageExperimentsDataAccessInterface loadHomepageExperimentsDataAccessInterface) {
         // add dao
         this.loadHomepagePresenter = loadHomepageOutputBoundry;
@@ -35,7 +37,9 @@ public class LoadHomepageInteractor implements LoadHomepageInputBoundry{
 
 
 
-    public void switchToProfileView(String username){loadHomepagePresenter.switchToProfileView();};
+    public void switchToProfileView(String username) {
+        loadHomepagePresenter.switchToProfileView(username);
+    };
 
     public void switchToCreateStudyView(){loadHomepagePresenter.switchToCreateStudyView();}
 

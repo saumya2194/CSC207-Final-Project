@@ -30,8 +30,10 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
 
     // do the tables belong here?
     private final String[] columns = {"ID", "Name"};
-    private JTable experiments = new JTable(new DefaultTableModel(null, columns ));
-    private JTable myExperiments = new JTable(new DefaultTableModel(null, columns ));
+//    private JTable experiments = new JTable(new DefaultTableModel(null, columns ));
+    private JTable experiments = new JTable(1,1);
+//    private JTable myExperiments = new JTable(new DefaultTableModel(null, columns ));
+    private JTable myExperiments = new JTable(1,1);
 
     public HomepageView(HomepageViewModel homepageViewModel){
         this.homepageViewModel = homepageViewModel;
