@@ -8,14 +8,14 @@ public class HomepageViewModel extends ViewModel<HomepageState> {
     public static final String TITLE_LABEL = "Homepage" ;
     public static final String CREATE_EXPERIMENT_BUTTON_LABEL = "Create Experiment";
     public static final String PROFILE_BUTTON_LABEL = "Profile";
-    public static final CommonStudy[] myExperimentsColumns = {"ID", "Name"};
-    public static final CommonStudy[] experimentsColumns = {"ID", "Name"};
+    public static final String[] myExperimentsColumns = {"ID", "Name"};
+    public static final String[] experimentsColumns = {"ID", "Name"};
     public static final String EXPERIMENTS_TITLE_LABEL = "Experiments";
     public static final String MY_EXPERIMENTS_TITLE_LABEL = "My Experiments";
 
 
     public HomepageViewModel(){
-        super("load homepage");
+        super("homepage");
         setState(new HomepageState());
     }
 

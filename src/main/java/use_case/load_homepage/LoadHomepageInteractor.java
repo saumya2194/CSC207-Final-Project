@@ -52,7 +52,7 @@ public class LoadHomepageInteractor implements LoadHomepageInputBoundry{
 
     @Override
     public void switchToViewExperimentView(String data) {
-
+        loadHomepagePresenter.switchToViewExperimentView(String data));
     }
 
 
