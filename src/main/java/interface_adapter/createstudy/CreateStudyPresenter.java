@@ -44,7 +44,7 @@ public class CreateStudyPresenter implements CreateStudyOutputBoundary {
 
     @Override
     public void switchToHomepageView() {
-        viewManagerModel.setState(HomepageViewModel.getViewName());
+        viewManagerModel.setState(homepageViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 }

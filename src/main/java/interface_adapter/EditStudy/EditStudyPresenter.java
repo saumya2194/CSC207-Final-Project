@@ -15,10 +15,13 @@ import use_case.login.LoginOutputData;
 public class EditStudyPresenter implements EditStudyOutputBoundary {
     private final HomepageViewModel homepageViewModel;
     private final ViewManagerModel viewManagerModel;
+    private final EditStudyViewModel editStudyViewModel;
 
-    public EditStudyPresenter(HomepageViewModel homepageViewModel, ViewManagerModel viewManagerModel) {
+    public EditStudyPresenter(HomepageViewModel homepageViewModel, ViewManagerModel viewManagerModel,
+    EditStudyViewModel editStudyviewModel) {
         this.homepageViewModel = homepageViewModel;
         this.viewManagerModel = viewManagerModel;
+        this.editStudyViewModel = editStudyviewModel;
 
     }
     @Override
@@ -35,10 +38,9 @@ public class EditStudyPresenter implements EditStudyOutputBoundary {
     @Override
     public void prepareFailView(String errorMessage) {
 
-        // TODO: fix non static method error
-        final CreateStudyState createStudyState = EditStudyViewModel.getState();
-        createStudyState.setDetailsError(errorMessage);
-        EditStudyViewModel.firePropertyChanged();
+        final EditStudyState editStudyState = editStudyViewModel.getState();
+        editStudyState.setDetailsError(errorMessage);
+        editStudyViewModel.firePropertyChanged();
 
     }
 }
