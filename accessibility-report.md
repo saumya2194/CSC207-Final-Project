@@ -1,71 +1,42 @@
 
 
 # Principle 1: Equitable Use
-The design is useful and marketable to people with diverse abilities.
+by letting all users, whether students or researchers, 
+log in the same way and access the same experiments. 
+Everyone can view all experiments without any restrictions, 
+ensuring fairness and equal access.
 
-
-
-Principle 1 Guidelines
-The following guidelines underpin Principle 1:
-
-1a. Provide the same means of use for all users: identical whenever possible; equivalent when not.
-1b. Avoid segregating or stigmatizing any users.
-1c. Provisions for privacy, security, and safety should be equally available to all users.
-1d. Make the design appealing to all users.
 # Principle 2: Flexibility in Use
-The design accommodates a wide range of individual preferences and abilities.
+Flexibility in Use does not fully apply to this code because the 
+functionality—like logging in and viewing experiments—is 
+straightforward and does not require multiple methods of 
+interaction or physical adaptability. 
+The system's primary focus is on equitable access to information, 
+rather than accommodating diverse interaction styles or physical abilities, 
+which are unnecessary in this context.
 
-
-
-Principle 2 Guidelines
-The following guidelines underpin Principle 2:
-
-2a. Provide choice in methods of use.
-2b. Accommodate right- or left-handed access and use.
-2c. Facilitate the user's accuracy and precision.
-2d. Provide adaptability to the user's pace.
 # Principle 3: Simple and Intuitive Use
 Use of the design is easy to understand, regardless of the user's experience, knowledge, language skills, or current concentration level.
 - The software is designed in a minimalistic and intuitive manner
 - Buttons such as "create experiment" and "profile" are clear and direct in communicating purpose
 - To view an experiment, the user may scroll through the table to find it, and simply double click on the row to open it
 - Related elements are kept close together( my experiments table and create experiment button for instance)
-Principle 3 Guidelines
-The following guidelines underpin Principle 3:
 
-3a. Eliminate unnecessary complexity.
-3b. Be consistent with user expectations and intuition.
-3c. Accommodate a wide range of literacy and language skills.
-3d. Arrange information consistent with its importance.
-3e. Provide effective prompting and feedback during and after task completion.
 # Principle 4: Perceptible Information
 The design communicates necessary information effectively to the user, regardless of ambient conditions or the user's sensory abilities.
 - The software is designed in a minimalistic and intuitive manner
 - Buttons such as "create experiment" and "profile" are clear and direct in communicating purpose
 - To view an experiment, the user may scroll through the table to find it, and simply double click on the row to open it
 
-
-Principle 4 Guidelines
-The following guidelines underpin Principle 4:
-
-4a. Use different modes (pictorial, verbal, tactile) for redundant presentation of essential information.
-4b. Provide adequate contrast between essential information and its surroundings.
-4c. Maximize "legibility" of essential information.
-4d. Differentiate elements in ways that can be described (i.e., make it easy to give instructions or directions).
-4e. Provide compatibility with a variety of techniques or devices used by people with sensory limitations.
 # Principle 5: Tolerance for Error
-The design minimizes hazards and the adverse consequences of accidental or unintended actions.
-- We have certain features in place to ensure slight errors do not cause major program problems
-
-Principle 5 Guidelines
-The following guidelines underpin Principle 5:
-
-
-
-5a. Arrange elements to minimize hazards and errors: most used elements, most accessible; hazardous elements eliminated, isolated, or shielded.
-5b. Provide warnings of hazards and errors.
-5c. Provide fail safe features.
-5d. Discourage unconscious action in tasks that require vigilance.
+Features are designed to be easy to access and use, 
+reducing the chance of errors. When errors do occur, 
+clear and helpful error messages guide users on how to fix the issue. 
+The program also includes checks and safeguards that prevent users from 
+accidentally causing significant problems. By handling errors gracefully 
+and making recovery simple, the system stays reliable and user-friendly, 
+even if users make unintended actions. This approach helps create a safe 
+and stress-free experience for all users.
 # Principle 6: Low Physical Effort
 The design can be used efficiently and comfortably and with a minimum of fatigue.
 
@@ -73,27 +44,9 @@ The design can be used efficiently and comfortably and with a minimum of fatigue
 - None of these tasks require significant operating force or physical effort
 - Effort required to physically navigate the app is kept to a minimum
 
-
-Principle 6 Guidelines
-The following guidelines underpin Principle 6:
-
-6a. Allow user to maintain a neutral body position.
-6b. Use reasonable operating forces.
-6c. Minimize repetitive actions.
-6d. Minimize sustained physical effort.
 # Principle 7: Size and Space for Approach and Use
 Appropriate size and space is provided for approach, reach, manipulation, and use regardless of user's body size, posture, or mobility.
 - This is not really relevant to our program, as it does not exist tangibly to be modified to adapt to differences in space
-
-
-Principle 7 Guidelines
-The following guidelines underpin Principle 7:
-
-7a. Provide a clear line of sight to important elements for any seated or standing user.
-7b. Make reach to all components comfortable for any seated or standing user.
-7c. Accommodate variations in hand and grip size.
-7d. Provide adequate space for the use of assistive devices or personal assistance.
-
 
 
 For each Principle of Universal Design, write 2-3 sentences — or point form notes — explaining which features your program adhere to that principle. 
