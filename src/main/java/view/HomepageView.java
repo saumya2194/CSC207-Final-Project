@@ -14,6 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
+import entity.CommonStudy;
 import interface_adapter.load_homepage.LoadHomepageController;
 import interface_adapter.load_homepage.HomepageState;
 import interface_adapter.load_homepage.HomepageViewModel;
@@ -130,8 +131,19 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
     }
 
     private void setTables(HomepageState state) {
-        myExperiments = new JTable(state.getMyExperiments(), HomepageViewModel.myExperimentsColumns);
-        experiments = new JTable(state.getExperiments(), HomepageViewModel.experimentsColumns);
+        Object[][] experimentsStrings = new Object[state.getExperiments().length][2];
+        for (int i = 0; i < state.getExperiments().length; i++) {
+            CommonStudy study = state.getExperiments()[i];
+            experimentsStrings[i] = new Object[]{study.getId(), study.getTitle()};
+        }
+
+        Object[][] myExperimentsStrings = new Object[state.getMyExperiments().length][2];
+        for (int i = 0; i < state.getMyExperiments().length; i++) {
+            CommonStudy study = state.getMyExperiments()[i];
+            myExperimentsStrings[i] = new Object[]{study.getId(), study.getTitle()};
+            myExperiments = new JTable(myExperimentsStrings, HomepageViewModel.myExperimentsColumns);
+            experiments = new JTable(experimentsStrings, HomepageViewModel.experimentsColumns);
+        }
     }
 
     public String getViewName() {

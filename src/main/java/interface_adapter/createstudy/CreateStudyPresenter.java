@@ -14,12 +14,12 @@ public class CreateStudyPresenter implements CreateStudyOutputBoundary {
     private final CreateStudyViewModel createStudyViewModel;
 
     private final HomepageViewModel homepageViewModel;
-    private final ViewManagerModel viewManagerViewModel;
+    private final ViewManagerModel viewManagerModel;
 
     public CreateStudyPresenter(ViewManagerModel viewManagerModel,
                                 HomepageViewModel homepageViewModel,
                                 CreateStudyViewModel createStudyViewModel) {
-        this.viewManagerViewModel = viewManagerModel;
+        this.viewManagerModel = viewManagerModel;
         this.createStudyViewModel = createStudyViewModel;
         this.homepageViewModel = homepageViewModel;
     }
@@ -28,7 +28,6 @@ public class CreateStudyPresenter implements CreateStudyOutputBoundary {
     public void prepareSuccessView(CreateStudyOutputData response) {
         // On success, switch to the homepage view.
         final HomepageState homepageState = homepageViewModel.getState();
-        hompageState.setUsername(response.getUsername());
         this.homepageViewModel.setState(homepageState);
         this.homepageViewModel.firePropertyChanged();
         this.viewManagerModel.setState(homepageViewModel.getViewName());
@@ -36,23 +35,16 @@ public class CreateStudyPresenter implements CreateStudyOutputBoundary {
 
     }
 
-
     @Override
     public void prepareFailView(String error) {
-        // note: this use case currently can't fail
-    }
-}
-
-    @Override
-    public void prepareFailView(String error) {
-        final SignupState signupState = signupViewModel.getState();
-        signupState.setUsernameError(error);
-        signupViewModel.firePropertyChanged();
+        final CreateStudyState createStudyState = createStudyViewModel.getState();
+        createStudyState.setDetailsError(error);
+        createStudyViewModel.firePropertyChanged();
     }
 
     @Override
     public void switchToHomepageView() {
-        viewManagerModel.setState(HomepageViewModel.getViewName());
+        viewManagerModel.setState(homepageViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 }

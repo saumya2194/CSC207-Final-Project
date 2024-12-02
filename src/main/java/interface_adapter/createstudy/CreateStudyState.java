@@ -37,16 +37,15 @@ public class CreateStudyState {
         return this.user;
     }
 
-    public String setUser(String user) {
+    public void setUser(String user) {
         this.user = user;
     }
-
+    
     public String toString() {
         return "CreateStudyState{"
                 + "title='" + title + '\''
                 + ", details='" + details + '\''
+                + ", user='" + user + '\''
                 + '}';
     }
 }
-
-
