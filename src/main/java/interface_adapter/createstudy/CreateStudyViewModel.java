@@ -3,7 +3,7 @@ package interface_adapter.createstudy;
 import interface_adapter.ViewModel;
 
 /**
- * View Model for create Study View
+ * View Model for create Study View.
  */
 public class CreateStudyViewModel extends ViewModel<CreateStudyState> {
 
@@ -14,8 +14,8 @@ public class CreateStudyViewModel extends ViewModel<CreateStudyState> {
     public static final String CREATE_STUDY_BUTTON_LABEL = "Create Study";
     public static final String CANCEL_BUTTON_LABEL = "Cancel";
 
-
     public CreateStudyViewModel() {
         super("create study");
         setState(new CreateStudyState());
+    }
 }

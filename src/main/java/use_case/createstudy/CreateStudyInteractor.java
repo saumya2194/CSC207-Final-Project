@@ -1,10 +1,8 @@
+
 package use_case.createstudy;
 
-import data_access.DBExperimentDataAccessObject;
 import entity.Study;
 import entity.StudyFactory;
-
-
 
 /**
 * The Create Study Interactor.
@@ -32,12 +30,16 @@ public class CreateStudyInteractor implements CreateStudyInputBoundary {
         else {
             final Study study = studyFactory.create(createStudyInputData.getTitle(), createStudyInputData.getDetails(),
                     createStudyInputData.getUser());
-            DBExperimentDataAccessObject.saveResearch
+            studyDataAccessObject.save(study);
 
-
+            final CreateStudyOutputData createStudyOutputData = new CreateStudyOutputData(study.getTitle(),
+                    study.getDetails(),
+                    false);
+            studyPresenter.prepareSuccessView(createStudyOutputData);
         }
     }
-    public void switchToLoginView() {
+
+    public void switchToHomepageView() {
         studyPresenter.switchToHomepageView();
     }
 }
