@@ -1,8 +1,12 @@
 package interface_adapter.EditStudy;
 
-public class EditStudyViewModel {
+import interface_adapter.ViewModel;
 
+public class EditStudyViewModel extends ViewModel<EditStudyState> {
 
-    public static void firePropertyChanged() {
+    public EditStudyViewModel() {
+        super("editStudy");
+        setState(new EditStudyState());
     }
+
 }
