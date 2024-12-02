@@ -1,5 +1,6 @@
 package use_case.load_homepage;
 
+import entity.CommonStudy;
 import entity.CommonUser;
 
 public class LoadHomepageOutputData {
@@ -20,11 +21,11 @@ public class LoadHomepageOutputData {
         this.useCaseFailed = useCaseFailed;
     }
 
-    public Object[] getExperiments() {
+    public CommonStudy[] getExperiments() {
         return experiments;
     }
 
-    public Object[] getMyExperiments() {
+    public CommonStudy[] getMyExperiments() {
         return myExperiments;
     }
 

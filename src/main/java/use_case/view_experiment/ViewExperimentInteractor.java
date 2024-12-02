@@ -1,6 +1,9 @@
 package use_case.view_experiment;
 
+import com.resend.*;
+
 import entity.CommonStudy;
+
 
 public class ViewExperimentInteractor implements ViewExperimentInputBoundary{
 
@@ -28,6 +31,19 @@ public class ViewExperimentInteractor implements ViewExperimentInputBoundary{
         ViewExperimentOutputData viewExperimentOutputData = new ViewExperimentOutputData(commonStudy.getTitle(),
                 commonStudy.getDetails(), commonStudy.getResearcherName());
         viewExperimentOutputBoundary.prepareSuccessView(viewExperimentOutputData);
+    }
+
+    public void emailExperimentDetails(String titleText, String detailsText){
+        Resend resend = new Resend("re_123456789");
+
+        CreateEmailOptions params = CreateEmailOptions.builder()
+                .from("Acme <onboarding@resend.dev>")
+                .to("delivered@resend.dev")
+                .subject("hello world")
+                .html("<p>it works!</p>")
+                .build();
+
+        CreateEmailResponse data = resend.emails().send(params);
     }
 
 }

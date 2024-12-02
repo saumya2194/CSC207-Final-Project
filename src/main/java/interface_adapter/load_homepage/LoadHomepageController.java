@@ -1,4 +1,4 @@
-package interface_adapter.load_homepage;// info about package, import
+package interface_adapter.load_homepage; // info about package, import
 import entity.CommonUser;
 import use_case.load_homepage.LoadHomepageInputBoundry;
 import use_case.load_homepage.LoadHomepageInputData;
@@ -15,8 +15,15 @@ public class LoadHomepageController {
         loadHomepageUseCaseInteractor.execute(loadHomepageInputData);
     }
 
-    public void switchToViewProfileView(){loadHomepageUseCaseInteractor.switchToProfileView();}
+    public void switchToViewProfileView(){ loadHomepageUseCaseInteractor.switchToProfileView();}
 
-    public void switchToCreateStudyView(){loadHomepageUseCaseInteractor.switchToCreateStudyView();}
+    public void switchToCreateStudyView(){ loadHomepageUseCaseInteractor.switchToCreateStudyView();}
 
+    public void switchToEditExperimentView(String data) {
+        loadHomepageUseCaseInteractor.switchToEditExperimentView(String data);
+    }
+
+    public void switchToViewExperimentView(String data) {
+        loadHomepageUseCaseInteractor.switchToViewExperimentView(String data);
+    }
 }

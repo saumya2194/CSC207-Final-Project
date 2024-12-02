@@ -5,12 +5,17 @@ public interface LoadHomepageInputBoundry {
 
     /**
      * Execute the Load Homepage Use Case.
-     * @param LoadHomepageInputData the input data for this use case
+     * @param loadHomepageInputData the input data for this use case
      */
     void execute(LoadHomepageInputData loadHomepageInputData);
 
     void switchToProfileView();
 
     void switchToCreateStudyView();
+
+    void switchToEditExperimentView(String data);
+
+    void switchToViewExperimentView(String data);
+
 
 }
