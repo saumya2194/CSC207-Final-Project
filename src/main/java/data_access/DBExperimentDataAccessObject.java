@@ -4,12 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 import entity.*;
 
 import org.json.JSONArray;
-import okhttp3.*;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -21,12 +19,11 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-
-import use_case.view_experiment.ViewExperimentDataAccessInterface;
-import use_case.createstudy.CreateStudyDataAccessInterface;
+import javax.management.RuntimeErrorException;
 
 
-public class DBExperimentDataAccessObject implements ViewExperimentDataAccessInterface, CreateStudyDataAccessInterface {
+public class DBExperimentDataAccessObject  {
+
     private static final int SUCCESS_CODE = 200;
     private static final int CREDENTIAL_ERROR = 401;
     private static final String CONTENT_TYPE_LABEL = "Content-Type";
@@ -97,6 +94,27 @@ public class DBExperimentDataAccessObject implements ViewExperimentDataAccessInt
     }
 
     /**
+     * Return a specific research study from getStudies() based on the ID of study.
+     *
+     * @param ID
+     * @return
+     */
+    public CommonStudy getResearchStudy(String ID) {
+        JSONArray studies = getStudies();
+        for (Object obj : getStudies().toList()) {
+            Map<String, String> map = (Map<String, String>) obj;
+            if (map.get("id").equals(ID)) {
+                String username = map.get("user");
+                String details = map.get("details");
+                String title = map.get("title");
+                return new CommonStudy(username, title, details, ID);
+            }
+
+        }
+        throw new RuntimeException("Study ID is not in the database");
+
+    }
+    /**
      * Takes the list of current studies we have saved. And add the new researchStudy to that list.
      * All the studies are added under NullPointers username.
      *
@@ -104,7 +122,7 @@ public class DBExperimentDataAccessObject implements ViewExperimentDataAccessInt
      * @return True if the study is added successfully onto current studies list. Otherwise return False.
      */
 
-    public boolean save(CommonStudy researchStudy) throws DataAccessException {
+    public boolean save(CommonStudy researchStudy) {
         final OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
 
@@ -213,15 +231,10 @@ public class DBExperimentDataAccessObject implements ViewExperimentDataAccessInt
     }
 
     public boolean editResearchStudy(CommonStudy study) {
-        if (!deleteResearchStudy(study.getId()))
-            return false;
-        saveResearchStudy(study); return true;
+        if (!deleteResearchStudy(study.getId())) return false;
+        save(study); return true;
     }
 
-    @Override
-    public void save(Study study) {
-
-    }
 
 //    public void editRes
 
