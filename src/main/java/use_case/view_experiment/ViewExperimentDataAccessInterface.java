@@ -9,5 +9,5 @@ public interface ViewExperimentDataAccessInterface {
     JSONArray getStudies ();
 
 
-    public Study getResearchStudy();
+    public Study getResearchStudy(String id);
 }

@@ -51,11 +51,6 @@ public class InMemoryExperimentDataAccessObject implements LoadHomepageExperimen
     }
 
     @Override
-    public Study getResearchStudy() {
-        return null;
-    }
-
-    @Override
     public void save(Study study) {
         studies.put(study.getTitle(), (CommonStudy) study);
     }
