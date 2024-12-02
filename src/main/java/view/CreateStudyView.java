@@ -55,7 +55,7 @@ public class CreateStudyView extends JPanel implements PropertyChangeListener {
                 new ActionListener() {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(createStudy)) {
-                            final CreateStudyState currentState = CreateStudyViewModel.getState();
+                            final CreateStudyState currentState = createStudyViewModel.getState();
 
                             createStudyController.execute(
                                     currentState.getTitle(),

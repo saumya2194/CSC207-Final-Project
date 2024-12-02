@@ -29,12 +29,14 @@ public class LoadHomepageInteractor implements LoadHomepageInputBoundry{
         // gathering these collections may or may not need for loops
 
         // create lists to store studies and my studies
-        CommonStudy[] exps = experimentsDataAccessObject.getStudyObjects().toArray();
+        List<CommonStudy> exps = experimentsDataAccessObject.getStudyObjects();
+        CommonStudy[] experiments = exps.toArray(new CommonStudy[exps.size()]);
 
         // load my studies into my_exps
-        CommonStudy[] myExps = experimentsDataAccessObject.retrieveUserStudies(loadHomepageInputData.getUser()).toArray();
+        List<CommonStudy> myExps = experimentsDataAccessObject.retrieveUserStudies(loadHomepageInputData.getUser());
+        CommonStudy[] myExperiments = myExps.toArray(new CommonStudy[myExps.size()]);
 
-        final LoadHomepageOutputData loadHomepageOutputData = new LoadHomepageOutputData(exps, myExps, loadHomepageInputData.getUser(), false);
+        final LoadHomepageOutputData loadHomepageOutputData = new LoadHomepageOutputData(experiments, myExperiments, loadHomepageInputData.getUser(), false);
         loadHomepagePresenter.prepareSuccessView(loadHomepageOutputData);
     }
 
@@ -44,15 +46,13 @@ public class LoadHomepageInteractor implements LoadHomepageInputBoundry{
 
     public void switchToCreateStudyView(){loadHomepagePresenter.switchToCreateStudyView();}
 
-    @Override
     public void switchToEditExperimentView(String data) {
 
-        loadHomepagePresenter.switchToEditExperimentView(String data));
+        loadHomepagePresenter.switchToEditExperimentView(data);
     }
 
-    @Override
     public void switchToViewExperimentView(String data) {
-        loadHomepagePresenter.switchToViewExperimentView(String data));
+        loadHomepagePresenter.switchToViewExperimentView(data);
     }
 
 

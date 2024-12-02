@@ -5,8 +5,8 @@ import entity.CommonUser;
 
 public class LoadHomepageOutputData {
     // collection for all experiments
-    private Object[] experiments;
-    private Object[] myExperiments;
+    private CommonStudy[] experiments;
+    private CommonStudy[] myExperiments;
     private String user;
     // do we need username and password?
 
@@ -14,7 +14,7 @@ public class LoadHomepageOutputData {
 
     //is this one really necessary
     private final boolean useCaseFailed;
-    public LoadHomepageOutputData(Object[] experiments, Object[] myExperiments, String user, boolean useCaseFailed) {
+    public LoadHomepageOutputData(CommonStudy[] experiments, CommonStudy[] myExperiments, String user, boolean useCaseFailed) {
         this.experiments = experiments;
         this.myExperiments = myExperiments;
         this.user = user;

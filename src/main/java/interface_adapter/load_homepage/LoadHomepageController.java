@@ -20,10 +20,10 @@ public class LoadHomepageController {
     public void switchToCreateStudyView(){ loadHomepageUseCaseInteractor.switchToCreateStudyView();}
 
     public void switchToEditExperimentView(String data) {
-        loadHomepageUseCaseInteractor.switchToEditExperimentView(String data);
+        loadHomepageUseCaseInteractor.switchToEditExperimentView(data);
     }
 
     public void switchToViewExperimentView(String data) {
-        loadHomepageUseCaseInteractor.switchToViewExperimentView(String data);
+        loadHomepageUseCaseInteractor.switchToViewExperimentView(data);
     }
 }
