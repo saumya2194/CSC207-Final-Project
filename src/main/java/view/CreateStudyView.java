@@ -29,7 +29,7 @@ public class CreateStudyView extends JPanel implements PropertyChangeListener {
 
     private final CreateStudyViewModel createStudyViewModel;
     private final JTextField titleInputField = new JTextField(30);
-    private final JTextArea detailsInputField = new JTextArea(50,50);
+    private final JTextArea detailsInputField = new JTextArea(25,25);
     private CreateStudyController createStudyController;
 
     private final JButton createStudy;
@@ -57,8 +57,9 @@ public class CreateStudyView extends JPanel implements PropertyChangeListener {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(createStudy)) {
                             final CreateStudyState currentState = createStudyViewModel.getState();
-
+                            System.out.print("execute state: " + currentState);
                             createStudyController.execute(
+
                                     currentState.getTitle(),
                                     currentState.getDetails(),
                                     currentState.getUser()
