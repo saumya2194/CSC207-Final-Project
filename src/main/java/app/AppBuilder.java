@@ -138,7 +138,14 @@ public class AppBuilder {
      */
     public AppBuilder addLoggedInView() {
         loggedInViewModel = new LoggedInViewModel();
-        loggedInView = new LoggedInView(loggedInViewModel);
+        final LoadHomepageOutputBoundary homepageOutputBoundary = new LoadHomepagePresenter(viewManagerModel, profileViewModel,
+                createStudyViewModel, new EditStudyViewModel(), loginViewModel, homepageViewModel);
+
+        final LoadHomepageInputBoundary homepageInteractor = new LoadHomepageInteractor(
+                homepageOutputBoundary, studyDataAccessObject);
+
+        final LoadHomepageController homepageController = new LoadHomepageController(homepageInteractor);
+        loggedInView = new LoggedInView(loggedInViewModel, homepageController);
         cardPanel.add(loggedInView, loggedInView.getViewName());
         return this;
     }
@@ -249,7 +256,7 @@ public class AppBuilder {
                 homepageOutputBoundary, studyDataAccessObject);
 
         final LoadHomepageController homepageController = new LoadHomepageController(homepageInteractor);
-        loggedInView.setLoadHomepageController(homepageController);
+        homepageView.setLoadHomepageController(homepageController);
         return this;
     }
 
