@@ -19,8 +19,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-import javax.management.RuntimeErrorException;
-
 
 public class DBExperimentDataAccessObject  {
 
@@ -33,7 +31,6 @@ public class DBExperimentDataAccessObject  {
     private static final String PASSWORD = "password";
     private static final String MESSAGE = "message";
     private final StudyFactory studyFactory;
-    private final UserFactory userFactory;
 
 
 
@@ -42,9 +39,8 @@ public class DBExperimentDataAccessObject  {
      *
      * @return All the studies that have been made from the DB.
      */
-    public DBExperimentDataAccessObject(StudyFactory studyFactory, UserFactory userFactory) {
+    public DBExperimentDataAccessObject(StudyFactory studyFactory) {
         this.studyFactory = studyFactory;
-        this.userFactory = userFactory;
         // No need to do anything to reinitialize a user list! The data is the cloud that may be miles away.
     }
 
@@ -114,6 +110,7 @@ public class DBExperimentDataAccessObject  {
         throw new RuntimeException("Study ID is not in the database");
 
     }
+
     /**
      * Takes the list of current studies we have saved. And add the new researchStudy to that list.
      * All the studies are added under NullPointers username.
@@ -135,8 +132,7 @@ public class DBExperimentDataAccessObject  {
         JSONArray studies = getStudies();
         JSONObject study = new JSONObject();
 
-        // TODO create a builder for JSON Objects.
-        // part for putting the
+        // part for putting the study information
         study.put("user", researchStudy.getUser());
         study.put("title", researchStudy.getTitle());
         study.put("details", researchStudy.getDetails());
@@ -161,22 +157,25 @@ public class DBExperimentDataAccessObject  {
 
             if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) {
                 return true;
-            } else if (responseBody.getInt(STATUS_CODE_LABEL) == CREDENTIAL_ERROR) {
+            }
+            else if (responseBody.getInt(STATUS_CODE_LABEL) == CREDENTIAL_ERROR) {
                 throw new RuntimeException("message could not be found or password was incorrect");
-            } else {
+            }
+            else {
                 throw new RuntimeException("database error: " + responseBody.getString(MESSAGE));
             }
-        } catch (IOException | JSONException ex) {
+        }
+        catch (IOException | JSONException ex) {
             throw new RuntimeException(ex.getMessage());
         }
 
     }
 
     /**
-     * Retrieve all the research studies created by a User.
+     * Retrieve all the CommonStudy objects created by a User.
      *
-     * @param username is a String that is username of the User that we want to retrieve of.
-     * @return
+     * @param username is a String username of the User that we want to retrieve of.
+     * @return List of CommonStudy objects created by the User.
      */
     public List<CommonStudy> retrieveUserStudies(String username) {
         final List<CommonStudy> studies = new ArrayList<>();
@@ -195,7 +194,7 @@ public class DBExperimentDataAccessObject  {
 
     /**
      * Delete a specified ResearchStudy from the database. Deletion will be based on the unique ID that is associated with
-     * the study.
+     * the study upon its creation.
      *
      * @param id
      * @return
@@ -219,24 +218,27 @@ public class DBExperimentDataAccessObject  {
             final Response response = client.newCall(request).execute();
             final JSONObject responseBody = new JSONObject(response.body().string());
             if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) { return studies.length() != newStudies.length();
-            } else if (responseBody.getInt(STATUS_CODE_LABEL) == CREDENTIAL_ERROR) { throw new RuntimeException("message could not be found or password was incorrect");
-            } else { throw new RuntimeException("database error: " + responseBody.getString(MESSAGE));
+            }
+            else if (responseBody.getInt(STATUS_CODE_LABEL) == CREDENTIAL_ERROR) {
+                throw new RuntimeException("message could not be found or password was incorrect");
+            }
+            else {
+                throw new RuntimeException("database error: " + responseBody.getString(MESSAGE));
             }
         } catch (IOException | JSONException ex) {
 
             throw new RuntimeException(ex.getMessage());
-
         }
-
     }
 
+    /**
+     *
+     * @param study
+     * @return
+     */
     public boolean editResearchStudy(CommonStudy study) {
         if (!deleteResearchStudy(study.getId())) return false;
         save(study); return true;
     }
-
-
-//    public void editRes
-
 
 }
