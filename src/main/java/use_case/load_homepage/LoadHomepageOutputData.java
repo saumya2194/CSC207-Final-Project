@@ -32,4 +32,6 @@ public class LoadHomepageOutputData {
     public String getUser() {
         return user;
     }
+
+    public boolean isUseCaseFailed() { return useCaseFailed; }
 }
