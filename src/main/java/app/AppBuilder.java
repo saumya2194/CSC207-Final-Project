@@ -10,9 +10,13 @@ import entity.CommonStudyFactory;
 import entity.CommonUserFactory;
 import entity.StudyFactory;
 import entity.UserFactory;
+import interface_adapter.EditStudy.EditStudyViewModel;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.createstudy.CreateStudyController;
+import interface_adapter.createstudy.CreateStudyPresenter;
 import interface_adapter.createstudy.CreateStudyViewModel;
 import interface_adapter.load_homepage.HomepageViewModel;
+import interface_adapter.load_homepage.LoadHomepageController;
 import interface_adapter.load_homepage.LoadHomepagePresenter;
 import interface_adapter.login.LoginController;
 import interface_adapter.login.LoginPresenter;
@@ -22,6 +26,11 @@ import interface_adapter.signup.SignupPresenter;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.view_experiment.ViewExperimentViewModel;
 import interface_adapter.view_profile.ProfileViewModel;
+import use_case.createstudy.CreateStudyInputBoundary;
+import use_case.createstudy.CreateStudyInteractor;
+import use_case.createstudy.CreateStudyOutputBoundary;
+import use_case.load_homepage.LoadHomepageInputBoundary;
+import use_case.load_homepage.LoadHomepageInteractor;
 import use_case.load_homepage.LoadHomepageOutputBoundary;
 import use_case.login.LoginInputBoundary;
 import use_case.login.LoginInteractor;
@@ -30,6 +39,11 @@ import use_case.signup.SignupInputBoundary;
 import use_case.signup.SignupInteractor;
 import use_case.signup.SignupOutputBoundary;
 import view.*;
+import interface_adapter.view_experiment.ViewExperimentViewModel;
+import interface_adapter.view_profile.ProfileViewModel;
+import interface_adapter.logged_in.LoggedInViewModel;
+
+
 
 /**
  * The AppBuilder class is responsible for putting together the pieces of
@@ -54,7 +68,7 @@ public class AppBuilder {
     private final ViewManager viewManager = new ViewManager(cardPanel, cardLayout, viewManagerModel);
 
     // thought question: is the hard dependency below a problem?(line from starter code)
-    private final DBExperimentDataAccessObject experimentDataAccessObject = new DBExperimentDataAccessObject(studyFactory, userFactory);
+    private final DBExperimentDataAccessObject studyDataAccessObject = new DBExperimentDataAccessObject(studyFactory, userFactory);
     private final DBUserDataAccessObject userDataAccessObject = new DBUserDataAccessObject(userFactory);
 
     private SignupView signupView;
@@ -70,7 +84,8 @@ public class AppBuilder {
     private ViewExperimentView viewExperimentView;
     private ViewExperimentViewModel viewExperimentViewModel;
     private EditExperimentView editExperimentView;
-
+    private LoggedInViewModel loggedInViewModel;
+    private LoggedInView loggedInView;
     public AppBuilder() {
         cardPanel.setLayout(cardLayout);
     }
@@ -100,7 +115,61 @@ public class AppBuilder {
     }
 
     /**
+     * Adds the Create Study View to the application.
+     *
+     * @return this builder
+     */
+    public AppBuilder addCreateStudyView() {
+        createStudyViewModel = new CreateStudyViewModel();
+        createStudyView = new CreateStudyView(createStudyViewModel);
+        cardPanel.add(createStudyView, createStudyView.getViewName());
+        return this;
+    }
+
+    /**
      * Adds the LoggedIn View to the application.
+     * @return this builder
+     */
+    public AppBuilder addLoggedInView() {
+        loggedInViewModel = new LoggedInViewModel();
+        final LoadHomepageOutputBoundary homepageOutputBoundary = new LoadHomepagePresenter(viewManagerModel, profileViewModel,
+                createStudyViewModel, new EditStudyViewModel(), loginViewModel, homepageViewModel);
+
+        final LoadHomepageInputBoundary homepageInteractor = new LoadHomepageInteractor(
+                homepageOutputBoundary, studyDataAccessObject);
+
+        final LoadHomepageController homepageController = new LoadHomepageController(homepageInteractor);
+        loggedInView = new LoggedInView(loggedInViewModel, homepageController);
+        cardPanel.add(loggedInView, loggedInView.getViewName());
+        return this;
+    }
+
+    /**
+     * Adds the Profile View to the application.
+     *
+     * @return this builder
+     */
+    public AppBuilder addProfileView() {
+        profileViewModel = new ProfileViewModel();
+        profileView = new ProfileView(profileViewModel);
+        cardPanel.add(profileView, profileView.getViewName());
+        return this;
+    }
+
+    /**
+     * Adds the Experiment View to the application.
+     *
+     * @return this builder
+     */
+    /*public AppBuilder addViewExperimentView() {
+        viewExperimentViewModel = new ViewExperimentViewModel();
+        viewExperimentView = new ProfileView(viewExperimentViewModel);
+        cardPanel.add(viewExperimentView, viewExperimentView.getViewName());
+        return this;
+    }
+
+    /**
+     * Adds the Homepage View to the application.
      *
      * @return this builder
      */
@@ -110,6 +179,8 @@ public class AppBuilder {
         cardPanel.add(homepageView, homepageView.getViewName());
         return this;
     }
+
+
 
 
     /**
@@ -125,6 +196,22 @@ public class AppBuilder {
 
         final SignupController controller = new SignupController(userSignupInteractor);
         signupView.setSignupController(controller);
+        return this;
+    }
+
+    /**
+     * Adds the Signup Use Case to the application.
+     *
+     * @return this builder
+     */
+    public AppBuilder addCreateStudyUseCase() {
+        final CreateStudyOutputBoundary createStudyOutputBoundary = new CreateStudyPresenter(viewManagerModel,
+                homepageViewModel, createStudyViewModel);
+        final CreateStudyInputBoundary createStudyInteractor = new CreateStudyInteractor(
+                studyDataAccessObject, createStudyOutputBoundary, studyFactory);
+
+        final CreateStudyController controller = new CreateStudyController(createStudyInteractor);
+        createStudyView.setCreateStudyController(controller);
         return this;
     }
 
@@ -145,22 +232,27 @@ public class AppBuilder {
         return this;
     }
 
+
+
     // The following will need significant adjustment
 
 
-//    public AppBuilder addLoadHomepageUseCase() {
-//        final LoadHomepageOutputBoundary loadHomepageOutputBoundary = new LoadHomepagePresenter(viewManagerModel,
-//                loadHomepageViewModel, loginViewModel);
-//        final LoginInputBoundary loginInteractor = new LoginInteractor(
-//                userDataAccessObject, loginOutputBoundary);
-//
-//        final LoginController loginController = new LoginController(loginInteractor);
-//        loginView.setLoginController(loginController);
-//        return this;
-//    }
+    /**
+     * Adds the Homepage Use Case to the application.
+     *
+     * @return this builder
+     */
+    public AppBuilder addHomepageUseCase() {
+        final LoadHomepageOutputBoundary homepageOutputBoundary = new LoadHomepagePresenter(viewManagerModel, profileViewModel,
+                createStudyViewModel, new EditStudyViewModel(), loginViewModel, homepageViewModel);
 
-    // we must create add-----UseCase() methods for the remaining use cases and correct the one above
+        final LoadHomepageInputBoundary homepageInteractor = new LoadHomepageInteractor(
+                homepageOutputBoundary, studyDataAccessObject);
 
+        final LoadHomepageController homepageController = new LoadHomepageController(homepageInteractor);
+        homepageView.setLoadHomepageController(homepageController);
+        return this;
+    }
 
 
     /**

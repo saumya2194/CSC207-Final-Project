@@ -14,6 +14,7 @@ import interface_adapter.load_homepage.HomepageViewModel;
 import interface_adapter.load_homepage.LoadHomepageController;
 import interface_adapter.logged_in.LoggedInState;
 import interface_adapter.logged_in.LoggedInViewModel;
+import interface_adapter.login.LoginController;
 
 /**
  * A simple view to display a success message after logging in.
@@ -21,13 +22,14 @@ import interface_adapter.logged_in.LoggedInViewModel;
 public class LoggedInView extends JPanel implements ActionListener {
 
     private final String viewName = "logged in";
-    private final LoadHomepageController homepageController;
     private final LoggedInViewModel loggedInViewModel;
     private final JButton goToHomepageButton;
+    private  LoadHomepageController homepageController;
 
-    public LoggedInView(LoadHomepageController homepageController, LoggedInViewModel loggedInViewModel) {
-        this.homepageController = homepageController;
+    public LoggedInView(LoggedInViewModel loggedInViewModel,
+                        LoadHomepageController loadHomepageController) {
         this.loggedInViewModel = loggedInViewModel;
+        this.homepageController = loadHomepageController;
 
         // Set up the layout
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -54,6 +56,10 @@ public class LoggedInView extends JPanel implements ActionListener {
             homepageController.execute(user);
         }
     }
+
+    //public void setLoadHomepageController(LoadHomepageController homepageController) {
+    //   this.loadHomepageController = homepageController;
+    //}
 
     public String getViewName() {
         return viewName;

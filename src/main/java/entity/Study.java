@@ -22,4 +22,12 @@ public interface Study {
      * @return the username that created the study.
      */
     String getUser();
+
+    /**
+     * Returns the id of the study.
+     * @return the id of the study.
+     */
+    String getId();
+
+
 }

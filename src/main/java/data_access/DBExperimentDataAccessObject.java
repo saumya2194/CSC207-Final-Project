@@ -18,11 +18,14 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
+import use_case.createstudy.CreateStudyDataAccessInterface;
+import use_case.load_homepage.LoadHomepageExperimentsDataAccessInterface;
 
 import javax.management.RuntimeErrorException;
 
 
-public class DBExperimentDataAccessObject  {
+public class DBExperimentDataAccessObject implements CreateStudyDataAccessInterface,
+        LoadHomepageExperimentsDataAccessInterface {
 
     private static final int SUCCESS_CODE = 200;
     private static final int CREDENTIAL_ERROR = 401;
@@ -122,7 +125,7 @@ public class DBExperimentDataAccessObject  {
      * @return True if the study is added successfully onto current studies list. Otherwise return False.
      */
 
-    public boolean save(CommonStudy researchStudy) {
+    public void save(Study researchStudy) {
         final OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
 
@@ -159,9 +162,7 @@ public class DBExperimentDataAccessObject  {
 
             System.out.println(responseBody);
 
-            if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) {
-                return true;
-            } else if (responseBody.getInt(STATUS_CODE_LABEL) == CREDENTIAL_ERROR) {
+            if (responseBody.getInt(STATUS_CODE_LABEL) == CREDENTIAL_ERROR) {
                 throw new RuntimeException("message could not be found or password was incorrect");
             } else {
                 throw new RuntimeException("database error: " + responseBody.getString(MESSAGE));
@@ -197,7 +198,7 @@ public class DBExperimentDataAccessObject  {
      * Delete a specified ResearchStudy from the database. Deletion will be based on the unique ID that is associated with
      * the study.
      *
-     * @param id
+     * @param
      * @return
      */
 
