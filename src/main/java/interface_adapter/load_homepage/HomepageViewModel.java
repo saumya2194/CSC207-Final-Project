@@ -1,14 +1,10 @@
 package interface_adapter.load_homepage;
 
 import data_access.DBExperimentDataAccessObject;
-import data_access.DBUserDataAccessObject;
 import entity.CommonStudy;
 import entity.CommonStudyFactory;
 import entity.CommonUserFactory;
-import entity.StudyFactory;
 import interface_adapter.ViewModel;
-import interface_adapter.load_homepage.HomepageState;
-import use_case.login.LoginInputData;
 
 public class HomepageViewModel extends ViewModel<HomepageState> {
     public static final String TITLE_LABEL = "Homepage" ;
@@ -18,6 +14,8 @@ public class HomepageViewModel extends ViewModel<HomepageState> {
     public static final String[] experimentsColumns = {"ID", "Name"};
     public static final String EXPERIMENTS_TITLE_LABEL = "Experiments";
     public static final String MY_EXPERIMENTS_TITLE_LABEL = "My Experiments";
+    public static final String EDIT_EXPERIMENT_BUTTON_LABEL = "Edit Experiment";
+    public static final String VIEW_EXPERIMENT_BUTTON_LABEL = "View Experiment";
 
 
     public HomepageViewModel(){

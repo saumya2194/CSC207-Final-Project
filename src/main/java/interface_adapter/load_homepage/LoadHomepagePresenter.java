@@ -1,8 +1,10 @@
 package interface_adapter.load_homepage;
+import interface_adapter.EditStudy.EditStudyState;
 import interface_adapter.EditStudy.EditStudyViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.createstudy.CreateStudyViewModel;
-import interface_adapter.login.LoginViewModel;
+import interface_adapter.enter_id.EnterIDState;
+import interface_adapter.enter_id.EnterIDViewModel;
 import interface_adapter.view_profile.ProfileState;
 import interface_adapter.view_profile.ProfileViewModel;
 
@@ -15,21 +17,20 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundary {
     private final ProfileViewModel profileViewModel;
     private final CreateStudyViewModel createStudyViewModel;
     private final EditStudyViewModel editStudyViewModel;
-//    private final ViewExperimentViewModel viewExperimentViewModel;
-    private final LoginViewModel loginViewModel;
+    private final EnterIDViewModel enterIDViewModel;
     private ViewManagerModel viewManagerModel;
 
     public LoadHomepagePresenter(ViewManagerModel viewManagerModel,
                                  ProfileViewModel profileViewModel,
                                  CreateStudyViewModel createStudyViewModel,
                                  EditStudyViewModel editStudyViewModel,
-                                 LoginViewModel loginViewModel,
+                                 EnterIDViewModel enterIDViewModel,
                                  HomepageViewModel homepageViewModel) {
         this.viewManagerModel = viewManagerModel;
         this.profileViewModel = profileViewModel;
         this.createStudyViewModel = createStudyViewModel;
         this.editStudyViewModel = editStudyViewModel;
-        this.loginViewModel = loginViewModel;
+        this.enterIDViewModel = enterIDViewModel;
         this.homepageViewModel = homepageViewModel;
 
 
@@ -70,18 +71,33 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundary {
     }
 
     // fill in the other switch things
-    public void switchToCreateStudyView(){
+    public void switchToCreateStudyView(String username){
         viewManagerModel.setState(createStudyViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
 
     @Override
-    public void switchToEditExperimentView(String data) {
+    public void switchToEditExperimentView(String username) {
+        final EditStudyState editStudyState = editStudyViewModel.getState();
+        editStudyState.setUser(username);
+        System.out.println(editStudyState);
+        this.editStudyViewModel.setState(editStudyState);
+        editStudyViewModel.firePropertyChanged();
 
+        // Switch to the profile view
+        viewManagerModel.setState(editStudyViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
     }
 
     @Override
-    public void switchToViewExperimentView(String data) {
+    public void switchToEnterIDView(String username) {
+        final EnterIDState enterIDState = enterIDViewModel.getState();
+        enterIDState.setUsername(username);
+        this.enterIDViewModel.setState(enterIDState);
+        enterIDViewModel.firePropertyChanged();
+        viewManagerModel.setState(enterIDViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
+
 
     }
 

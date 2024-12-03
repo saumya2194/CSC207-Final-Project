@@ -14,6 +14,6 @@ public interface EditStudyDataAccessInterface {
      * @return
      */
 
-    boolean editStudy(CommonStudy newStudy);
+    boolean editResearchStudy(CommonStudy newStudy);
 
 }

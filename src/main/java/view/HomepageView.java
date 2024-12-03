@@ -12,7 +12,6 @@ import java.beans.PropertyChangeListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
 
 import entity.CommonStudy;
 import interface_adapter.load_homepage.LoadHomepageController;
@@ -25,6 +24,8 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
     private final HomepageViewModel homepageViewModel;
     private LoadHomepageController loadHomepageController;
 
+    private final JButton viewExperiment;
+    private final JButton editExperimentbutton;
     private final JButton createExperiment;
     private final JButton profile;
 
@@ -53,10 +54,16 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
         final JLabel myExperimentsTitle = new JLabel(HomepageViewModel.MY_EXPERIMENTS_TITLE_LABEL);
         myExperimentsTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         createExperiment = new JButton(HomepageViewModel.CREATE_EXPERIMENT_BUTTON_LABEL);
+        editExperimentbutton = new JButton(HomepageViewModel.EDIT_EXPERIMENT_BUTTON_LABEL);
+        viewExperiment = new JButton(HomepageViewModel.VIEW_EXPERIMENT_BUTTON_LABEL);
         profile = new JButton(HomepageViewModel.PROFILE_BUTTON_LABEL);
         myExperimentsPanel.add(myExperimentsTitle);
         myExperimentsPanel.add(createExperiment);
-        // add table
+
+        myExperimentsPanel.add(editExperimentbutton);
+        myExperimentsPanel.add(viewExperiment);
+        myExperimentsPanel.add(profile);
+        myExperimentsPanel.add(myExperiments);
 
 
         myExperimentsPanel.add(myExperiments);
@@ -67,11 +74,37 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
         experimentsTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         experimentsPanel.add(experimentsTitle);
         experimentsPanel.add(experiments);
-
+      
+        // Buttons with ActionListeners
+        profile.addActionListener(evt -> {
+            String username = homepageViewModel.getState().getUsername();
+            loadHomepageController.switchToViewProfileView(username);
+        });
+      
         createExperiment.addActionListener(
                 new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        final HomepageState currentState = homepageViewModel.getState();
+                        String username = currentState.getUsername();
+                        loadHomepageController.switchToCreateStudyView(username);}
+                }
+        );
 
-                    public void actionPerformed(ActionEvent evt) {loadHomepageController.switchToCreateStudyView();}
+        editExperimentbutton.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        final HomepageState currentState = homepageViewModel.getState();
+                        loadHomepageController.switchToEditExperimentView(currentState.getUsername());
+                    }
+                }
+        );
+
+        viewExperiment.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        final HomepageState currentState = homepageViewModel.getState();
+                        loadHomepageController.switchToEnterIDView(currentState.getUsername());
+                    }
                 }
         );
 
@@ -88,34 +121,6 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
                 }
             }
         );
-        
-
-        // TODO: WHERE TO TAKE?
-        myExperiments.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt){
-                if (evt.getClickCount() == 2){
-                    // what to do when double click occurs
-                    String data = myExperiments.getValueAt(myExperiments.getSelectedRow(), 0).toString();
-                    // I could input the experiment id into the controller of the experiments thing
-                    loadHomepageController.switchToEditExperimentView(data);
-                    // do I have to add stuff after this?
-
-
-                }
-            }
-        });
-
-        experiments.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt){
-                if (evt.getClickCount() == 2){
-                    // what to do when double click occurs
-                    String data = experiments.getValueAt(experiments.getSelectedRow(), 0).toString();
-                    // I could input the experiment id into the controller of the experiments thing
-                    loadHomepageController.switchToViewExperimentView(data);
-                    // do I have to add stuff after this?
-                }
-            }
-        });
 
         this.add(title);
         this.add(profile);
@@ -124,7 +129,6 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
 
     }
 
-    // TODO: ADD ACTION PERFORMED THING
     /**
      * React to a button click that results in evt.
      * @param evt the ActionEvent to react to

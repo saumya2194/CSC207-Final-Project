@@ -3,12 +3,32 @@ package use_case.editStudy;
 import entity.CommonStudy;
 
 public class EditStudyInputData {
-    private final CommonStudy newStudy;
+    private final String title;
+    private final String details;
+    private final String user;
+    private final String ID;
 
-    public EditStudyInputData(CommonStudy newStudy) {
-        this.newStudy = newStudy;
+    public EditStudyInputData(String title, String details, String user, String ID) {
+
+        this.title = title;
+        this.details = details;
+        this.user = user;
+        this.ID = ID;
     }
 
-    CommonStudy getNewStudy() {return this.newStudy; }
+    String getTitle() {
+        return title;
+    }
 
+    String getDetails() {
+        return details;
+    }
+
+    String getUser() {
+        return user;
+    }
+
+    String getId() {
+        return ID;
+    }
 }

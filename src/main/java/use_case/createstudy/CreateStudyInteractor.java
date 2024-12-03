@@ -28,9 +28,10 @@ public class CreateStudyInteractor implements CreateStudyInputBoundary {
             studyPresenter.prepareFailView("Length has exceeded the maximum allowed characters (250).");
         }
         else {
-            final Study study = studyFactory.create(createStudyInputData.getTitle(), createStudyInputData.getDetails(),
-                    createStudyInputData.getUser());
+            final Study study = studyFactory.create(createStudyInputData.getUser(), createStudyInputData.getTitle(),
+                    createStudyInputData.getDetails());
                 studyDataAccessObject.save(study);
+                System.out.println(study);
                 final CreateStudyOutputData createStudyOutputData = new CreateStudyOutputData(study.getTitle(),
                         study.getDetails(),
                         false);

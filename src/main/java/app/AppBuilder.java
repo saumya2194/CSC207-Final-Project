@@ -10,11 +10,14 @@ import entity.CommonStudyFactory;
 import entity.CommonUserFactory;
 import entity.StudyFactory;
 import entity.UserFactory;
+import interface_adapter.EditStudy.EditStudyController;
+import interface_adapter.EditStudy.EditStudyPresenter;
 import interface_adapter.EditStudy.EditStudyViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.createstudy.CreateStudyController;
 import interface_adapter.createstudy.CreateStudyPresenter;
 import interface_adapter.createstudy.CreateStudyViewModel;
+import interface_adapter.enter_id.EnterIDViewModel;
 import interface_adapter.load_homepage.HomepageViewModel;
 import interface_adapter.load_homepage.LoadHomepageController;
 import interface_adapter.load_homepage.LoadHomepagePresenter;
@@ -24,12 +27,18 @@ import interface_adapter.login.LoginViewModel;
 import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupPresenter;
 import interface_adapter.signup.SignupViewModel;
+import interface_adapter.view_experiment.ViewExperimentController;
+import interface_adapter.view_experiment.ViewExperimentPresenter;
 import interface_adapter.view_experiment.ViewExperimentViewModel;
 import interface_adapter.view_profile.EditProfilePresenter;
 import interface_adapter.view_profile.ProfileViewModel;
 import use_case.createstudy.CreateStudyInputBoundary;
 import use_case.createstudy.CreateStudyInteractor;
 import use_case.createstudy.CreateStudyOutputBoundary;
+import use_case.editStudy.EditStudyDataAccessInterface;
+import use_case.editStudy.EditStudyInputBoundary;
+import use_case.editStudy.EditStudyInteractor;
+import use_case.editStudy.EditStudyOutputBoundary;
 import use_case.load_homepage.LoadHomepageInputBoundary;
 import use_case.load_homepage.LoadHomepageInteractor;
 import use_case.load_homepage.LoadHomepageOutputBoundary;
@@ -39,6 +48,9 @@ import use_case.login.LoginOutputBoundary;
 import use_case.signup.SignupInputBoundary;
 import use_case.signup.SignupInteractor;
 import use_case.signup.SignupOutputBoundary;
+import use_case.view_experiment.ViewExperimentInputBoundary;
+import use_case.view_experiment.ViewExperimentInteractor;
+import use_case.view_experiment.ViewExperimentOutputBoundary;
 import view.*;
 import interface_adapter.view_experiment.ViewExperimentViewModel;
 import interface_adapter.view_profile.ProfileViewModel;
@@ -87,9 +99,12 @@ public class AppBuilder {
     private CreateStudyViewModel createStudyViewModel;
     private ProfileView profileView;
     private ProfileViewModel profileViewModel;
+    private EnterIdView enterIdView;
+    private EnterIDViewModel enterIDViewModel;
     private ViewExperimentView viewExperimentView;
     private ViewExperimentViewModel viewExperimentViewModel;
     private EditExperimentView editExperimentView;
+    private EditStudyViewModel editExperimentViewModel;
     private LoggedInViewModel loggedInViewModel;
     private LoggedInView loggedInView;
     public AppBuilder() {
@@ -155,15 +170,35 @@ public class AppBuilder {
         return this;
     }
 
+    public AppBuilder addEditStudyView() {
+        editExperimentViewModel  = new EditStudyViewModel();
+        editExperimentView = new EditExperimentView(editExperimentViewModel);
+        cardPanel.add(editExperimentView, editExperimentView.getViewName());
+        return this;
+    }
+
     /**
      * Adds the Experiment View to the application.
      *
      * @return this builder
      */
-    /*public AppBuilder addViewExperimentView() {
+
+    public AppBuilder addViewExperimentView() {
         viewExperimentViewModel = new ViewExperimentViewModel();
-        viewExperimentView = new ProfileView(viewExperimentViewModel);
+        viewExperimentView = new ViewExperimentView(viewExperimentViewModel);
         cardPanel.add(viewExperimentView, viewExperimentView.getViewName());
+        return this;
+    }
+
+    /**
+     * Adds the EnterID view to the application.
+     * @return this builder
+     */
+
+    public AppBuilder addEnterIDView() {
+        enterIDViewModel = new EnterIDViewModel();
+        enterIdView = new EnterIdView(enterIDViewModel);
+        cardPanel.add(enterIdView, enterIDViewModel.getViewName());
         return this;
     }
 
@@ -178,9 +213,6 @@ public class AppBuilder {
         cardPanel.add(homepageView, homepageView.getViewName());
         return this;
     }
-
-
-
 
     /**
      * Adds the Signup Use Case to the application.
@@ -206,11 +238,39 @@ public class AppBuilder {
     public AppBuilder addCreateStudyUseCase() {
         final CreateStudyOutputBoundary createStudyOutputBoundary = new CreateStudyPresenter(viewManagerModel,
                 homepageViewModel, createStudyViewModel);
-//        final CreateStudyInputBoundary createStudyInteractor = new CreateStudyInteractor(
-//                studyDataAccessObject, createStudyOutputBoundary, studyFactory);
-//
-//        final CreateStudyController controller = new CreateStudyController(createStudyInteractor);
-//        createStudyView.setCreateStudyController(controller);
+        final CreateStudyInputBoundary createStudyInteractor = new CreateStudyInteractor(
+                studyDataAccessObject, createStudyOutputBoundary, studyFactory);
+
+        final CreateStudyController controller = new CreateStudyController(createStudyInteractor);
+        createStudyView.setCreateStudyController(controller);
+        return this;
+    }
+
+
+    public AppBuilder addEditStudyUseCase() {
+        final EditStudyOutputBoundary editStudyOutputBoundary = new EditStudyPresenter(
+                homepageViewModel, viewManagerModel, editExperimentViewModel);
+        final EditStudyInputBoundary editStudyInteractor = new EditStudyInteractor(
+                studyDataAccessObject, editStudyOutputBoundary, studyFactory);
+
+        final EditStudyController controller = new EditStudyController(editStudyInteractor);
+        editExperimentView.setEditStudyController(controller);
+        return this;
+    }
+
+    /**
+     * Adds the ViewExperiment Use case to the application.
+     * @return this builder.
+     */
+
+    public AppBuilder addViewExperimentUseCase() {
+        final ViewExperimentOutputBoundary viewExperimentOutputBoundary = new ViewExperimentPresenter(
+                viewExperimentViewModel, viewManagerModel);
+        final ViewExperimentInputBoundary viewExperimentInteractor = new ViewExperimentInteractor(
+                studyDataAccessObject, viewExperimentOutputBoundary);
+        final ViewExperimentController controller = new ViewExperimentController(viewExperimentInteractor);
+        viewExperimentView.setViewExperimentController(controller);
+        enterIdView.setViewExperimentController(controller);
         return this;
     }
 
@@ -230,7 +290,17 @@ public class AppBuilder {
         loginView.setLoginController(loginController);
         return this;
     }
-
+//
+//    public AppBuilder addEnterIDViewUseCase() {
+//        final ViewExperimentOutputBoundary viewExperimentOutputBoundary = new ViewExperimentPresenter(
+//                viewExperimentViewModel, viewManagerModel);
+//
+//        final ViewExperimentInputBoundary viewExperimentInteractor = new ViewExperimentInteractor(
+//                studyDataAccessObject, viewExperimentOutputBoundary);
+//        final ViewExperimentController controller = new ViewExperimentController(viewExperimentInteractor);
+//        enterIdView.setViewExperimentController(controller);
+//        return this;
+//    }
 
 
     // The following will need significant adjustment
@@ -242,15 +312,14 @@ public class AppBuilder {
      * @return this builder
      */
     public AppBuilder addHomepageUseCase() {
-//        final LoadHomepageOutputBoundary homepageOutputBoundary = new LoadHomepagePresenter(viewManagerModel, profileViewModel,
-//                createStudyViewModel, new EditStudyViewModel(), loginViewModel, homepageViewModel);
-//
-//        final LoadHomepageInputBoundary homepageInteractor = new LoadHomepageInteractor(
-//                homepageOutputBoundary, studyDataAccessObject);
-//
-//        final LoadHomepageController homepageController = new LoadHomepageController(homepageInteractor);
-//        loggedInView.setLoadHomepageController(homepageController);
-//        return this;
+        final LoadHomepageOutputBoundary homepageOutputBoundary = new LoadHomepagePresenter(viewManagerModel, profileViewModel,
+                createStudyViewModel, editExperimentViewModel, enterIDViewModel, homepageViewModel);
+
+        final LoadHomepageInputBoundary homepageInteractor = new LoadHomepageInteractor(
+                homepageOutputBoundary, studyDataAccessObject);
+
+        final LoadHomepageController homepageController = new LoadHomepageController(homepageInteractor);
+        homepageView.setLoadHomepageController(homepageController);
         return this;
     }
 

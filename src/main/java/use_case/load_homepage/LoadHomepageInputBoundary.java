@@ -10,11 +10,11 @@ public interface LoadHomepageInputBoundary {
 
     void switchToProfileView(String username);
 
-    void switchToCreateStudyView();
+    void switchToCreateStudyView(String username);
 
-    void switchToEditExperimentView(String data);
+    void switchToEditExperimentView(String username);
 
-    void switchToViewExperimentView(String data);
+    void switchToEnterIDView(String data);
 
 
 }

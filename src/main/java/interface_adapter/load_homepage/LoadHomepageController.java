@@ -16,13 +16,13 @@ public class LoadHomepageController {
 
     public void switchToViewProfileView(String username){ loadHomepageUseCaseInteractor.switchToProfileView(username);}
 
-    public void switchToCreateStudyView(){ loadHomepageUseCaseInteractor.switchToCreateStudyView();}
+    public void switchToCreateStudyView(String username){ loadHomepageUseCaseInteractor.switchToCreateStudyView(username);}
 
-    public void switchToEditExperimentView(String data) {
-        loadHomepageUseCaseInteractor.switchToEditExperimentView(data);
+    public void switchToEditExperimentView(String username) {
+        loadHomepageUseCaseInteractor.switchToEditExperimentView(username);
     }
 
-    public void switchToViewExperimentView(String data) {
-        loadHomepageUseCaseInteractor.switchToViewExperimentView(data);
+    public void switchToEnterIDView(String username) {
+        loadHomepageUseCaseInteractor.switchToEnterIDView(username);
     }
 }
