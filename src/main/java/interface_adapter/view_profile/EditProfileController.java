@@ -24,4 +24,11 @@ public class EditProfileController {
 
         userChangePasswordUseCaseInteractor.execute(editProfileInputData);
     }
+
+    /**
+     * Executes the "switch to HomepageView" Use Case.
+     */
+    public void switchToHomepageView() {
+        userChangePasswordUseCaseInteractor.switchToHomepageView();
+    }
 }

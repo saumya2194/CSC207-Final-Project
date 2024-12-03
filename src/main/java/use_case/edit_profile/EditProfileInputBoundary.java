@@ -11,4 +11,8 @@ public interface EditProfileInputBoundary {
      */
     void execute(EditProfileInputData editProfileInputData);
 
+    /**
+     * Executes the switch to login view use case.
+     */
+    void switchToHomepageView();
 }

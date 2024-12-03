@@ -28,7 +28,7 @@ public class CreateStudyController {
     }
 
     /**
-     * Executes the "switch to LoginView" Use Case.
+     * Executes the "switch to HomepageView" Use Case.
      */
     public void switchToHomepageView() {
         createStudyUseCaseInteractor.switchToHomepageView();

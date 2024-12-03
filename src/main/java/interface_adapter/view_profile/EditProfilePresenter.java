@@ -36,4 +36,10 @@ public class EditProfilePresenter implements EditProfileOutputBoundary {
     public void prepareFailView(String error) {
         // note: this use case currently can't fail
     }
+
+    @Override
+    public void switchToHomepageView() {
+        viewManagerModel.setState(homepageViewModel.getViewName());
+        viewManagerModel.firePropertyChanged();
+    }
 }

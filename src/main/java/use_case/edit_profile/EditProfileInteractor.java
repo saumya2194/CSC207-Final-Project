@@ -29,4 +29,8 @@ public class EditProfileInteractor implements EditProfileInputBoundary {
                 false);
         userPresenter.prepareSuccessView(editProfileOutputData);
     }
+
+    public void switchToHomepageView() {
+        userPresenter.switchToHomepageView();
+    }
 }

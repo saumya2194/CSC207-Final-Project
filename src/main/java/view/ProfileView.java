@@ -1,6 +1,8 @@
 package view;
 
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
@@ -33,6 +35,8 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 
     private final JButton logOut;
 
+    private final JButton cancel;
+
     private final JTextField passwordInputField = new JTextField(15);
     private final JButton changePassword;
 
@@ -55,6 +59,9 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
 
         changePassword = new JButton("Change Password");
         buttons.add(changePassword);
+
+        cancel = new JButton("Cancel");
+        buttons.add(cancel);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -104,6 +111,16 @@ public class ProfileView extends JPanel implements PropertyChangeListener {
                         // 2. Execute the logout Controller.
                         final ProfileState currentState = profileViewModel.getState();
                         this.logoutController.execute(currentState.getUsername());
+                    }
+                }
+
+
+        );
+
+        cancel.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        editProfileController.switchToHomepageView();
                     }
                 }
         );
