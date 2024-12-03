@@ -18,6 +18,10 @@ public class Main {
                 .addLoginView()
                 .addSignupUseCase()
                 .addLoginUseCase()
+                .addCreateStudyView()
+                .addCreateStudyUseCase()
+                .addHomepageUseCase()
+                .addLoggedInView()
                 .build();
         application.pack();
         application.setVisible(true);

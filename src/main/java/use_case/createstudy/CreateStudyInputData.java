@@ -8,7 +8,7 @@ import java.util.UUID;
  */
 public class CreateStudyInputData {
 
-    private final String iD;
+    private final String Id;
     private String user;
     private String title;
     private String details;
@@ -17,7 +17,7 @@ public class CreateStudyInputData {
         this.title = title;
         this.details = details;
         this.user = user;
-        this.iD = String.valueOf(UUID.randomUUID().hashCode());
+        this.Id = String.valueOf(UUID.randomUUID().hashCode());
 
     }
 
@@ -33,7 +33,7 @@ public class CreateStudyInputData {
         return user;
     }
 
-    String getID() {
-        return iD;
+    String getId() {
+        return Id;
     }
 }

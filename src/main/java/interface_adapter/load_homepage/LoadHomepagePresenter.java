@@ -53,7 +53,7 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundary {
 
     @Override
     public void prepareFailView(String error){
-        // TODO: what do I put here?
+       //Should never fail
     }
 
     public void switchToProfileView(String username){
