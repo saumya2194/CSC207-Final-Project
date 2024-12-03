@@ -10,6 +10,8 @@ import entity.CommonStudyFactory;
 import entity.CommonUserFactory;
 import entity.StudyFactory;
 import entity.UserFactory;
+import interface_adapter.EditStudy.EditStudyController;
+import interface_adapter.EditStudy.EditStudyPresenter;
 import interface_adapter.EditStudy.EditStudyViewModel;
 import interface_adapter.ViewManagerModel;
 import interface_adapter.createstudy.CreateStudyController;
@@ -30,6 +32,9 @@ import interface_adapter.view_profile.ProfileViewModel;
 import use_case.createstudy.CreateStudyInputBoundary;
 import use_case.createstudy.CreateStudyInteractor;
 import use_case.createstudy.CreateStudyOutputBoundary;
+import use_case.editStudy.EditStudyInputBoundary;
+import use_case.editStudy.EditStudyInteractor;
+import use_case.editStudy.EditStudyOutputBoundary;
 import use_case.load_homepage.LoadHomepageInputBoundary;
 import use_case.load_homepage.LoadHomepageInteractor;
 import use_case.load_homepage.LoadHomepageOutputBoundary;
@@ -89,7 +94,9 @@ public class AppBuilder {
     private ProfileViewModel profileViewModel;
     private ViewExperimentView viewExperimentView;
     private ViewExperimentViewModel viewExperimentViewModel;
+
     private EditExperimentView editExperimentView;
+    private EditExperimentViewModel editExperimentViewModel;
     private LoggedInViewModel loggedInViewModel;
     private LoggedInView loggedInView;
     public AppBuilder() {
@@ -211,6 +218,18 @@ public class AppBuilder {
 
         final CreateStudyController controller = new CreateStudyController(createStudyInteractor);
         createStudyView.setCreateStudyController(controller);
+        return this;
+    }
+
+
+    public AppBuilder addEditStudyUseCase() {
+        final EditStudyOutputBoundary editStudyOutputBoundary = new EditStudyPresenter(viewManagerModel,
+                homepageViewModel, editStudyViewModel);
+        final EditStudyInputBoundary editStudyInteractor = new EditStudyInteractor(
+                studyDataAccessObject, editStudyOutputBoundary, studyFactory);
+
+        final EditStudyController controller = new EditStudyController(editStudyInteractor);
+        editStudyView.setCreateStudyController(controller);
         return this;
     }
 
