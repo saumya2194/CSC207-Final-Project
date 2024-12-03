@@ -24,7 +24,7 @@ public class CreateStudyInteractorTest {
             public void prepareSuccessView(CreateStudyOutputData study) {
                 // 2 things to check: the output data is correct, and the user has been created in the DAO.
                 assertEquals("Psych Experiment", (study.getTitle()));
-                assertTrue(studyRepository.existsByName("Psych Experiment"));
+                assertTrue(studyRepository.("Psych Experiment"));
             }
 
             @Override

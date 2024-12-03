@@ -6,13 +6,7 @@ import java.awt.event.ActionListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -25,10 +19,12 @@ import interface_adapter.createstudy.CreateStudyViewModel;
  */
 public class CreateStudyView extends JPanel implements PropertyChangeListener {
     private final String viewName = "create study";
+    private String user;
 
     private final CreateStudyViewModel createStudyViewModel;
+
     private final JTextField titleInputField = new JTextField(30);
-    private final JTextField detailsInputField = new JPasswordField(100);
+    private final JTextArea detailsInputField = new JTextArea(75,75);
     private CreateStudyController createStudyController;
 
     private final JButton createStudy;
@@ -56,7 +52,7 @@ public class CreateStudyView extends JPanel implements PropertyChangeListener {
                     public void actionPerformed(ActionEvent evt) {
                         if (evt.getSource().equals(createStudy)) {
                             final CreateStudyState currentState = createStudyViewModel.getState();
-
+                            System.out.println(currentState);
                             createStudyController.execute(
                                     currentState.getTitle(),
                                     currentState.getDetails(),
@@ -92,7 +88,7 @@ public class CreateStudyView extends JPanel implements PropertyChangeListener {
             private void documentListenerHelper() {
                 final CreateStudyState currentState = createStudyViewModel.getState();
                 currentState.setTitle(titleInputField.getText());
-                createStudyViewModel.setState(currentState);
+//                createStudyViewModel.setState(currentState);
             }
 
             @Override
@@ -118,7 +114,9 @@ public class CreateStudyView extends JPanel implements PropertyChangeListener {
             private void documentListenerHelper() {
                 final CreateStudyState currentState = createStudyViewModel.getState();
                 currentState.setDetails(detailsInputField.getText());
-                createStudyViewModel.setState(currentState);
+                System.out.println(currentState);
+
+//                createStudyViewModel.setState(currentState);
             }
 
             @Override
@@ -140,6 +138,7 @@ public class CreateStudyView extends JPanel implements PropertyChangeListener {
 
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
+
         final CreateStudyState state = (CreateStudyState) evt.getNewValue();
         if (state.getDetailsError() != null) {
             JOptionPane.showMessageDialog(this, state.getDetailsError());

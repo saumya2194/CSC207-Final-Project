@@ -1,6 +1,7 @@
 package interface_adapter.load_homepage;
 import interface_adapter.EditStudy.EditStudyViewModel;
 import interface_adapter.ViewManagerModel;
+import interface_adapter.createstudy.CreateStudyState;
 import interface_adapter.createstudy.CreateStudyViewModel;
 import interface_adapter.login.LoginViewModel;
 import interface_adapter.view_profile.ProfileState;
@@ -60,6 +61,7 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundary {
         // Get the current state of the ProfileViewModel
 
         final ProfileState profileState = profileViewModel.getState();
+        profileState.setUsername(username);
         this.profileViewModel.setState(profileState);
         profileViewModel.firePropertyChanged();
 
@@ -69,7 +71,11 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundary {
     }
 
     // fill in the other switch things
-    public void switchToCreateStudyView(){
+    public void switchToCreateStudyView(String username){
+
+        final CreateStudyState createStudyState = createStudyViewModel.getState();
+        createStudyState.setUser(username);
+        System.out.println(createStudyState);
         viewManagerModel.setState(createStudyViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
