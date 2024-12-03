@@ -28,7 +28,7 @@ public class CreateStudyView extends JPanel implements PropertyChangeListener {
 
     private final CreateStudyViewModel createStudyViewModel;
     private final JTextField titleInputField = new JTextField(30);
-    private final JPasswordField detailsInputField = new JPasswordField(100);
+    private final JTextField detailsInputField = new JPasswordField(100);
     private CreateStudyController createStudyController;
 
     private final JButton createStudy;
@@ -43,7 +43,7 @@ public class CreateStudyView extends JPanel implements PropertyChangeListener {
         final LabelTextPanel studyTitleInfo = new LabelTextPanel(
                 new JLabel(CreateStudyViewModel.STUDY_TITLE_LABEL), titleInputField);
         final LabelTextPanel detailsInfo = new LabelTextPanel(
-                new JLabel(CreateStudyViewModel.PASSWORD_LABEL), detailsInputField);
+                new JLabel(CreateStudyViewModel.DETAILS_LABEL), detailsInputField);
         final JPanel buttons = new JPanel();
         createStudy = new JButton(CreateStudyViewModel.CREATE_STUDY_BUTTON_LABEL);
         buttons.add(createStudy);
@@ -117,7 +117,7 @@ public class CreateStudyView extends JPanel implements PropertyChangeListener {
 
             private void documentListenerHelper() {
                 final CreateStudyState currentState = createStudyViewModel.getState();
-                currentState.setDetails(new String(detailsInputField.getPassword()));
+                currentState.setDetails(detailsInputField.getText());
                 createStudyViewModel.setState(currentState);
             }
 

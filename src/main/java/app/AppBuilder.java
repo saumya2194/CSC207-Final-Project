@@ -25,6 +25,7 @@ import interface_adapter.signup.SignupController;
 import interface_adapter.signup.SignupPresenter;
 import interface_adapter.signup.SignupViewModel;
 import interface_adapter.view_experiment.ViewExperimentViewModel;
+import interface_adapter.view_profile.EditProfilePresenter;
 import interface_adapter.view_profile.ProfileViewModel;
 import use_case.createstudy.CreateStudyInputBoundary;
 import use_case.createstudy.CreateStudyInteractor;
@@ -42,6 +43,11 @@ import view.*;
 import interface_adapter.view_experiment.ViewExperimentViewModel;
 import interface_adapter.view_profile.ProfileViewModel;
 import interface_adapter.logged_in.LoggedInViewModel;
+import use_case.edit_profile.EditProfileOutputBoundary;
+import use_case.edit_profile.EditProfileInputBoundary;
+import use_case.edit_profile.EditProfileInteractor;
+import interface_adapter.view_profile.EditProfileController;
+import interface_adapter.view_profile.ProfileViewModel;
 
 
 
@@ -244,6 +250,24 @@ public class AppBuilder {
 
         final LoadHomepageController homepageController = new LoadHomepageController(homepageInteractor);
         loggedInView.setLoadHomepageController(homepageController);
+        return this;
+    }
+
+    /**
+     * Adds the Profile View Use Case to the application.
+     *
+     * @return this builder
+     */
+    public AppBuilder addEditProfileUseCase() {
+        final EditProfileOutputBoundary editProfileOutputBoundary = new EditProfilePresenter(homepageViewModel,
+                viewManagerModel);
+
+        final EditProfileInputBoundary editProfileInteractor = new EditProfileInteractor(userDataAccessObject,
+                editProfileOutputBoundary,
+                userFactory);
+
+        final EditProfileController editProfileController = new EditProfileController(editProfileInteractor);
+        profileView.setChangePasswordController(editProfileController);
         return this;
     }
 

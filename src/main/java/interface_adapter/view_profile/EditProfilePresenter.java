@@ -5,7 +5,7 @@ import interface_adapter.load_homepage.HomepageState;
 import interface_adapter.load_homepage.HomepageViewModel;
 import use_case.edit_profile.EditProfileOutputBoundary;
 import use_case.edit_profile.EditProfileOutputData;
-
+import interface_adapter.view_profile.ProfileViewModel;
 /**
  * The Presenter for the Change Password Use Case.
  */
@@ -13,7 +13,9 @@ public class EditProfilePresenter implements EditProfileOutputBoundary {
     private final HomepageViewModel homepageViewModel;
     private final ViewManagerModel viewManagerModel;
 
-    public EditProfilePresenter(HomepageViewModel homepageViewModel, ViewManagerModel viewManagerModel) {
+
+    public EditProfilePresenter(HomepageViewModel homepageViewModel,
+                                ViewManagerModel viewManagerModel) {
         this.homepageViewModel = homepageViewModel;
         this.viewManagerModel = viewManagerModel;
     }
