@@ -37,6 +37,7 @@ public class Main {
 //            System.err.println("Error occurred: " + e.getMessage());
 //        }
 //    }
+
     public static void main(String[] args) {
         AppBuilder temp = new AppBuilder();
         final JFrame application = temp.addSignupView()
@@ -54,5 +55,15 @@ public class Main {
         application.pack();
         application.setVisible(true);
 
+        // uncomment below if fakestudies is needed
+//        fakeStudies();
+    }
+    // do not delete this. it will be needed in case database gets changed.
+    private static void generatefakeStudies() {
+        DBExperimentDataAccessObject db = new DBExperimentDataAccessObject(new CommonStudyFactory(), new CommonUserFactory());
+        db.save(new CommonStudy("jack", "Jack needs people", "details"));
+        db.save(new CommonStudy("james", "James needs people 2", "details"));
+        db.save(new CommonStudy("jack", "Jack doesn't people", "details"));
+        db.save(new CommonStudy("jack", "Jack doesn't people 2", "details"));
     }
 }

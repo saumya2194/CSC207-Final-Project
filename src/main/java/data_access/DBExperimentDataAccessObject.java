@@ -18,14 +18,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import use_case.createstudy.CreateStudyDataAccessInterface;
-import use_case.load_homepage.LoadHomepageExperimentsDataAccessInterface;
-
-import javax.management.RuntimeErrorException;
 
 
-public class DBExperimentDataAccessObject implements CreateStudyDataAccessInterface,
-        LoadHomepageExperimentsDataAccessInterface {
+public class DBExperimentDataAccessObject  {
 
     private static final int SUCCESS_CODE = 200;
     private static final int CREDENTIAL_ERROR = 401;
@@ -35,8 +30,8 @@ public class DBExperimentDataAccessObject implements CreateStudyDataAccessInterf
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
     private static final String MESSAGE = "message";
-    private final StudyFactory studyFactory;
     private final UserFactory userFactory;
+    private final StudyFactory studyFactory;
 
 
 
@@ -90,6 +85,7 @@ public class DBExperimentDataAccessObject implements CreateStudyDataAccessInterf
         List<CommonStudy> res = new ArrayList<>();
         for (int i = 0; i < temp.length(); i++ ) {
             JSONObject study = temp.getJSONObject(i);
+            System.out.println(study);
             CommonStudy myStudyObject = studyFactory.create(study.getString("user"), study.getString("title"), study.getString("details"), study.getString("id"));
             res.add(myStudyObject);
         }
@@ -117,6 +113,7 @@ public class DBExperimentDataAccessObject implements CreateStudyDataAccessInterf
         throw new RuntimeException("Study ID is not in the database");
 
     }
+
     /**
      * Takes the list of current studies we have saved. And add the new researchStudy to that list.
      * All the studies are added under NullPointers username.
@@ -125,7 +122,7 @@ public class DBExperimentDataAccessObject implements CreateStudyDataAccessInterf
      * @return True if the study is added successfully onto current studies list. Otherwise return False.
      */
 
-    public void save(Study researchStudy) {
+    public boolean save(CommonStudy researchStudy) {
         final OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
 
@@ -138,8 +135,7 @@ public class DBExperimentDataAccessObject implements CreateStudyDataAccessInterf
         JSONArray studies = getStudies();
         JSONObject study = new JSONObject();
 
-        // TODO create a builder for JSON Objects.
-        // part for putting the
+        // part for putting the study information
         study.put("user", researchStudy.getUser());
         study.put("title", researchStudy.getTitle());
         study.put("details", researchStudy.getDetails());
@@ -162,20 +158,27 @@ public class DBExperimentDataAccessObject implements CreateStudyDataAccessInterf
 
             System.out.println(responseBody);
 
-            if (responseBody.getInt(STATUS_CODE_LABEL) == CREDENTIAL_ERROR) {
+            if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) {
+                return true;
+            }
+            else if (responseBody.getInt(STATUS_CODE_LABEL) == CREDENTIAL_ERROR) {
                 throw new RuntimeException("message could not be found or password was incorrect");
             }
-        } catch (IOException | JSONException ex) {
+            else {
+                throw new RuntimeException("database error: " + responseBody.getString(MESSAGE));
+            }
+        }
+        catch (IOException | JSONException ex) {
             throw new RuntimeException(ex.getMessage());
         }
 
     }
 
     /**
-     * Retrieve all the research studies created by a User.
+     * Retrieve all the CommonStudy objects created by a User.
      *
-     * @param username is a String that is username of the User that we want to retrieve of.
-     * @return
+     * @param username is a String username of the User that we want to retrieve of.
+     * @return List of CommonStudy objects created by the User.
      */
     public List<CommonStudy> retrieveUserStudies(String username) {
         final List<CommonStudy> studies = new ArrayList<>();
@@ -194,9 +197,9 @@ public class DBExperimentDataAccessObject implements CreateStudyDataAccessInterf
 
     /**
      * Delete a specified ResearchStudy from the database. Deletion will be based on the unique ID that is associated with
-     * the study.
+     * the study upon its creation.
      *
-     * @param
+     * @param id
      * @return
      */
 
@@ -218,24 +221,27 @@ public class DBExperimentDataAccessObject implements CreateStudyDataAccessInterf
             final Response response = client.newCall(request).execute();
             final JSONObject responseBody = new JSONObject(response.body().string());
             if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) { return studies.length() != newStudies.length();
-            } else if (responseBody.getInt(STATUS_CODE_LABEL) == CREDENTIAL_ERROR) { throw new RuntimeException("message could not be found or password was incorrect");
-            } else { throw new RuntimeException("database error: " + responseBody.getString(MESSAGE));
+            }
+            else if (responseBody.getInt(STATUS_CODE_LABEL) == CREDENTIAL_ERROR) {
+                throw new RuntimeException("message could not be found or password was incorrect");
+            }
+            else {
+                throw new RuntimeException("database error: " + responseBody.getString(MESSAGE));
             }
         } catch (IOException | JSONException ex) {
 
             throw new RuntimeException(ex.getMessage());
-
         }
-
     }
 
+    /**
+     *
+     * @param study
+     * @return
+     */
     public boolean editResearchStudy(CommonStudy study) {
         if (!deleteResearchStudy(study.getId())) return false;
         save(study); return true;
     }
-
-
-//    public void editRes
-
 
 }

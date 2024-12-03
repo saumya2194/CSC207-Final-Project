@@ -33,11 +33,17 @@ public class SignupInteractor implements SignupInputBoundary {
 
             final SignupOutputData signupOutputData = new SignupOutputData(user.getName(), false);
             userPresenter.prepareSuccessView(signupOutputData);
+
+            sendEmail(signupInputData.getUsername());
         }
     }
 
     @Override
     public void switchToLoginView() {
         userPresenter.switchToLoginView();
+    }
+
+    private void sendEmail(String username) {
+
     }
 }

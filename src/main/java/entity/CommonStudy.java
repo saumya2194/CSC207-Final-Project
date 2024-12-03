@@ -1,5 +1,13 @@
 package entity;
 
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
 import java.util.UUID;
 
 /**
@@ -9,8 +17,10 @@ import java.util.UUID;
  */
 
 public class CommonStudy implements Study {
+    private static final int SUCCESS_CODE = 200;
     private final String id;
     private final String user;
+    private static final String STATUS_CODE_LABEL = "status_code";
     private final String title;
     private final String details;
 
@@ -19,7 +29,7 @@ public class CommonStudy implements Study {
 
     public CommonStudy(String user, String title, String details) {
         // UUID and hashcode will ensure that
-        this.id = String.valueOf(UUID.randomUUID().hashCode());
+        this.id = this.getRandomNumber();
         this.user = user;
         this.title = title;
         this.details = details;
@@ -47,6 +57,23 @@ public class CommonStudy implements Study {
     }
     public String getDetails() {
         return this.details;
+    }
+
+    private String getRandomNumber() {
+        final OkHttpClient client = new OkHttpClient().newBuilder().build();
+        final Request request = new Request.Builder()
+                .url(String.format("http://www.randomnumberapi.com/api/v1.0/random?min=1&max=100000000000000&count=1", "NullPointers"))
+                .addHeader("Content-Type", "application/json")
+                .build();
+        try {
+            final Response response = client.newCall(request).execute();
+
+            final JSONArray responseBody = new JSONArray(response.body().string());
+
+            return ((Long) responseBody.get(0)).toString();
+        } catch (IOException | JSONException ex) {
+            return "backup";
+        }
     }
 }
 
