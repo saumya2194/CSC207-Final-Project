@@ -46,9 +46,9 @@ public class Main {
                 .addLoginUseCase()
                 .addCreateStudyView()
                 .addCreateStudyUseCase()
+                .addProfileView()
                 .addHomepageUseCase()
                 .addLoggedInView()
-                .addProfileView()
                 .addEditProfileUseCase()
                 .build();
         application.pack();
