@@ -48,7 +48,7 @@ public class LoggedInView extends JPanel implements ActionListener {
 
                             homepageController.execute(
                                     currentState.getUsername()
-                                    );
+                            );
                         }
                     }
                 }

@@ -1,7 +1,7 @@
 package view;
 
 import javax.swing.*;
-import java.awt.*;
+import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -31,40 +31,26 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
 
     // do the tables belong here?
     private final String[] columns = {"ID", "Name"};
+//    private JTable experiments = new JTable(new DefaultTableModel(null, columns ));
     private JTable experiments = new JTable(1,1);
+//    private JTable myExperiments = new JTable(new DefaultTableModel(null, columns ));
     private JTable myExperiments = new JTable(1,1);
 
     public HomepageView(HomepageViewModel homepageViewModel){
         this.homepageViewModel = homepageViewModel;
+        // add line about adding property change listener to viewmodel, not 100% sure what its for
         this.homepageViewModel.addPropertyChangeListener(this);
-        // state
-        HomepageState state = homepageViewModel.getState();
 
-        // Main title
         final JLabel title = new JLabel(HomepageViewModel.TITLE_LABEL);
         title.setAlignmentX(Component.CENTER_ALIGNMENT);
-        title.setFont(new Font("Arial", Font.BOLD, 36));
+        // add some set alignment thing
 
-        // Compiling the stuff to populate the table
-        Object[][] experimentsStrings = new Object[state.getExperiments().length][2];
-        for (int i = 0; i < state.getExperiments().length; i++) {
-            CommonStudy study = state.getExperiments()[i];
-            experimentsStrings[i] = new Object[]{study.getId(), study.getTitle()};
-        }
+        // potentially create panels of title + table for both experiments and my experiment
+        // idk where to add all the deets of that
 
-        Object[][] myExperimentsStrings = new Object[state.getMyExperiments().length][2];
-        for (int i = 0; i < state.getMyExperiments().length; i++) {
-            CommonStudy study = state.getMyExperiments()[i];
-            myExperimentsStrings[i] = new Object[]{study.getId(), study.getTitle()};
-        }
-
-        experiments = new JTable(experimentsStrings, HomepageViewModel.experimentsColumns);
-        myExperiments = new JTable(myExperimentsStrings, HomepageViewModel.myExperimentsColumns);
-
-        // Create panels for experiments
         final JPanel myExperimentsPanel = new JPanel();
-        myExperimentsPanel.setLayout(new BoxLayout(myExperimentsPanel, BoxLayout.Y_AXIS)); // Use BoxLayout
-        myExperimentsPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add padding
+        // add title(might be included in columns)
+        // create experiment button
         final JLabel myExperimentsTitle = new JLabel(HomepageViewModel.MY_EXPERIMENTS_TITLE_LABEL);
         myExperimentsTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         createExperiment = new JButton(HomepageViewModel.CREATE_EXPERIMENT_BUTTON_LABEL);
@@ -73,20 +59,22 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
         profile = new JButton(HomepageViewModel.PROFILE_BUTTON_LABEL);
         myExperimentsPanel.add(myExperimentsTitle);
         myExperimentsPanel.add(createExperiment);
+
         myExperimentsPanel.add(editExperimentbutton);
         myExperimentsPanel.add(viewExperiment);
         myExperimentsPanel.add(profile);
         myExperimentsPanel.add(myExperiments);
 
-        // Panel for other experiments
+
+        myExperimentsPanel.add(myExperiments);
         final JPanel experimentsPanel = new JPanel();
-        experimentsPanel.setLayout(new BoxLayout(experimentsPanel, BoxLayout.Y_AXIS)); // BoxLayout for vertical stacking
-        experimentsPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Add padding
+        // add title(might be included in column)
+        // add table
         final JLabel experimentsTitle = new JLabel(HomepageViewModel.EXPERIMENTS_TITLE_LABEL);
         experimentsTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         experimentsPanel.add(experimentsTitle);
         experimentsPanel.add(experiments);
-
+      
         // Buttons with ActionListeners
         profile.addActionListener(evt -> {
             String username = homepageViewModel.getState().getUsername();
@@ -134,12 +122,11 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
             }
         );
 
-        // Layout and adding components
-        this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Stack components vertically
         this.add(title);
         this.add(profile);
         this.add(experimentsPanel);
         this.add(myExperimentsPanel);
+
     }
 
     /**
@@ -169,9 +156,9 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
         for (int i = 0; i < state.getMyExperiments().length; i++) {
             CommonStudy study = state.getMyExperiments()[i];
             myExperimentsStrings[i] = new Object[]{study.getId(), study.getTitle()};
+            myExperiments = new JTable(myExperimentsStrings, HomepageViewModel.myExperimentsColumns);
+            experiments = new JTable(experimentsStrings, HomepageViewModel.experimentsColumns);
         }
-        myExperiments = new JTable(myExperimentsStrings, columns);
-        experiments = new JTable(experimentsStrings, columns);
     }
 
     public String getViewName() {
