@@ -5,8 +5,8 @@ import entity.CommonUser;
 
 public class HomepageState {
 
-    private CommonStudy[] experiments;
-    private CommonStudy[] myExperiments;
+    private CommonStudy[] experiments = {};
+    private CommonStudy[] myExperiments ={};
     private String username;
 
     public CommonStudy[] getExperiments() {
@@ -28,6 +28,5 @@ public class HomepageState {
     public String getUsername() { return this.username;}
 
     public void setUsername(String username) { this.username = username; }
-
 
 }

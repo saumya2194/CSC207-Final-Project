@@ -1,11 +1,11 @@
 package interface_adapter.load_homepage; // info about package, import
-import use_case.load_homepage.LoadHomepageInputBoundry;
+import use_case.load_homepage.LoadHomepageInputBoundary;
 import use_case.load_homepage.LoadHomepageInputData;
 
 public class LoadHomepageController {
-    private final LoadHomepageInputBoundry loadHomepageUseCaseInteractor;
+    private final LoadHomepageInputBoundary loadHomepageUseCaseInteractor;
 
-    public LoadHomepageController(LoadHomepageInputBoundry loadHomepageUseCaseInteractor) {
+    public LoadHomepageController(LoadHomepageInputBoundary loadHomepageUseCaseInteractor) {
         this.loadHomepageUseCaseInteractor = loadHomepageUseCaseInteractor;
     }
 

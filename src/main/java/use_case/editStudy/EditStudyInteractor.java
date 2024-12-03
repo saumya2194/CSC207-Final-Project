@@ -19,12 +19,11 @@ public class EditStudyInteractor implements EditStudyInputBoundary {
 
     public void execute(EditStudyInputData editStudyInputData) {
         CommonStudy newstudy = editStudyInputData.getNewStudy();
-        if (!experimentDAO.editStudy(newstudy)) {
-            temp.prepareFailView("This edit was not successful!");
-        }
-        else {
-            temp.prepareSuccessView("successful edit!");
+//        if (!experimentDAO.editStudy(newstudy)) {
+//            temp.prepareFailView("This edit was not successful!");
+//        }
+//        else {
+//            temp.prepareSuccessView("successful edit!");
         }
 
-    }
 }
