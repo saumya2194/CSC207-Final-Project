@@ -1,8 +1,14 @@
 package interface_adapter.load_homepage;
 
+import data_access.DBExperimentDataAccessObject;
+import data_access.DBUserDataAccessObject;
 import entity.CommonStudy;
+import entity.CommonStudyFactory;
+import entity.CommonUserFactory;
+import entity.StudyFactory;
 import interface_adapter.ViewModel;
 import interface_adapter.load_homepage.HomepageState;
+import use_case.login.LoginInputData;
 
 public class HomepageViewModel extends ViewModel<HomepageState> {
     public static final String TITLE_LABEL = "Homepage" ;
@@ -16,7 +22,12 @@ public class HomepageViewModel extends ViewModel<HomepageState> {
 
     public HomepageViewModel(){
         super("homepage");
-        setState(new HomepageState());
+        DBExperimentDataAccessObject db = new DBExperimentDataAccessObject(new CommonStudyFactory(), new CommonUserFactory());
+        HomepageState homepageState = new HomepageState();
+        homepageState.setExperiments(db.getStudyObjects().toArray(new CommonStudy[0]));
+        homepageState.setMyExperiments(db.retrieveUserStudies("jackypoo").toArray(new CommonStudy[0]));
+
+        setState(homepageState);
     }
 
 }

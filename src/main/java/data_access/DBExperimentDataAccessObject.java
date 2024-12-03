@@ -30,6 +30,7 @@ public class DBExperimentDataAccessObject  {
     private static final String USERNAME = "username";
     private static final String PASSWORD = "password";
     private static final String MESSAGE = "message";
+    private final UserFactory userFactory;
     private final StudyFactory studyFactory;
 
 
@@ -39,8 +40,9 @@ public class DBExperimentDataAccessObject  {
      *
      * @return All the studies that have been made from the DB.
      */
-    public DBExperimentDataAccessObject(StudyFactory studyFactory) {
+    public DBExperimentDataAccessObject(StudyFactory studyFactory, UserFactory userFactory) {
         this.studyFactory = studyFactory;
+        this.userFactory = userFactory;
         // No need to do anything to reinitialize a user list! The data is the cloud that may be miles away.
     }
 
@@ -83,6 +85,7 @@ public class DBExperimentDataAccessObject  {
         List<CommonStudy> res = new ArrayList<>();
         for (int i = 0; i < temp.length(); i++ ) {
             JSONObject study = temp.getJSONObject(i);
+            System.out.println(study);
             CommonStudy myStudyObject = studyFactory.create(study.getString("user"), study.getString("title"), study.getString("details"), study.getString("id"));
             res.add(myStudyObject);
         }
