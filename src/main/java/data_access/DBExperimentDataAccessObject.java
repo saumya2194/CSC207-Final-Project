@@ -5,14 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import entity.*;
-
 import org.json.JSONArray;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
+import entity.*;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -23,7 +20,9 @@ import use_case.editStudy.EditStudyDataAccessInterface;
 import use_case.load_homepage.LoadHomepageExperimentsDataAccessInterface;
 import use_case.view_experiment.ViewExperimentDataAccessInterface;
 
-
+/**
+ * The DAO for experiment data.
+ */
 public class DBExperimentDataAccessObject implements LoadHomepageExperimentsDataAccessInterface,
         EditStudyDataAccessInterface, CreateStudyDataAccessInterface, ViewExperimentDataAccessInterface {
 
@@ -52,7 +51,6 @@ public class DBExperimentDataAccessObject implements LoadHomepageExperimentsData
     }
 
     /**
-     *
      * @return JSONArray of the all the studies under NullPointers account from the database.
      */
     public JSONArray getStudies() {
@@ -192,14 +190,14 @@ public class DBExperimentDataAccessObject implements LoadHomepageExperimentsData
     }
 
     /**
-     * Delete a specified ResearchStudy from the database. Deletion will be based on the unique ID that is associated with
+     * Delete a specified ResearchStudy from the database. Deletion will be based on the unique ID that is associated with.
      * the study upon its creation.
      *
-     * @param id
-     * @return
+     * @param id is a string to retrieve study.
+     * @return returns boolean to show success or fail of deletion.
      */
 
-    public boolean deleteResearchStudy(String id) {
+    public boolean deleteResearchStudy(String id) throws RuntimeException {
         final JSONArray studies = getStudies();
         final JSONArray newStudies = new JSONArray();
         studies.toList().stream().map(obj -> (Map<String, String>) obj).filter(obj -> !obj.get("id").equals(id)).forEach(newStudies::put);
@@ -231,9 +229,8 @@ public class DBExperimentDataAccessObject implements LoadHomepageExperimentsData
     }
 
     /**
-     *
-     * @param study
-     * @return
+     * @param study is a CommonStudy that must be edited.
+     * @return boolean success or fail.
      */
     @Override
     public boolean editResearchStudy(CommonStudy study) {

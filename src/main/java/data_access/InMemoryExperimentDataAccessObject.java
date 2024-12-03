@@ -2,14 +2,9 @@ package data_access;
 
 import entity.CommonStudy;
 import entity.Study;
-import entity.User;
-import org.json.JSONArray;
 import use_case.load_homepage.LoadHomepageExperimentsDataAccessInterface;
-import use_case.login.LoginUserDataAccessInterface;
-import use_case.logout.LogoutUserDataAccessInterface;
 import use_case.createstudy.CreateStudyDataAccessInterface;
 import use_case.view_experiment.ViewExperimentDataAccessInterface;
-import use_case.edit_profile.EditProfileUserDataAccessInterface;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -29,14 +24,14 @@ public class InMemoryExperimentDataAccessObject implements LoadHomepageExperimen
 
     @Override
     public List<CommonStudy> getStudyObjects() {
-        List<CommonStudy> result = new ArrayList<CommonStudy>(studies.values());
+        final List<CommonStudy> result = new ArrayList<CommonStudy>(studies.values());
         return result;
     }
 
     @Override
     public List<CommonStudy> retrieveUserStudies(String username) {
-        List<CommonStudy> totalStudies = new ArrayList<>(studies.values());
-        List<CommonStudy> result = new ArrayList<CommonStudy>();
+        final List<CommonStudy> totalStudies = new ArrayList<>(studies.values());
+        final List<CommonStudy> result = new ArrayList<CommonStudy>();
         for (CommonStudy study : totalStudies) {
             if (study.getUser().equals(username)) {
                 result.add(study);

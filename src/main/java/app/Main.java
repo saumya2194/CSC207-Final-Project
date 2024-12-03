@@ -1,4 +1,5 @@
 package app;
+
 import data_access.DBExperimentDataAccessObject;
 import data_access.DBUserDataAccessObject;
 import entity.*;
@@ -9,7 +10,9 @@ import org.json.JSONObject;
 
 import javax.swing.*;
 import java.util.List;
-
+/**
+ * The Main class.
+ */
 public class Main {
     //    public static void main(String[] args) {
 //        // Initialize necessary factories
@@ -37,7 +40,10 @@ public class Main {
 //            System.err.println("Error occurred: " + e.getMessage());
 //        }
 //    }
-
+    /**
+     * Builds and runs the CA architecture of the application.
+     * @param args unused arguments
+     */
     public static void main(String[] args) {
         AppBuilder temp = new AppBuilder();
         final JFrame application = temp.addSignupView()
@@ -51,7 +57,7 @@ public class Main {
                 .addEditStudyView()
                 .addEditStudyUseCase()
                 .addEnterIDView()
-//                .addEnterIDViewUseCase()
+                //                .addEnterIDViewUseCase()
                 .addViewExperimentView()
                 .addViewExperimentUseCase()
                 .addHomepageUseCase()
@@ -60,13 +66,15 @@ public class Main {
                 .build();
         application.pack();
         application.setVisible(true);
-//        DBExperimentDataAccessObject lol = new DBExperimentDataAccessObject(new CommonStudyFactory(), new CommonUserFactory());
-//        lol.deleteResearchStudy("722333215");
+        //        DBExperimentDataAccessObject lol = new DBExperimentDataAccessObject(new CommonStudyFactory(), new CommonUserFactory());
+        //        lol.deleteResearchStudy("722333215");
 
         // uncomment below if fakestudies is needed
-//        fakeStudies();
+        //        fakeStudies();
     }
     // do not delete this. it will be needed in case database gets changed.
+
+    @SuppressWarnings("checkstyle:MultipleStringLiterals")
     private static void generatefakeStudies() {
         DBExperimentDataAccessObject db = new DBExperimentDataAccessObject(new CommonStudyFactory(), new CommonUserFactory());
         db.save(new CommonStudy("jack", "Jack needs people", "details"));

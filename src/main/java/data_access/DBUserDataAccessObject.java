@@ -124,6 +124,7 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
             throw new RuntimeException(ex);
         }
     }
+
     @Override
     public void setCurrentUsername(String name) {
         this.currentUsername = name;
@@ -157,10 +158,12 @@ public class DBUserDataAccessObject implements SignupUserDataAccessInterface,
 
             if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) {
                 // success!
-            } else {
+            }
+            else {
                 throw new RuntimeException(responseBody.getString(MESSAGE));
             }
-        } catch (IOException | JSONException ex) {
+        }
+        catch (IOException | JSONException ex) {
             throw new RuntimeException(ex);
         }
     }
