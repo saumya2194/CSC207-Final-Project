@@ -54,6 +54,8 @@ public class Main {
                 .build();
         application.pack();
         application.setVisible(true);
+//        DBExperimentDataAccessObject lol = new DBExperimentDataAccessObject(new CommonStudyFactory(), new CommonUserFactory());
+//        lol.deleteResearchStudy("722333215");
 
         // uncomment below if fakestudies is needed
 //        fakeStudies();
