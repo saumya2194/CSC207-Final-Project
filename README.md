@@ -8,7 +8,7 @@ _A Simple Experiment Listing application for organizations and individuals._
 - **Snigdha Singh**: Developer
 - **Saumya Gupta**: Developer
 - **Shanaya Goel**: Developer
-- **
+- **Javkhlan Byambadorj**: Team Member
 
 ---
 
