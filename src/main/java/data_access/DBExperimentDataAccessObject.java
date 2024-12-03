@@ -164,8 +164,6 @@ public class DBExperimentDataAccessObject implements CreateStudyDataAccessInterf
 
             if (responseBody.getInt(STATUS_CODE_LABEL) == CREDENTIAL_ERROR) {
                 throw new RuntimeException("message could not be found or password was incorrect");
-            } else {
-                throw new RuntimeException("database error: " + responseBody.getString(MESSAGE));
             }
         } catch (IOException | JSONException ex) {
             throw new RuntimeException(ex.getMessage());
