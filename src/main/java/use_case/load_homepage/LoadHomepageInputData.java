@@ -2,6 +2,9 @@ package use_case.load_homepage;
 
 import entity.CommonUser;
 
+/**
+ * Input Data for Load Homepage.
+ */
 public class LoadHomepageInputData {
     // do we need username and password? or user
 
@@ -10,7 +13,7 @@ public class LoadHomepageInputData {
 
     // collection for your experiments
 
-    public LoadHomepageInputData(String user){
+    public LoadHomepageInputData(String user) {
         this.user = user;
     }
 
