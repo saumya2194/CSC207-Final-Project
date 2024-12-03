@@ -30,7 +30,8 @@ public class CreateStudyInteractor implements CreateStudyInputBoundary {
         else {
             final Study study = studyFactory.create(createStudyInputData.getTitle(), createStudyInputData.getDetails(),
                     createStudyInputData.getUser());
-                studyDataAccessObject.save(study);
+                //studyDataAccessObject.save(study);
+                System.out.println(study);
                 final CreateStudyOutputData createStudyOutputData = new CreateStudyOutputData(study.getTitle(),
                         study.getDetails(),
                         false);

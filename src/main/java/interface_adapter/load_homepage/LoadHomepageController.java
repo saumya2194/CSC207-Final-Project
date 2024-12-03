@@ -16,7 +16,7 @@ public class LoadHomepageController {
 
     public void switchToViewProfileView(String username){ loadHomepageUseCaseInteractor.switchToProfileView(username);}
 
-    public void switchToCreateStudyView(){ loadHomepageUseCaseInteractor.switchToCreateStudyView();}
+    public void switchToCreateStudyView(String username){ loadHomepageUseCaseInteractor.switchToCreateStudyView(username);}
 
     public void switchToEditExperimentView(String data) {
         loadHomepageUseCaseInteractor.switchToEditExperimentView(data);

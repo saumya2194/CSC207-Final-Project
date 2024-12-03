@@ -12,7 +12,6 @@ import java.beans.PropertyChangeListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
 
 import entity.CommonStudy;
 import interface_adapter.load_homepage.LoadHomepageController;
@@ -83,8 +82,6 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
         experimentsPanel.add(experiments);
 
         // Buttons with ActionListeners
-        createExperiment.addActionListener(evt -> loadHomepageController.switchToCreateStudyView());
-
         profile.addActionListener(evt -> {
             String username = homepageViewModel.getState().getUsername();
             loadHomepageController.switchToViewProfileView(username);
@@ -92,8 +89,10 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
       
         createExperiment.addActionListener(
                 new ActionListener() {
-
-                    public void actionPerformed(ActionEvent evt) {loadHomepageController.switchToCreateStudyView();}
+                    public void actionPerformed(ActionEvent evt) {
+                        final HomepageState currentState = homepageViewModel.getState();
+                        String username = currentState.getUsername();
+                        loadHomepageController.switchToCreateStudyView(username);}
                 }
         );
 

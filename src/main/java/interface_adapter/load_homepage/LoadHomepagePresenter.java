@@ -70,7 +70,7 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundary {
     }
 
     // fill in the other switch things
-    public void switchToCreateStudyView(){
+    public void switchToCreateStudyView(String username){
         viewManagerModel.setState(createStudyViewModel.getViewName());
         viewManagerModel.firePropertyChanged();
     }
