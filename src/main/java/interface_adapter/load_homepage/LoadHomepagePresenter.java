@@ -58,13 +58,9 @@ public class LoadHomepagePresenter implements LoadHomepageOutputBoundary {
 
     public void switchToProfileView(String username){
         // Get the current state of the ProfileViewModel
+
         final ProfileState profileState = profileViewModel.getState();
-
-        // Set the username in the profile state
-        profileState.setUsername(username);
-
-        // Update the ProfileViewModel with the new state
-        profileViewModel.setState(profileState);
+        this.profileViewModel.setState(profileState);
         profileViewModel.firePropertyChanged();
 
         // Switch to the profile view

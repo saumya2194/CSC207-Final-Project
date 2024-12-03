@@ -33,6 +33,7 @@ public class CreateStudyPresenter implements CreateStudyOutputBoundary {
         this.viewManagerModel.setState(homepageViewModel.getViewName());
         this.viewManagerModel.firePropertyChanged();
 
+
     }
 
     @Override

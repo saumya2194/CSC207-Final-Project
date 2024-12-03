@@ -70,18 +70,24 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
 
         createExperiment.addActionListener(
                 new ActionListener() {
+
                     public void actionPerformed(ActionEvent evt) {loadHomepageController.switchToCreateStudyView();}
                 }
         );
 
-        profile.addActionListener(evt -> {
-            // Retrieve the username from the HomepageViewModel state
-            final HomepageState currentState = homepageViewModel.getState();
-            String username = currentState.getUsername();
+        profile.addActionListener(
+            new ActionListener() {
+                public void actionPerformed(ActionEvent evt) {
+                    // Retrieve the username from the HomepageViewModel state
+                    final HomepageState currentState = homepageViewModel.getState();
+                    String username = currentState.getUsername();
 
-            // Pass the username to the controller
-            loadHomepageController.switchToViewProfileView(username);
-        });
+                    // Pass the username to the controller
+
+                    loadHomepageController.switchToViewProfileView(username);
+                }
+            }
+        );
         
 
         // TODO: WHERE TO TAKE?
