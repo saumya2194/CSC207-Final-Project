@@ -19,10 +19,13 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import use_case.createstudy.CreateStudyDataAccessInterface;
+import use_case.editStudy.EditStudyDataAccessInterface;
 import use_case.load_homepage.LoadHomepageExperimentsDataAccessInterface;
+import use_case.view_experiment.ViewExperimentDataAccessInterface;
 
 
-public class DBExperimentDataAccessObject implements LoadHomepageExperimentsDataAccessInterface, CreateStudyDataAccessInterface {
+public class DBExperimentDataAccessObject implements LoadHomepageExperimentsDataAccessInterface,
+        EditStudyDataAccessInterface, CreateStudyDataAccessInterface, ViewExperimentDataAccessInterface {
 
     private static final int SUCCESS_CODE = 200;
     private static final int CREDENTIAL_ERROR = 401;
@@ -232,6 +235,7 @@ public class DBExperimentDataAccessObject implements LoadHomepageExperimentsData
      * @param study
      * @return
      */
+    @Override
     public boolean editResearchStudy(CommonStudy study) {
         if (!deleteResearchStudy(study.getId())) return false;
         save(study); return true;

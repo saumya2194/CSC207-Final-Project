@@ -34,10 +34,10 @@ public class EditStudyInteractor implements EditStudyInputBoundary {
             editStudyPresenter.prepareFailView("Length has exceeded the maximum allowed characters (250).");
         }
         else {
-            final CommonStudy study = studyFactory.create(editStudyInputData.getTitle(), editStudyInputData.getDetails(),
-                    editStudyInputData.getUser());
-            experimentDAO.editStudy(study);
-            System.out.println(study);
+            final CommonStudy study = studyFactory.create(editStudyInputData.getUser(), editStudyInputData.getTitle(),
+                    editStudyInputData.getDetails(), editStudyInputData.getId());
+            System.out.println(study.getTitle());
+            experimentDAO.editResearchStudy(study);
 
             final EditStudyOutputData editStudyOutputData = new EditStudyOutputData(study.getTitle(),
                     study.getDetails(), false);

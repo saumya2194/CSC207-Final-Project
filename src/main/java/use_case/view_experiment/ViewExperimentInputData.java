@@ -5,12 +5,11 @@ import entity.User;
 
 public class ViewExperimentInputData {
 
-    private CommonStudy commonStudy;
+    private String id;
 
-    public ViewExperimentInputData(CommonStudy commonStudy) {
-        this.commonStudy = commonStudy;
+    public ViewExperimentInputData(String id) {
+        this.id = id;
     }
 
-    public CommonStudy getResearchStudy() {return commonStudy;}
-    public String getUser() { return commonStudy.getUser(); }
+    public String getId() { return id; }
 }

@@ -12,9 +12,10 @@ public class EditStudyViewModel extends ViewModel<EditStudyState> {
 
         public static final String CREATE_STUDY_BUTTON_LABEL = "Edit Study";
         public static final String CANCEL_BUTTON_LABEL = "Cancel";
+    public static final String EDIT_STUDY_BUTTON_LABEL = "Edit Experiment";
 
-        public EditStudyViewModel() {
-            super("Edit study");
+    public EditStudyViewModel() {
+            super("edit study");
             setState(new EditStudyState());
         }
 }

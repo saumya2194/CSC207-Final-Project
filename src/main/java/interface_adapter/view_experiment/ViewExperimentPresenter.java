@@ -1,5 +1,6 @@
 package interface_adapter.view_experiment;
 
+import interface_adapter.load_homepage.HomepageState;
 import use_case.view_experiment.ViewExperimentOutputBoundary;
 import use_case.view_experiment.ViewExperimentOutputData;
 import interface_adapter.ViewManagerModel;
@@ -16,9 +17,17 @@ public class ViewExperimentPresenter implements ViewExperimentOutputBoundary {
 
     @Override
     public void prepareSuccessView(ViewExperimentOutputData viewExperimentOutputData) {
-        this.viewManagerModel.firePropertyChanged("experiment");
+        final ViewExperimentState viewExperimentState = viewExperimentViewModel.getState();
+        //set stuff including aspects of the state
+        viewExperimentState.setId(viewExperimentOutputData.getId());
+        this.viewExperimentViewModel.setState(viewExperimentState);
+        this.viewExperimentViewModel.firePropertyChanged();
+
+        this.viewManagerModel.setState(viewExperimentViewModel.getViewName());
+        this.viewManagerModel.firePropertyChanged();
 
     }
+
 
     @Override
     public void prepareFailView(String errormessage) {

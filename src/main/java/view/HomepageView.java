@@ -24,6 +24,8 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
     private final HomepageViewModel homepageViewModel;
     private LoadHomepageController loadHomepageController;
 
+    private final JButton viewExperiment;
+    private final JButton editExperimentbutton;
     private final JButton createExperiment;
     private final JButton profile;
 
@@ -66,9 +68,13 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
         final JLabel myExperimentsTitle = new JLabel(HomepageViewModel.MY_EXPERIMENTS_TITLE_LABEL);
         myExperimentsTitle.setAlignmentX(Component.CENTER_ALIGNMENT);
         createExperiment = new JButton(HomepageViewModel.CREATE_EXPERIMENT_BUTTON_LABEL);
+        editExperimentbutton = new JButton(HomepageViewModel.EDIT_EXPERIMENT_BUTTON_LABEL);
+        viewExperiment = new JButton(HomepageViewModel.VIEW_EXPERIMENT_BUTTON_LABEL);
         profile = new JButton(HomepageViewModel.PROFILE_BUTTON_LABEL);
         myExperimentsPanel.add(myExperimentsTitle);
         myExperimentsPanel.add(createExperiment);
+        myExperimentsPanel.add(editExperimentbutton);
+        myExperimentsPanel.add(viewExperiment);
         myExperimentsPanel.add(profile);
         myExperimentsPanel.add(myExperiments);
 
@@ -96,6 +102,24 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
                 }
         );
 
+        editExperimentbutton.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        final HomepageState currentState = homepageViewModel.getState();
+                        loadHomepageController.switchToEditExperimentView(currentState.getUsername());
+                    }
+                }
+        );
+
+        viewExperiment.addActionListener(
+                new ActionListener() {
+                    public void actionPerformed(ActionEvent evt) {
+                        final HomepageState currentState = homepageViewModel.getState();
+                        loadHomepageController.switchToEnterIDView(currentState.getUsername());
+                    }
+                }
+        );
+
         profile.addActionListener(
             new ActionListener() {
                 public void actionPerformed(ActionEvent evt) {
@@ -109,27 +133,6 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
                 }
             }
         );
-        
-
-        // Double-click listener for myExperiments
-        myExperiments.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt){
-                if (evt.getClickCount() == 2) {
-                    String data = myExperiments.getValueAt(myExperiments.getSelectedRow(), 0).toString();
-                    loadHomepageController.switchToEditExperimentView(data);
-                }
-            }
-        });
-
-        // Double-click listener for experiments
-        experiments.addMouseListener(new MouseAdapter() {
-            public void mouseClicked(MouseEvent evt){
-                if (evt.getClickCount() == 2) {
-                    String data = experiments.getValueAt(experiments.getSelectedRow(), 0).toString();
-                    loadHomepageController.switchToViewExperimentView(data);
-                }
-            }
-        });
 
         // Layout and adding components
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Stack components vertically
@@ -139,7 +142,6 @@ public class HomepageView extends JPanel implements ActionListener, PropertyChan
         this.add(myExperimentsPanel);
     }
 
-    // TODO: ADD ACTION PERFORMED THING
     /**
      * React to a button click that results in evt.
      * @param evt the ActionEvent to react to

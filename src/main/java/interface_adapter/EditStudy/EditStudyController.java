@@ -18,9 +18,9 @@ public class EditStudyController {
      *
      */
     public void execute(String title, String details, String user, String ID) {
-        CommonStudy newStudy = new CommonStudy(user, title, details, ID);
-//        final EditStudyInputData input = new EditStudyInputData(newStudy);
-//        editStudyUseCaseInteractor.execute(input);
+        final EditStudyInputData editStudyInputData = new EditStudyInputData(
+                title, details, user, ID);
+        editStudyUseCaseInteractor.execute(editStudyInputData);
     }
 
     public void switchToHomepageView() {
