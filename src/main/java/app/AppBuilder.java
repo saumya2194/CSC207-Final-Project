@@ -206,11 +206,11 @@ public class AppBuilder {
     public AppBuilder addCreateStudyUseCase() {
         final CreateStudyOutputBoundary createStudyOutputBoundary = new CreateStudyPresenter(viewManagerModel,
                 homepageViewModel, createStudyViewModel);
-//        final CreateStudyInputBoundary createStudyInteractor = new CreateStudyInteractor(
-//                studyDataAccessObject, createStudyOutputBoundary, studyFactory);
-//
-//        final CreateStudyController controller = new CreateStudyController(createStudyInteractor);
-//        createStudyView.setCreateStudyController(controller);
+        final CreateStudyInputBoundary createStudyInteractor = new CreateStudyInteractor(
+                studyDataAccessObject, createStudyOutputBoundary, studyFactory);
+
+        final CreateStudyController controller = new CreateStudyController(createStudyInteractor);
+        createStudyView.setCreateStudyController(controller);
         return this;
     }
 
@@ -242,15 +242,14 @@ public class AppBuilder {
      * @return this builder
      */
     public AppBuilder addHomepageUseCase() {
-//        final LoadHomepageOutputBoundary homepageOutputBoundary = new LoadHomepagePresenter(viewManagerModel, profileViewModel,
-//                createStudyViewModel, new EditStudyViewModel(), loginViewModel, homepageViewModel);
-//
-//        final LoadHomepageInputBoundary homepageInteractor = new LoadHomepageInteractor(
-//                homepageOutputBoundary, studyDataAccessObject);
-//
-//        final LoadHomepageController homepageController = new LoadHomepageController(homepageInteractor);
-//        loggedInView.setLoadHomepageController(homepageController);
-//        return this;
+        final LoadHomepageOutputBoundary homepageOutputBoundary = new LoadHomepagePresenter(viewManagerModel, profileViewModel,
+                createStudyViewModel, new EditStudyViewModel(), loginViewModel, homepageViewModel);
+
+        final LoadHomepageInputBoundary homepageInteractor = new LoadHomepageInteractor(
+                homepageOutputBoundary, studyDataAccessObject);
+
+        final LoadHomepageController homepageController = new LoadHomepageController(homepageInteractor);
+        homepageView.setLoadHomepageController(homepageController);
         return this;
     }
 
