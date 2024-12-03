@@ -49,10 +49,16 @@ Appropriate size and space is provided for approach, reach, manipulation, and us
 - This is not really relevant to our program, as it does not exist tangibly to be modified to adapt to differences in space
 
 
+For each Principle of Universal Design, write 2-3 sentences — or point form notes — explaining which features your program adhere to that principle.
+If you do not have any such features, you can either:
 
-# Write a paragraph (3-6 sentences) about who you would market your program towards, if you were to sell or license your program to customers.
-# This could be a specific category of users, such as "students", or more vague, such as "people who like games".
-# Try to give a bit more detail along with the category.
+(a) Describe features that you could implement in the future that would adhere to the principle or
+
+(b) Explain why the principle does not apply to a program like yours.
+
+Write a paragraph (3-6 sentences) about who you would market your program towards, if you were to sell or license your program to customers.
+This could be a specific category of users, such as "students", or more vague, such as "people who like games".
+Try to give a bit more detail along with the category.
 
 Such a program would be marketed to 2 different categories of users.
 Firstly, there would be the research institutions who need participants for experiments.
