@@ -7,7 +7,7 @@ import interface_adapter.ViewModel;
  */
 public class CreateStudyViewModel extends ViewModel<CreateStudyState> {
 
-    public static final String TITLE_LABEL = "Create Study View";
+    public static final String TITLE_LABEL = "Sign Up View";
     public static final String STUDY_TITLE_LABEL = "Select Title";
     public static final String DETAILS_LABEL = "Enter Details";
 

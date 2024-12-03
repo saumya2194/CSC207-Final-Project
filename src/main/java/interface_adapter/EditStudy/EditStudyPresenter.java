@@ -43,9 +43,4 @@ public class EditStudyPresenter implements EditStudyOutputBoundary {
         editStudyViewModel.firePropertyChanged();
 
     }
-
-    public void switchToHomepageView() {
-        viewManagerModel.setState(homepageViewModel.getViewName());
-        viewManagerModel.firePropertyChanged();
-    }
 }

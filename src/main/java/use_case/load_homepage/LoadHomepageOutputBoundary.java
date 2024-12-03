@@ -9,9 +9,9 @@ public interface LoadHomepageOutputBoundary {
 
     void switchToProfileView(String username);
 
-    void switchToCreateStudyView(String username);
+    void switchToCreateStudyView();
 
-    void switchToEditExperimentView(String username);
+    void switchToEditExperimentView(String data);
 
-    void switchToEnterIDView(String data);
+    void switchToViewExperimentView(String data);
 }

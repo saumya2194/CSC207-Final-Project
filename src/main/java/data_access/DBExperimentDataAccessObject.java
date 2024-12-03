@@ -18,14 +18,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
-import use_case.createstudy.CreateStudyDataAccessInterface;
-import use_case.editStudy.EditStudyDataAccessInterface;
-import use_case.load_homepage.LoadHomepageExperimentsDataAccessInterface;
-import use_case.view_experiment.ViewExperimentDataAccessInterface;
 
 
-public class DBExperimentDataAccessObject implements LoadHomepageExperimentsDataAccessInterface,
-        EditStudyDataAccessInterface, CreateStudyDataAccessInterface, ViewExperimentDataAccessInterface {
+public class DBExperimentDataAccessObject  {
 
     private static final int SUCCESS_CODE = 200;
     private static final int CREDENTIAL_ERROR = 401;
@@ -127,7 +122,7 @@ public class DBExperimentDataAccessObject implements LoadHomepageExperimentsData
      * @return True if the study is added successfully onto current studies list. Otherwise return False.
      */
 
-    public void save(Study researchStudy) {
+    public boolean save(CommonStudy researchStudy) {
         final OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
 
@@ -163,6 +158,15 @@ public class DBExperimentDataAccessObject implements LoadHomepageExperimentsData
 
             System.out.println(responseBody);
 
+            if (responseBody.getInt(STATUS_CODE_LABEL) == SUCCESS_CODE) {
+                return true;
+            }
+            else if (responseBody.getInt(STATUS_CODE_LABEL) == CREDENTIAL_ERROR) {
+                throw new RuntimeException("message could not be found or password was incorrect");
+            }
+            else {
+                throw new RuntimeException("database error: " + responseBody.getString(MESSAGE));
+            }
         }
         catch (IOException | JSONException ex) {
             throw new RuntimeException(ex.getMessage());
@@ -235,7 +239,6 @@ public class DBExperimentDataAccessObject implements LoadHomepageExperimentsData
      * @param study
      * @return
      */
-    @Override
     public boolean editResearchStudy(CommonStudy study) {
         if (!deleteResearchStudy(study.getId())) return false;
         save(study); return true;

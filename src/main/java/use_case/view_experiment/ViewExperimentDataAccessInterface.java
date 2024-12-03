@@ -4,5 +4,6 @@ import entity.CommonStudy;
 import org.json.JSONArray;
 
 public interface ViewExperimentDataAccessInterface {
+    JSONArray getStudies ();
     CommonStudy getResearchStudy (String ID);
 }

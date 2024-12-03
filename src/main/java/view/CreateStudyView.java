@@ -13,7 +13,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
-import javax.swing.JTextArea;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
@@ -29,7 +28,7 @@ public class CreateStudyView extends JPanel implements PropertyChangeListener {
 
     private final CreateStudyViewModel createStudyViewModel;
     private final JTextField titleInputField = new JTextField(30);
-    private final JTextArea detailsInputField = new JTextArea(50,50);
+    private final JTextField detailsInputField = new JPasswordField(100);
     private CreateStudyController createStudyController;
 
     private final JButton createStudy;
@@ -93,6 +92,7 @@ public class CreateStudyView extends JPanel implements PropertyChangeListener {
             private void documentListenerHelper() {
                 final CreateStudyState currentState = createStudyViewModel.getState();
                 currentState.setTitle(titleInputField.getText());
+                createStudyViewModel.setState(currentState);
             }
 
             @Override
@@ -118,6 +118,7 @@ public class CreateStudyView extends JPanel implements PropertyChangeListener {
             private void documentListenerHelper() {
                 final CreateStudyState currentState = createStudyViewModel.getState();
                 currentState.setDetails(detailsInputField.getText());
+                createStudyViewModel.setState(currentState);
             }
 
             @Override

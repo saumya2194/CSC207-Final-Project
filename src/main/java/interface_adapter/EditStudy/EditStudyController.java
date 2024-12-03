@@ -9,22 +9,17 @@ import use_case.editStudy.EditStudyInputData;
  */
 
 public class EditStudyController {
-    private final EditStudyInputBoundary editStudyUseCaseInteractor;
+    private final EditStudyInputBoundary EditStudyUseCaseInteractor;
 
     public EditStudyController(EditStudyInputBoundary EditStudyInteractor) {
-        this.editStudyUseCaseInteractor = EditStudyInteractor;
+        this.EditStudyUseCaseInteractor = EditStudyInteractor;
     }
     /**
      *
      */
-    public void execute(String title, String details, String user, String ID) {
-        final EditStudyInputData editStudyInputData = new EditStudyInputData(
-                title, details, user, ID);
-        editStudyUseCaseInteractor.execute(editStudyInputData);
-    }
-
-    public void switchToHomepageView() {
-        editStudyUseCaseInteractor.switchToHomepageView();
+    public void execute(CommonStudy newStudy) {
+        final EditStudyInputData input = new EditStudyInputData(newStudy);
+        EditStudyUseCaseInteractor.execute(input);
     }
 
 

@@ -5,12 +5,12 @@ package interface_adapter.EditStudy;
  */
 
 public class EditStudyState {
-    private String title = "";
-    private String details = "";
-    private String user = "";
-    private String ID = "";
+    private String title;
+    private String details;
+    private String user;
+    private String ID;
     private String detailsError;
-    private String titleError = "";
+    private String titleError;
 
     public String getTitle() {
         return title;
@@ -25,8 +25,6 @@ public class EditStudyState {
     }
 
     public String getTitleError() { return titleError; }
-
-    public void setID(String ID) {this.ID = ID; }
 
     public String getID() { return ID; }
 
@@ -48,15 +46,6 @@ public class EditStudyState {
 
     public void setUser(String user) {
         this.user = user;
-    }
-
-    public String toString() {
-        return "CreateStudyState{"
-                + "title='" + title + '\''
-                + ", details='" + details + '\''
-                + ", user='" + user + '\''
-                + ", ID='" + ID + '\''
-                + '}';
     }
 
 }

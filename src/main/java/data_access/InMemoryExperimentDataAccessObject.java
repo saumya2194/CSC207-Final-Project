@@ -46,6 +46,11 @@ public class InMemoryExperimentDataAccessObject implements LoadHomepageExperimen
     }
 
     @Override
+    public JSONArray getStudies() {
+        return null;
+    }
+
+    @Override
     public void save(Study study) {
         studies.put(study.getTitle(), (CommonStudy) study);
     }

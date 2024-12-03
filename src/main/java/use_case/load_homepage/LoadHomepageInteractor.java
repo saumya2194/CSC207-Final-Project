@@ -41,15 +41,15 @@ public class LoadHomepageInteractor implements LoadHomepageInputBoundary {
         loadHomepagePresenter.switchToProfileView(username);
     };
 
-    public void switchToCreateStudyView(String username){loadHomepagePresenter.switchToCreateStudyView(username);}
+    public void switchToCreateStudyView(){loadHomepagePresenter.switchToCreateStudyView();}
 
-    public void switchToEditExperimentView(String username) {
+    public void switchToEditExperimentView(String data) {
 
-        loadHomepagePresenter.switchToEditExperimentView(username);
+        loadHomepagePresenter.switchToEditExperimentView(data);
     }
 
-    public void switchToEnterIDView(String username) {
-        loadHomepagePresenter.switchToEnterIDView(username);
+    public void switchToViewExperimentView(String data) {
+        loadHomepagePresenter.switchToViewExperimentView(data);
     }
 
 
